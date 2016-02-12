@@ -27,9 +27,9 @@ public class Main {
 		}
 	}
 	
-	public void enleverCarte(int indice) throws EnleverCarteInexistanteException{
+	public Carte enleverCarte(int indice) throws EnleverCarteInexistanteException{
 		if(main.size() > indice){
-			main.remove(indice);
+			return this.main.remove(indice);
 		}
 		else{
 			throw new EnleverCarteInexistanteException();
@@ -44,6 +44,15 @@ public class Main {
 			}else{
 				this.main.get(i).setValeurConnue(true);
 			}
+		}
+	}
+	
+	public Carte getCarte(int indice) throws EnleverCarteInexistanteException{
+		if(main.size() > indice){
+			return this.main.get(indice);
+		}
+		else{
+			throw new EnleverCarteInexistanteException();
 		}
 	}
 }
