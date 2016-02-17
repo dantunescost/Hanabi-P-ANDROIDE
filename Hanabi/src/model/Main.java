@@ -37,11 +37,27 @@ public class Main {
 	}
 	
 	// Type = 1 pour un indice couleur, sinon indice valeur
-	public void indice(int[] indices,int type){
+	/*public void indice(int[] indices,int type){
 		for(int i:indices){
 			if(type == 1){
 				this.main.get(i).setCouleurConnue(true);
 			}else{
+				this.main.get(i).setValeurConnue(true);
+			}
+		}
+	}*/
+	
+	public void indiceCouleur(Couleur c){
+		for(int i=0;i<this.nbCartes;i++){
+			if(this.main.get(i).getCouleur()==c){
+				this.main.get(i).setCouleurConnue(true);
+			}
+		}
+	}
+	
+	public void indiceValeur(int val){
+		for(int i=0;i<this.nbCartes;i++){
+			if(this.main.get(i).getValeur()==val){
 				this.main.get(i).setValeurConnue(true);
 			}
 		}
