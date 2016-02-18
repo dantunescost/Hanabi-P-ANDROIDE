@@ -55,8 +55,8 @@ public class Partie {
 		this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 	}
 	
-	public void joueCarte(Joueur j, int indice) throws EnleverCarteInexistanteException, PartiePerdueException{
-		Carte carte = j.getMain().getCarte(indice);
+	public void joueCarte(Joueur j, int indice) throws EnleverCarteInexistanteException, PartiePerdueException, AdditionMainPleineException, PiocheVideException{
+		Carte carte = j.getMain().enleverCarte(indice);
 		if(this.cartesJouees.get(carte.getCouleur()).size()+1 == carte.getValeur()){
 			this.cartesJouees.get(carte.getCouleur()).add(carte);
 		}
@@ -67,6 +67,7 @@ public class Partie {
 				throw new PartiePerdueException();
 			}
 		}
+		pioche(j);
 		this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 	}
 	
@@ -183,7 +184,7 @@ public class Partie {
 		}
 		System.out.println("Les cartes de "+this.joueurs[0].getNom()+" :");
 		for(int j=0; j<nbCartes; j++){
-			afficherCarte(this.joueurs[0].getMain().getCarte(j));
+			afficherCarteAvecIndice(this.joueurs[0].getMain().getCarte(j));
 			System.out.print(" ");
 		}
 		System.out.println();
@@ -323,8 +324,15 @@ public class Partie {
 		    	case "j":
 		    		System.out.println("Entrez l'indice de la carte que vous voulez jouer: ");
 				    int index = in.nextInt();
+				    in.nextLine();
 					try {
 						game.joueCarte(game.getJoueurs()[game.getaQuiLeTour()],index);
+					} catch (AdditionMainPleineException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (PiocheVideException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					} catch (EnleverCarteInexistanteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -336,6 +344,7 @@ public class Partie {
 		    	case "d":
 		    		System.out.println("Entrez l'indice de la carte que vous voulez défausser: ");
 		    		int def = in.nextInt();
+		    		in.nextLine();
 					try {
 						game.defausse(game.getJoueurs()[game.getaQuiLeTour()],def);
 					} catch (AdditionMainPleineException e) {
@@ -353,36 +362,39 @@ public class Partie {
 		    		if(game.getJetonIndice() != 0){
 			    		System.out.println("Entrez l'indice du joueur auquel vous donner l'indice : ");
 			    		int jou = in.nextInt();
+			    		in.nextLine();
 			    		System.out.println("Entrez 'c' pour un indice couleur, 'v' pour un indice valeur : ");
 			    		String type = in.nextLine();
-			    		if(type == "c"){
+			    		if(type.equals("c")){
 				    		System.out.println("Entrez la couleur : ");
 				    		String cou = in.nextLine();
 				    		Couleur couleur = null;
-				    		if(cou == "blanc" || cou == "Blanc" || cou == "BLANC"){
+				    		if(cou.toUpperCase().equals("BLANC")){
 			    				couleur = Couleur.BLANC;
-			    			} else if(cou == "bleu" || cou == "Bleu" || cou == "BLEU"){
+			    			} else if(cou.toUpperCase().equals("BLEU")){
 			    				couleur = Couleur.BLEU;
-			    			} else if(cou == "vert" || cou == "Vert" || cou == "VERT"){
+			    			} else if(cou.toUpperCase().equals("VERT")){
 			    				couleur = Couleur.VERT;
-			    			} else if(cou == "rouge" || cou == "Rouge" || cou == "ROUGE"){
+			    			} else if(cou.toUpperCase().equals("ROUGE")){
 			    				couleur = Couleur.ROUGE;
-			    			} else if(cou == "jaune" || cou == "Jaune" || cou == "JAUNE"){
+			    			} else if(cou.toUpperCase().equals("JAUNE")){
 			    				couleur = Couleur.JAUNE;
-			    			} else if(cou == "multi" || cou == "Multi" || cou == "MULTI"){
+			    			} else if(cou.toUpperCase().equals("MULTI")){
 			    				couleur = Couleur.MULTI;
-			    			} 
+			    			}
 				    		game.indiceCouleur(game.getJoueurs()[jou], couleur);
 			    		}
-			    		else if(type == "v"){
+			    		else if(type.equals("v")){
 			    			System.out.println("Entrez la valeur : ");
 				    		int val = in.nextInt();
+				    		in.nextLine();
 				    		game.indiceValeur(game.getJoueurs()[jou], val);
 			    		}
 		    		}
 		    }
 		    try {
-				game.afficherPartie();
+		    	if(!gameover)
+		    		game.afficherPartie();
 			} catch (EnleverCarteInexistanteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
