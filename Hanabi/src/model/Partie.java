@@ -369,15 +369,15 @@ public class Partie {
 				    		System.out.println("Entrez la couleur : ");
 				    		String cou = in.nextLine();
 				    		Couleur couleur = null;
-				    		if(cou.toUpperCase().equals("BLANC")){
+				    		if(cou.toUpperCase().equals("BLANC") || cou.toUpperCase().equals("WHITE")){
 			    				couleur = Couleur.BLANC;
-			    			} else if(cou.toUpperCase().equals("BLEU")){
+			    			} else if(cou.toUpperCase().equals("BLEU") || cou.toUpperCase().equals("BLUE")){
 			    				couleur = Couleur.BLEU;
-			    			} else if(cou.toUpperCase().equals("VERT")){
+			    			} else if(cou.toUpperCase().equals("VERT") || cou.toUpperCase().equals("GREEN")){
 			    				couleur = Couleur.VERT;
-			    			} else if(cou.toUpperCase().equals("ROUGE")){
+			    			} else if(cou.toUpperCase().equals("ROUGE") || cou.toUpperCase().equals("RED")){
 			    				couleur = Couleur.ROUGE;
-			    			} else if(cou.toUpperCase().equals("JAUNE")){
+			    			} else if(cou.toUpperCase().equals("JAUNE") || cou.toUpperCase().equals("YELLOW")){
 			    				couleur = Couleur.JAUNE;
 			    			} else if(cou.toUpperCase().equals("MULTI")){
 			    				couleur = Couleur.MULTI;
