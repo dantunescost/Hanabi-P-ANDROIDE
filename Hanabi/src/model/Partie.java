@@ -180,4 +180,24 @@ public class Partie {
 			this.pioche.add(deck.remove(n));
 		}
 	}
+	
+	public void setJoueurs(Joueur[] joueurs){
+		this.joueurs = joueurs;
+	}
+	
+	public Joueur[] getJoueurs() {
+		return joueurs;
+	}
+
+	public int getaQuiLeTour() {
+		return aQuiLeTour;
+	}
+
+	public int getJetonEclair() {
+		return jetonEclair;
+	}
+
+	public int getJetonIndice() {
+		return jetonIndice;
+	}
 }
