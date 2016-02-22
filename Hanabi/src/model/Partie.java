@@ -121,6 +121,7 @@ public class Partie {
 		return total;
 	}
 	
+	//initialise la partie avec les noms de tous les joueurs, et donne les cartes
 	public void initPartie(String[] nomsJoueurs) throws AdditionMainPleineException, PiocheVideException{
 		this.joueurs = new Joueur[this.nbJoueurs];
 		for(int i=0; i<this.nbJoueurs; i++){
@@ -136,6 +137,7 @@ public class Partie {
 
 	//creates the cards and shuffles them into the deck
 	private void creerLesCartes() {
+		//creates the cards
 		ArrayList<Carte> deck = new ArrayList<Carte>();
 		for(int i=1; i<6; i++){
 			if(i==1){
@@ -173,16 +175,13 @@ public class Partie {
 				}
 			}
 		}
+		//shuffles the cards into the deck
 		int deckSize = deck.size();
 		Random rng = new Random();
 		for(int i=0; i<deckSize; i++){
 			int n = rng.nextInt(deck.size());
 			this.pioche.add(deck.remove(n));
 		}
-	}
-	
-	public void setJoueurs(Joueur[] joueurs){
-		this.joueurs = joueurs;
 	}
 	
 	public Joueur[] getJoueurs() {
