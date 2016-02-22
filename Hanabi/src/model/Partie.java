@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+import model.Couleur.CardColor;
+
 public class Partie {
 	private int nbJoueurs;
 	private Joueur[] joueurs;
@@ -14,7 +16,7 @@ public class Partie {
 	private boolean multicolor;
 	private ArrayList<Carte> pioche;
 	private ArrayList<Carte> defausse;
-	private HashMap<Couleur,ArrayList<Carte>> cartesJouees;
+	private HashMap<CardColor, ArrayList<Carte>> cartesJouees;
 	private int aQuiLeTour;
 	
 	public Partie(int nbJoueurs, int maxIndices, boolean multicolor){
@@ -26,14 +28,14 @@ public class Partie {
 		this.multicolor = multicolor;
 		this.defausse = new ArrayList<Carte>();
 		this.pioche = new ArrayList<Carte>();
-		this.cartesJouees = new HashMap<Couleur, ArrayList<Carte>>(5);
-		this.cartesJouees.put(Couleur.BLANC, new ArrayList<Carte>());
-		this.cartesJouees.put(Couleur.BLEU, new ArrayList<Carte>());
-		this.cartesJouees.put(Couleur.VERT, new ArrayList<Carte>());
-		this.cartesJouees.put(Couleur.ROUGE, new ArrayList<Carte>());
-		this.cartesJouees.put(Couleur.JAUNE, new ArrayList<Carte>());
+		this.cartesJouees = new HashMap<CardColor, ArrayList<Carte>>(5);
+		this.cartesJouees.put(CardColor.BLANC, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.BLEU, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.VERT, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.ROUGE, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.JAUNE, new ArrayList<Carte>());
 		if(this.multicolor){
-			this.cartesJouees.put(Couleur.MULTI, new ArrayList<Carte>());
+			this.cartesJouees.put(CardColor.MULTI, new ArrayList<Carte>());
 		}
 	}
 	
@@ -71,7 +73,7 @@ public class Partie {
 		this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 	}
 	
-	public void indiceCouleur(Joueur j, Couleur c){
+	public void indiceCouleur(Joueur j, CardColor c){
 		j.getMain().indiceCouleur(c);
 		this.jetonIndice--;
 		this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
@@ -85,13 +87,13 @@ public class Partie {
 	
 	public int calculerPoints(){
 		int total = 0;
-		total += this.cartesJouees.get(Couleur.BLANC).size();
-		total += this.cartesJouees.get(Couleur.JAUNE).size();
-		total += this.cartesJouees.get(Couleur.VERT).size();
-		total += this.cartesJouees.get(Couleur.BLEU).size();
-		total += this.cartesJouees.get(Couleur.ROUGE).size();
+		total += this.cartesJouees.get(CardColor.BLANC).size();
+		total += this.cartesJouees.get(CardColor.JAUNE).size();
+		total += this.cartesJouees.get(CardColor.VERT).size();
+		total += this.cartesJouees.get(CardColor.BLEU).size();
+		total += this.cartesJouees.get(CardColor.ROUGE).size();
 		if(this.multicolor){
-			total += this.cartesJouees.get(Couleur.MULTI).size();
+			total += this.cartesJouees.get(CardColor.MULTI).size();
 		}
 		return total;
 	}
@@ -118,51 +120,51 @@ public class Partie {
 		ArrayList<Carte> deck = new ArrayList<Carte>();
 		for(int i=1; i<6; i++){
 			if(i==1){
-				deck.add(new Carte(Couleur.BLANC,i));
-				deck.add(new Carte(Couleur.JAUNE,i));
-				deck.add(new Carte(Couleur.VERT,i));
-				deck.add(new Carte(Couleur.BLEU,i));
-				deck.add(new Carte(Couleur.ROUGE,i));
-				deck.add(new Carte(Couleur.BLANC,i));
-				deck.add(new Carte(Couleur.JAUNE,i));
-				deck.add(new Carte(Couleur.VERT,i));
-				deck.add(new Carte(Couleur.BLEU,i));
-				deck.add(new Carte(Couleur.ROUGE,i));
-				deck.add(new Carte(Couleur.BLANC,i));
-				deck.add(new Carte(Couleur.JAUNE,i));
-				deck.add(new Carte(Couleur.VERT,i));
-				deck.add(new Carte(Couleur.BLEU,i));
-				deck.add(new Carte(Couleur.ROUGE,i));
+				deck.add(new Carte(CardColor.BLANC,i));
+				deck.add(new Carte(CardColor.JAUNE,i));
+				deck.add(new Carte(CardColor.VERT,i));
+				deck.add(new Carte(CardColor.BLEU,i));
+				deck.add(new Carte(CardColor.ROUGE,i));
+				deck.add(new Carte(CardColor.BLANC,i));
+				deck.add(new Carte(CardColor.JAUNE,i));
+				deck.add(new Carte(CardColor.VERT,i));
+				deck.add(new Carte(CardColor.BLEU,i));
+				deck.add(new Carte(CardColor.ROUGE,i));
+				deck.add(new Carte(CardColor.BLANC,i));
+				deck.add(new Carte(CardColor.JAUNE,i));
+				deck.add(new Carte(CardColor.VERT,i));
+				deck.add(new Carte(CardColor.BLEU,i));
+				deck.add(new Carte(CardColor.ROUGE,i));
 				if(this.multicolor){
-					deck.add(new Carte(Couleur.MULTI,i));
-					deck.add(new Carte(Couleur.MULTI,i));
-					deck.add(new Carte(Couleur.MULTI,i));
+					deck.add(new Carte(CardColor.MULTI,i));
+					deck.add(new Carte(CardColor.MULTI,i));
+					deck.add(new Carte(CardColor.MULTI,i));
 				}
 			}
 			else if(i==5){
-				deck.add(new Carte(Couleur.BLANC,i));
-				deck.add(new Carte(Couleur.JAUNE,i));
-				deck.add(new Carte(Couleur.VERT,i));
-				deck.add(new Carte(Couleur.BLEU,i));
-				deck.add(new Carte(Couleur.ROUGE,i));	
+				deck.add(new Carte(CardColor.BLANC,i));
+				deck.add(new Carte(CardColor.JAUNE,i));
+				deck.add(new Carte(CardColor.VERT,i));
+				deck.add(new Carte(CardColor.BLEU,i));
+				deck.add(new Carte(CardColor.ROUGE,i));	
 				if(this.multicolor){
-					deck.add(new Carte(Couleur.MULTI,i));
+					deck.add(new Carte(CardColor.MULTI,i));
 				}
 			}
 			else{
-				deck.add(new Carte(Couleur.BLANC,i));
-				deck.add(new Carte(Couleur.JAUNE,i));
-				deck.add(new Carte(Couleur.VERT,i));
-				deck.add(new Carte(Couleur.BLEU,i));
-				deck.add(new Carte(Couleur.ROUGE,i));
-				deck.add(new Carte(Couleur.BLANC,i));
-				deck.add(new Carte(Couleur.JAUNE,i));
-				deck.add(new Carte(Couleur.VERT,i));
-				deck.add(new Carte(Couleur.BLEU,i));
-				deck.add(new Carte(Couleur.ROUGE,i));
+				deck.add(new Carte(CardColor.BLANC,i));
+				deck.add(new Carte(CardColor.JAUNE,i));
+				deck.add(new Carte(CardColor.VERT,i));
+				deck.add(new Carte(CardColor.BLEU,i));
+				deck.add(new Carte(CardColor.ROUGE,i));
+				deck.add(new Carte(CardColor.BLANC,i));
+				deck.add(new Carte(CardColor.JAUNE,i));
+				deck.add(new Carte(CardColor.VERT,i));
+				deck.add(new Carte(CardColor.BLEU,i));
+				deck.add(new Carte(CardColor.ROUGE,i));
 				if(this.multicolor){
-					deck.add(new Carte(Couleur.MULTI,i));
-					deck.add(new Carte(Couleur.MULTI,i));
+					deck.add(new Carte(CardColor.MULTI,i));
+					deck.add(new Carte(CardColor.MULTI,i));
 				}
 			}
 		}
@@ -200,13 +202,13 @@ public class Partie {
 		System.out.println("La défausse : ");
 		afficherPile(this.defausse);
 		System.out.println("Les cartes jouées : ");
-		afficherPile(this.cartesJouees.get(Couleur.BLANC));
-		afficherPile(this.cartesJouees.get(Couleur.BLEU));
-		afficherPile(this.cartesJouees.get(Couleur.VERT));
-		afficherPile(this.cartesJouees.get(Couleur.ROUGE));
-		afficherPile(this.cartesJouees.get(Couleur.JAUNE));
+		afficherPile(this.cartesJouees.get(CardColor.BLANC));
+		afficherPile(this.cartesJouees.get(CardColor.BLEU));
+		afficherPile(this.cartesJouees.get(CardColor.VERT));
+		afficherPile(this.cartesJouees.get(CardColor.ROUGE));
+		afficherPile(this.cartesJouees.get(CardColor.JAUNE));
 		if(this.multicolor){
-			afficherPile(this.cartesJouees.get(Couleur.MULTI));
+			afficherPile(this.cartesJouees.get(CardColor.MULTI));
 		}
 		System.out.println("Indices restants : "+this.jetonIndice);
 		System.out.println("Fautes (éclairs) : "+this.jetonEclair);
@@ -216,22 +218,22 @@ public class Partie {
 	// pour éviter toutes ambiguités ex. 2 jaune = "[2Y]"
 	public void afficherCarte(Carte c){
 		String couleur = "";
-		if(c.getCouleur()==Couleur.BLANC){
+		if(c.getCouleur()==CardColor.BLANC){
 			couleur = "W";
 		} 
-		else if(c.getCouleur()==Couleur.BLEU){
+		else if(c.getCouleur()==CardColor.BLEU){
 			couleur = "B";
 		} 
-		else if(c.getCouleur()==Couleur.VERT){
+		else if(c.getCouleur()==CardColor.VERT){
 			couleur = "G";
 		} 
-		else if(c.getCouleur()==Couleur.JAUNE){
+		else if(c.getCouleur()==CardColor.JAUNE){
 			couleur = "Y";
 		} 
-		else if(c.getCouleur()==Couleur.ROUGE){
+		else if(c.getCouleur()==CardColor.ROUGE){
 			couleur = "R";
 		} 
-		else if(c.getCouleur()==Couleur.MULTI){
+		else if(c.getCouleur()==CardColor.MULTI){
 			couleur = "M";
 		}
 		System.out.print("["+c.getValeur()+couleur+"]");
@@ -241,22 +243,22 @@ public class Partie {
 	public void afficherCarteAvecIndice(Carte c){
 		String couleur = " ";
 		if(c.isCouleurConnue()){
-			if(c.getCouleur()==Couleur.BLANC){
+			if(c.getCouleur()==CardColor.BLANC){
 				couleur = "W";
 			} 
-			else if(c.getCouleur()==Couleur.BLEU){
+			else if(c.getCouleur()==CardColor.BLEU){
 				couleur = "B";
 			} 
-			else if(c.getCouleur()==Couleur.VERT){
+			else if(c.getCouleur()==CardColor.VERT){
 				couleur = "G";
 			} 
-			else if(c.getCouleur()==Couleur.JAUNE){
+			else if(c.getCouleur()==CardColor.JAUNE){
 				couleur = "Y";
 			} 
-			else if(c.getCouleur()==Couleur.ROUGE){
+			else if(c.getCouleur()==CardColor.ROUGE){
 				couleur = "R";
 			} 
-			else if(c.getCouleur()==Couleur.MULTI){
+			else if(c.getCouleur()==CardColor.MULTI){
 				couleur = "M";
 			}
 		}
@@ -368,19 +370,19 @@ public class Partie {
 			    		if(type.equals("c")){
 				    		System.out.println("Entrez la couleur : ");
 				    		String cou = in.nextLine();
-				    		Couleur couleur = null;
+				    		CardColor couleur = null;
 				    		if(cou.toUpperCase().equals("BLANC") || cou.toUpperCase().equals("WHITE")){
-			    				couleur = Couleur.BLANC;
+			    				couleur = CardColor.BLANC;
 			    			} else if(cou.toUpperCase().equals("BLEU") || cou.toUpperCase().equals("BLUE")){
-			    				couleur = Couleur.BLEU;
+			    				couleur = CardColor.BLEU;
 			    			} else if(cou.toUpperCase().equals("VERT") || cou.toUpperCase().equals("GREEN")){
-			    				couleur = Couleur.VERT;
+			    				couleur = CardColor.VERT;
 			    			} else if(cou.toUpperCase().equals("ROUGE") || cou.toUpperCase().equals("RED")){
-			    				couleur = Couleur.ROUGE;
+			    				couleur = CardColor.ROUGE;
 			    			} else if(cou.toUpperCase().equals("JAUNE") || cou.toUpperCase().equals("YELLOW")){
-			    				couleur = Couleur.JAUNE;
+			    				couleur = CardColor.JAUNE;
 			    			} else if(cou.toUpperCase().equals("MULTI")){
-			    				couleur = Couleur.MULTI;
+			    				couleur = CardColor.MULTI;
 			    			}
 				    		game.indiceCouleur(game.getJoueurs()[jou], couleur);
 			    		}

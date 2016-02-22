@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import model.Couleur.CardColor;
+
 public class Main {
 	private ArrayList<Carte> main;
 	private final int nbCartes;
@@ -47,7 +49,7 @@ public class Main {
 		}
 	}*/
 	
-	public void indiceCouleur(Couleur c){
+	public void indiceCouleur(CardColor c){
 		for(int i=0;i<this.nbCartes;i++){
 			if(this.main.get(i).getCouleur()==c){
 				this.main.get(i).setCouleurConnue(true);

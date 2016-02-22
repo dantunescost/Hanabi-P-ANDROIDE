@@ -1,13 +1,15 @@
 package model;
 
+import model.Couleur.CardColor;
+
 public class Carte {
 	private final Couleur couleur;
 	private final int valeur;
 	private boolean couleurConnue;
 	private boolean valeurConnue;
 	
-	public Carte(Couleur couleur, int valeur){
-		this.couleur = couleur;
+	public Carte(CardColor couleur, int valeur){
+		this.couleur = new Couleur(couleur);
 		this.valeur = valeur;
 		this.valeurConnue = false;
 		this.couleurConnue = false;
@@ -29,8 +31,8 @@ public class Carte {
 		this.valeurConnue = valeurConnue;
 	}
 
-	public Couleur getCouleur() {
-		return couleur;
+	public CardColor getCouleur() {
+		return couleur.getCouleur();
 	}
 
 	public int getValeur() {
