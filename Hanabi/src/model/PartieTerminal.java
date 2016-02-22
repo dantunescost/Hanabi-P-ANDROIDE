@@ -148,7 +148,7 @@ public class PartieTerminal extends Partie{
 			e1.printStackTrace();
 		}
 	    while(!gameover){
-		    System.out.println("Entrez 'j', 'd' ou 'i': ");
+		    System.out.println("Entrez 'j', 'd' ou 'i': "); // jouer une carte, defausser une carte, donner un indice
 		    String txt = in.nextLine();
 		    switch(txt){
 		    	case "j":

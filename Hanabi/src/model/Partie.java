@@ -11,10 +11,10 @@ public class Partie {
 	protected int nbCartes;
 	protected Joueur[] joueurs;
 	protected int jetonEclair;
-	protected int maxIndices;
-	protected int jetonIndice;
+	protected int maxIndices; // le nombre de jetons indices dans le jeu
+	protected int jetonIndice; // le nombre de jetons indices qui peuvent etre utilisé dans le jeu
 	protected boolean multicolor;
-	protected ArrayList<Carte> pioche;
+	protected ArrayList<Carte> pioche; // les cartes dans lesquelles on peut piocher
 	protected ArrayList<Carte> defausse;
 	protected HashMap<CardColor, ArrayList<Carte>> cartesJouees;
 	protected int aQuiLeTour;
@@ -56,6 +56,8 @@ public class Partie {
 	public void defausse(Joueur j, int index) throws EnleverCarteInexistanteException, AdditionMainPleineException, PiocheVideException{
 		Carte carte = j.getMain().enleverCarte(index);
 		this.defausse.add(carte);
+
+        // Rajoute un jeton indice s'il n'y a pas déjà tous les indices disponibles
 		if(this.jetonIndice != this.maxIndices){
 			this.jetonIndice ++;
 		}
@@ -64,10 +66,15 @@ public class Partie {
 	}
 	
 	public void joueCarte(Joueur j, int indice) throws EnleverCarteInexistanteException, PartiePerdueException, AdditionMainPleineException, PiocheVideException{
-		Carte carte = j.getMain().enleverCarte(indice);
+		// Enleve la carte de la main du joueur
+        Carte carte = j.getMain().enleverCarte(indice);
+
+        // La carte est valide
 		if(this.cartesJouees.get(carte.getCouleur()).size()+1 == carte.getValeur()){
 			this.cartesJouees.get(carte.getCouleur()).add(carte);
 		}
+
+        // La carte n'est pas valide
 		else{
 			this.defausse.add(carte);
 			this.jetonEclair++;

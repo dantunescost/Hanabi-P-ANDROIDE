@@ -5,6 +5,6 @@ public class PartiePerdueException extends Exception {
 
 	public PartiePerdueException(){
 		super();
-		System.out.println("Vous joué 3 mauvaise cartes, vous avez perdu!");
+		System.out.println("Vous joué 3 mauvaises cartes, vous avez perdu!");
 	}
 }
