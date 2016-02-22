@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
 	private ArrayList<Carte> main;
-	private final int nbCartes;
+	private final int nbCartes; // Nombre de cartes par joueur
 	
 	public Main(int nbCartes, Carte[] cartes){
 		this.nbCartes = nbCartes;
