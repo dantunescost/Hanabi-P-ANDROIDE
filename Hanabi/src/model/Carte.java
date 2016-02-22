@@ -15,6 +15,7 @@ public class Carte {
 	 * La valeur de cette carte
 	 */
 	private final int valeur;
+	
 	/**
 	 * Indique si le joueur connait la couleur de cette carte dans sa main
 	 * @see <a href="Main.html">Main</a>
