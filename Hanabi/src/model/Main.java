@@ -10,7 +10,7 @@ import model.Couleur.CardColor;
 public class Main {
 	/**
 	 * La liste de cartes qui composent cette main
-	 * @see model.Carte	Carte
+	 * @see <a href="Carte.html">Carte</a>
 	 */
 	private ArrayList<Carte> main;
 	/**
