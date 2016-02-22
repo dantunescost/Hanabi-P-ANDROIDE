@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.Couleur.CardColor;
 
 public class PartieTerminal extends Partie{
+	
 	public PartieTerminal(int nbJoueurs, int maxIndices, boolean multicolor) {
 		super(nbJoueurs, maxIndices, multicolor);
 		// TODO Auto-generated constructor stub
@@ -103,26 +104,6 @@ public class PartieTerminal extends Partie{
 			System.out.print(" ");
 		}
 		System.out.println();
-	}
-	
-	public void setJoueurs(Joueur[] joueurs){
-		this.joueurs = joueurs;
-	}
-	
-	public Joueur[] getJoueurs() {
-		return joueurs;
-	}
-
-	public int getaQuiLeTour() {
-		return aQuiLeTour;
-	}
-
-	public int getJetonEclair() {
-		return jetonEclair;
-	}
-
-	public int getJetonIndice() {
-		return jetonIndice;
 	}
 
 	public static void main(String[] args){
