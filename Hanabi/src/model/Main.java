@@ -10,13 +10,13 @@ import model.Couleur.CardColor;
 public class Main {
 	/**
 	 * La liste de cartes qui composent cette main
-	 * @see <a href="Carte.html">Carte</a>
+	 * @see model.Carte	Carte
 	 */
-	private ArrayList<Carte> main;
+	protected ArrayList<Carte> main;
 	/**
 	 * Le nombre de cartes que peut contenir la main au maximum
 	 */
-	private final int nbCartes; // Nombre de cartes par joueur
+	protected final int nbCartes; // Nombre de cartes par joueur
 	
 	/**
 	 * Constructeur d'une main avec les cartes donnees en parametre 
