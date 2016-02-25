@@ -18,7 +18,6 @@ public abstract class Joueur {
 	 * La partie du joueur
 	 */
 	protected Partie p;
-	
 
 	/**
 	 * Constructeur d'un joueur avec un nom et une taille de main definis
