@@ -13,6 +13,11 @@ public abstract class Joueur {
 	 * Le nom du joueur
 	 */
 	protected String nom;
+
+	/**
+	 * La partie du joueur
+	 */
+	protected Partie p;
 	
 
 	/**
@@ -21,7 +26,7 @@ public abstract class Joueur {
 	 * @param nbCartes	Nombre maximum de cartes de sa main
 	 * @param p         La partie dans laquelle il joue
 	 */
-	public Joueur(String nom,int nbCartes){
+	public Joueur(String nom,int nbCartes, Partie p){
 		this.nom = nom;
 		this.main = new Main(nbCartes);
 		this.p = p;
