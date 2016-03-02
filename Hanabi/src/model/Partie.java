@@ -221,7 +221,7 @@ public class Partie {
 	public void initPartie(String[] nomsJoueurs) throws AdditionMainPleineException, PiocheVideException{
 		this.joueurs = new Joueur[this.nbJoueurs];
 		for(int i=0; i<this.nbJoueurs; i++){
-			this.joueurs[i] = new JoueurHumain(nomsJoueurs[i],this.nbCartes);
+			this.joueurs[i] = new JoueurHumain(nomsJoueurs[i],this.nbCartes, this, i+1);
 		}
 		creerLesCartes();
 		for(int i=0; i<this.nbCartes; i++){

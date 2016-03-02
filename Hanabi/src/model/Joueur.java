@@ -19,16 +19,19 @@ public abstract class Joueur {
 	 */
 	protected Partie p;
 
+	protected int id;
+
 	/**
 	 * Constructeur d'un joueur avec un nom et une taille de main definis
 	 * @param nom		Le nom du joueur
 	 * @param nbCartes	Nombre maximum de cartes de sa main
 	 * @param p         La partie dans laquelle il joue
 	 */
-	public Joueur(String nom,int nbCartes, Partie p){
+	public Joueur(String nom,int nbCartes, Partie p, int id){
 		this.nom = nom;
 		this.main = new Main(nbCartes);
 		this.p = p;
+		this.id = id;
 	}
 	
 
@@ -44,5 +47,9 @@ public abstract class Joueur {
 	 */
 	public String getNom(){
 		return this.nom;
+	}
+
+	public int getId(){
+		return this.id;
 	}
 }
