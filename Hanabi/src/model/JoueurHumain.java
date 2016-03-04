@@ -2,8 +2,8 @@ package model;
 
 public class JoueurHumain extends Joueur {
 	
-	public JoueurHumain(String nom,int nbCartes){
-		super(nom,nbCartes);
+	public JoueurHumain(String nom,int nbCartes,Partie p){
+		super(nom,nbCartes,p);
 	}
 	
 }
