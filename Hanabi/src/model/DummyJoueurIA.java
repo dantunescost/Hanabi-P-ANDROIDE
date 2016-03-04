@@ -137,6 +137,7 @@ public class DummyJoueurIA extends JoueurIA {
             }
 
 
+
             // ************************ DEFAUSSER CARTE ALEATOIREMENT **********************************
 
             Random r = new Random();
