@@ -129,5 +129,12 @@ public class Main {
 		}
 		return -1;
 	}
+
+	/**
+	 * @return Le nombre de cartes dans la main
+	 */
+	public int getNbCartes() {
+		return nbCartes;
+	}
 }
 

@@ -10,7 +10,7 @@ public class Table extends JPanel {
 
 	public void paintTable(Graphics g, FenetrePartie fen)
 	{
-		int width = 692, height = 365;
+		int width = fen.getTableWidth(), height = fen.getTableHeight();
 		int startX = (fen.getWidth() - width) /2;
 		int startY = (fen.getHeight() - height) /2;
 		g.drawImage(new ImageIcon("ressources/table.png").getImage(), startX, startY, width, height, this);

@@ -52,4 +52,26 @@ public class Couleur {
 		}
 		return couleur;
 	}
+	
+	/**
+	 * Effectue la conversion entre une couleur et la chaine de caractere correspondante
+	 * @return	La chaine de caracteres obtenue par cette conversion
+	 */
+	public String convertirEnChaine(){
+		String res="";
+		if(this.couleur.equals(CardColor.BLANC)){
+			res = "Blanc";
+		} else if(this.couleur.equals(CardColor.BLEU)){
+			res = "Bleu";
+		} else if(this.couleur.equals(CardColor.ROUGE)){
+			res = "Rouge";
+		} else if(this.couleur.equals(CardColor.JAUNE)){
+			res = "Jaune";
+		} else if(this.couleur.equals(CardColor.VERT)){
+			res = "Vert";
+		} else if(this.couleur.equals(CardColor.MULTI)){
+			res = "Multi";
+		}
+		return res;
+	}
 }

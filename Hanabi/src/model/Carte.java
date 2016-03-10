@@ -93,4 +93,14 @@ public class Carte {
 	public int getValeur() {
 		return valeur;
 	}
+	
+	/**
+	 * @return	Le nom de la carte dans les ressources
+	 */
+	public String getCardName(){
+		String res="";
+		res += this.couleur.convertirEnChaine() + "_";
+		res += Integer.toString(this.valeur) + ".png";
+		return res; 
+	}
 }
