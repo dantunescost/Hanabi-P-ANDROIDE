@@ -1,22 +1,40 @@
 package model;
 
 
-// DUMMY IA
-
 import java.util.Random;
 
-// Connait carte à 100% -> jouer
-// Sinon, donner indice s'il y a des jetons restants
-// Sinon defausser
-    // s'il sait qu'il peut defausser une carte (carte déjà posée et connu),
-    // sinon cartes sans indices,
-    // sinon aléatoire
+
+/**
+ * 	DUMMY IA
+ *  <p>
+ * 	Mode de fonctionnement :
+ * 	<ul>
+ * 		<li>Si une carte est connu a 100% et qu'elle est jouable alors jouer la carte
+ * 		<li>Sinon donner un indice aleatoire à un joueur aleatoire s'il y a des jetons restants
+ *  	<li>Sinon defausser :
+ *  </ul>
+ *  	<ol>
+ *  		<li>s'il sait qu'il peut defausser une carte (carte deja posee et connu)
+ *  		<li>sinon cartes sans indices
+ *  		<li>sinon aleatoire
+ *  	</ol>
+ */
 public class DummyJoueurIA extends JoueurIA {
 
+	/**
+	 * Constructeur pour joueur Dummy IA
+	 * @param nom		Le nom associe au joueur
+	 * @param nbCartes	Le nombre de cartes que doit contenir sa main (definit par le nombre de joueurs dans la partie)
+	 * @param p			La partie a laquelle participe cette IA
+	 * @param id		Le numero du joueur dans la partie
+	 */
     public DummyJoueurIA(String nom, int nbCartes, Partie p, int id) {
         super(nom, nbCartes, p, id);
     }
-
+    
+    /**
+     * Fonction qui decide et joue un coup dans la partie
+     */
     public void quoiFaire() {
         Carte c = this.obviousCoup(p);
         Carte defaussable = this.obviousDefaussable(p);

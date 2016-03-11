@@ -1,5 +1,8 @@
 package model;
 
+/**
+ *	Exception levee lorsqu'une fonction essaye d'ajouter une carte a une main pleine
+ */
 public class AdditionMainPleineException extends Exception {
 	private static final long serialVersionUID = 1L;
 

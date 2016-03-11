@@ -1,5 +1,8 @@
 package model;
 
+/**
+ *	Exception levee si une fonction tente de recuperer une carte dans la pioche alors que celle-ci est vide
+ */
 public class PiocheVideException extends Exception {
 	private static final long serialVersionUID = 1L;
 

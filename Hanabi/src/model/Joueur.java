@@ -19,6 +19,9 @@ public abstract class Joueur {
 	 */
 	protected Partie p;
 
+	/**
+	 * Le numero du joueur
+	 */
 	protected int id;
 
 	/**
@@ -26,6 +29,7 @@ public abstract class Joueur {
 	 * @param nom		Le nom du joueur
 	 * @param nbCartes	Nombre maximum de cartes de sa main
 	 * @param p         La partie dans laquelle il joue
+	 * @param id		Le numero du joueur dans la partie
 	 */
 	public Joueur(String nom,int nbCartes, Partie p, int id){
 		this.nom = nom;
@@ -48,7 +52,10 @@ public abstract class Joueur {
 	public String getNom(){
 		return this.nom;
 	}
-
+	
+	/**
+	 * @return	Le numero de ce joueur
+	 */
 	public int getId(){
 		return this.id;
 	}
