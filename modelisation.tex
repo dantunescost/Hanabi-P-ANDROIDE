@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Approches sur la modelisation du jeu Hanabi}
+\date{}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Modélisation exhaustive d'une situation}
+
+
+    Ici le but est d'identifier chaque situation de jeu possible par un monde de Kripke.
+La première étape est de modéliser les mondes liés à la main (combinaison de 4 ou 5 cartes sans
+ordre) du joueur, c'est à dire toutes les mains possibles en prenant en compte les cartes vues, déjà jouées ou déjà défaussés. L'agent correspondant au joueur hésite donc entre tous ces ces mondes.
+Notre strucure de Kripke est donc:
+\smallbreak
+$   \mu=\{U,\{R_{1}\},I \}  $
+$   U=\{M_{1},...M_{m} \}   $
+
+$R$: A ce stade, $R_{1}$ connecte tous les mondes
+
+$I$: On note    $C_{j,c,v}$ la variable affirmant que le joueur j possède une carte de couleur c et de valeur v. Pour n joueurs, un monde $M_{i}$ contiendra donc toujours un nombre de variables $nv=n*4 | n>3$ ou $nv=n*5 | n<4$
+\smallbreak
+A ce niveau de modélisation, on peut déjà envisager des prises de décisions probabilistes simplement en comptant le nombre de mondes dans lesquels faire telle action aurait un impact positif.
+
+Ensuite, il est également possible pour le joueur de modéliser les mondes entre lesquels il pense qu'un autre joueur hésite. Appelons le joueur qui réfléchit joueur 1 et celui sur lequel il porte sa
+réflexion joueur 2. Cela pose problème car ce joueur 2 dispose d'informations que n'a pas le joueur 1 (ses propres cartes), mais on peut tout de même éliminer des mondes grâce à l'information
+commune aux 2 joueurs (les cartes des autres joueurs, les cartes jouées, les cartes défaussées, les indices donnés). Ce raisonnement peut être appliqué pour chaque autre joueur.
+On a donc maintenant:
+
+$   \mu'=\{U',\{R_{1},...,R_{n}\},I' \} $
+
+$   U'=\{M_{1},...M_{m'} \} $
+
+
+Pour les relations $R_{i}$, il faut se dire que le joueur i n'hésite qu'entre les mondes où toutes les cartes sont identiques sauf les siennes.
+\smallbreak
+$   \forall i \in [2,...,n] ,  \forall (M_{j},M_{k}) \in U'*U',$
+\smallbreak
+$R_{i}(M_{j},M_{k}) 
+\equiv
+\forall l \in [1,...,n]|l \ne i,  \forall C_{l,c1,v1} \in  I(M_{j}), \forall C_{l,c2,v2} \in  I(M_{k}), c1=v1, c2=v2    $
+\newpage
+\section{Modélisation carte par carte}
+
+Cette fois, l'objectif est de créer des structures de Kripke pour chaque carte plutôt que pour chaque situation. Ainsi, sans information, il y aurait 25 mondes pour chaque carte. On peut ensuite tenter d'appliquer les mêmes raisonnements que dans la modélisation exhaustive.
+
+Univers de la i-ème carte du joueur j:
+
+$   \mu_{i,j}=\{U,\{R_{1},...,R_{n}\},I \}  $
+
+$   U=\{M_{1},...M_{m} \}   $
+
+$I$: chaque monde contient 2 variables, une pour la couleur et une pour la valeur. 
+
+$\forall M \in U, I(M)=(c,v)|c\in[rouge,bleu,vert,jaune,blanc],v\in[1,...,5]$
+\smallbreak
+La question qui se pose ensuite est donc qu'est-ce qui différencie ces deux approches ?
+Qu'en est-il de la complexité des opérations à faire pour éliminer des mondes dans chacune d'entre elles ? Autrement dit, existe-t-il des situations où l'approche carte par carte a besoin de faire plus
+d'opérations pour supprimer des mondes ?
+\end{document}
