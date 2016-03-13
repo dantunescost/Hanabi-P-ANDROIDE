@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -136,14 +137,22 @@ public class FenetrePartie extends JFrame{
 	public void showHandLeftBottomCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
 		int karteH = this.tableHeight/4;
 		int karteW =(int)( (float)karteH*0.645);
-		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/8)*2;
+		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/11)*2;
 		int startY = (this.getHeight() - this.tableHeight) /2 + (this.tableHeight/8)*7;
-		if(main.getNbCartes()==5){
-			startX -= 25;
-		}
 		for(int i=0;i<main.getNbCartes();i++){
 			Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
-			g.drawImage(karte, startX-karteW-i*25, startY-(karteH/3)*2-i*20, karteW, karteH, this);
+			g.drawImage(karte, startX-karteW-i*20, startY-(karteH/3)*2-i*20, karteW, karteH, this);
+		}
+	}
+	
+	public void showHandRightBottomCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
+		int karteH = this.tableHeight/4;
+		int karteW =(int)( (float)karteH*0.645);
+		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/11)*10 ;
+		int startY = (this.getHeight() - this.tableHeight) /2 + (this.tableHeight/8)*7;
+		for(int i=0;i<main.getNbCartes();i++){
+			Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+			g.drawImage(karte, startX-karteW+i*20, startY-(karteH/3)*2-i*20, karteW, karteH, this);
 		}
 	}
 	
@@ -175,6 +184,11 @@ public class FenetrePartie extends JFrame{
 		g.drawImage(deck, startX, startY, 100, 150, this);
 	}
 	
+	public void afficherBoutonsIndices(Graphics g){
+		g.setColor(Color.BLUE);
+		g.drawArc(20,this.tableHeight-45,0,360,0,0);
+	}
+	
 	public void paint(Graphics g){
 		//super.paint(g);
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
@@ -186,8 +200,9 @@ public class FenetrePartie extends JFrame{
 		try {
 			showHandCenterBottom(g,this.partie.getJoueurs()[1].getMain());
 			showHandLeftBottomCorner(g,this.partie.getJoueurs()[1].getMain());
+			showHandRightBottomCorner(g,this.partie.getJoueurs()[1].getMain());
+			showHandLeftTopCorner(g,this.partie.getJoueurs()[1].getMain());
 			showHandRightTop(g,this.partie.getJoueurs()[1].getMain());
-			showHandLeftTop(g,this.partie.getJoueurs()[1].getMain());
 		} catch (EnleverCarteInexistanteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -196,6 +211,8 @@ public class FenetrePartie extends JFrame{
 		afficherLesJetons(g);
 		//draw deck
 		afficherLeDeck(g);
+		//draw hint buttons
+		afficherBoutonsIndices(g);
 	}
 	
 	public Partie getPartie() {
