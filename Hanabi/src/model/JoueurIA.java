@@ -13,7 +13,6 @@ public class JoueurIA extends Joueur {
 		super(nom,nbCartes, p, id);
 	}
 
-    // Regarde s'il y a une carte qu'elle connait qu'elle peut jouer
 	/**
 	 * Permet a l'IA de savoir si une carte de sa main est connue et jouable dans la situation actuelle
 	 * @return	La carte que l'IA peut jouer si elle existe

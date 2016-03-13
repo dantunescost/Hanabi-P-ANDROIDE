@@ -5,13 +5,26 @@ import java.util.Scanner;
 
 import model.Couleur.CardColor;
 
+/**
+ * Permet de jouer une partie dans le terminal
+ */
 public class PartieTerminal extends Partie{
 	
+	/**
+	 * Constructeur d'une partie dans le terminal avec un nombre de joueur, d'indice donnes, et si la couleur multicolore est autorisee
+	 * @param nbJoueurs		Nombre de joueurs dans la partie
+	 * @param maxIndices	Nombre d'indices maximum
+	 * @param multicolor	Couleur multicolore autorisee ou non
+	 */
 	public PartieTerminal(int nbJoueurs, int maxIndices, boolean multicolor) {
 		super(nbJoueurs, maxIndices, multicolor);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Affiche la partie dans le terminal, c'est a dire les mains des joueurs, la defausse et les cartes jouees
+	 * @throws EnleverCarteInexistanteException
+	 */
 	public void afficherPartie() throws EnleverCarteInexistanteException{
 		System.out.println("Les cartes de "+this.joueurs[0].getNom()+" :");
 		for(int j=0; j<this.nbCartes; j++){
@@ -28,9 +41,9 @@ public class PartieTerminal extends Partie{
 			System.out.println();
 		}
 
-		System.out.println("La défausse : ");
+		System.out.println("La defausse : ");
 		afficherPile(this.defausse);
-		System.out.println("Les cartes jouées : ");
+		System.out.println("Les cartes jouees : ");
 		afficherPile(this.cartesJouees.get(CardColor.BLANC));
 		afficherPile(this.cartesJouees.get(CardColor.BLEU));
 		afficherPile(this.cartesJouees.get(CardColor.VERT));
@@ -40,11 +53,15 @@ public class PartieTerminal extends Partie{
 			afficherPile(this.cartesJouees.get(CardColor.MULTI));
 		}
 		System.out.println("Indices restants : "+this.jetonIndice);
-		System.out.println("Fautes (éclairs) : "+this.jetonEclair);
+		System.out.println("Fautes (Eclairs) : "+this.jetonEclair);
 	}
 	
-	// affiche une carte avec l'initial du nom de la couleur en anglais
-	// pour éviter toutes ambiguités ex. 2 jaune = "[2Y]"
+
+	/**
+	 * Affiche une carte avec l'initiale du nom de la couleur en anglais
+	 * Par exemple : 2 jaune = "[2Y]"
+	 * @param c	La carte a afficher
+	 */
 	public void afficherCarte(Carte c){
 		String couleur = "";
 		if(c.getCouleur()==CardColor.BLANC){
@@ -68,7 +85,11 @@ public class PartieTerminal extends Partie{
 		System.out.print("["+c.getValeur()+couleur+"]");
 	}
 	
-	// Affiche les cartes dos au joueur humain (avec les indices)
+	
+	/**
+	 * Affiche dans le terminal une carte selon les indices connus
+	 * @param c	La carte a afficher
+	 */
 	public void afficherCarteAvecIndice(Carte c){
 		String couleur = " ";
 		if(c.isCouleurConnue()){
@@ -98,6 +119,10 @@ public class PartieTerminal extends Partie{
 		System.out.print("["+valeur+couleur+"]");
 	}
 	
+	/**
+	 * Affiche une collection de carte sur le format [ValeurCouleur]
+	 * @param pile	La collection de carte a affiche
+	 */
 	public void afficherPile(ArrayList<Carte> pile){
 		for(int i=0; i<pile.size(); i++){
 			afficherCarte(pile.get(i));
@@ -105,7 +130,11 @@ public class PartieTerminal extends Partie{
 		}
 		System.out.println();
 	}
-
+	
+	/**
+	 * Initialise et permet de jouer une partie dans le terminal
+	 * @param args	Pas d'argument utilise
+	 */
 	public static void main(String[] args){
 	    Scanner in = new Scanner(System.in);
 	    PartieTerminal game = new PartieTerminal(2,8,false);
