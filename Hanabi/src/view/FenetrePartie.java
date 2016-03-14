@@ -32,7 +32,7 @@ public class FenetrePartie extends JFrame{
 		this.setSize(1000, 600);
 		this.setMinimumSize(new Dimension(1000,600));
 		this.setResizable(true);
-		
+		 une fonction qui affiche 
 		this.table = new Table();
 		
 		JPanel bg = new JPanel();/*{
