@@ -120,21 +120,9 @@ public class AfficherMains {
     public AfficherMains(FenetrePartie p){
 
         this.p = p;
-
         int nbJ = p.getPartie().getJoueurs().length;
 
-        if (nbJ==2){
-            //p.showHandCenterTop(g, p.getPartie().getJoueurs()[1].getMain());
-        }
 
-
-    /*
-        showHandCenterBottom(g,this.partie.getJoueurs()[1].getMain());
-        showHandLeftBottomCorner(g,this.partie.getJoueurs()[1].getMain());
-        showHandRightBottomCorner(g,this.partie.getJoueurs()[1].getMain());
-        showHandLeftTopCorner(g,this.partie.getJoueurs()[1].getMain());
-        showHandRightTop(g,this.partie.getJoueurs()[1].getMain());
-        */
     }
     
     public void afficherMain(Graphics g){
@@ -152,6 +140,21 @@ public class AfficherMains {
     		show5players(g);
     		break;
     	}
+    }
+
+    private void show2players(Graphics g) throws EnleverCarteInexistanteException {
+
+        p.showHandCenterBottom(g, p.getPartie().getJoueurs()[0].getMain());
+        p.showHandCenterTop(g, p.getPartie().getJoueurs()[1].getMain());
+
+    }
+
+    private void show3players(Graphics g) throws EnleverCarteInexistanteException {
+
+        p.showHandCenterBottom(g, p.getPartie().getJoueurs()[0].getMain());
+        p.showHandLeftTopCorner(g, p.getPartie().getJoueurs()[1].getMain());
+        p.showHandRightTopCorner(g, p.getPartie().getJoueurs()[2].getMain());
+
     }
 
 	private void show4players(Graphics g) {
