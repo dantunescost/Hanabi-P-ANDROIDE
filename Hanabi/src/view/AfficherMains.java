@@ -154,9 +154,19 @@ public class AfficherMains {
     	}
     }
 
-	private void show4players(Graphics g) {
-		// TODO Auto-generated method stub
-		
+	private void show4players(Graphics g) throws EnleverCarteInexistanteException {
+        showHandCenterBottom(g,this.p.getPartie().getJoueurs()[0].getMain());
+        showHandLeftTopCorner(g,this.p.getPartie().getJoueurs()[1].getMain());
+        showHandCenterTop(g,this.p.getPartie().getJoueurs()[2].getMain());
+        showHandLeftTopCorner(g,this.p.getPartie().getJoueurs()[3].getMain());
+	}
+	
+	private void show5players(Graphics g)throws EnleverCarteInexistanteException {
+        showHandCenterBottom(g,this.p.getPartie().getJoueurs()[0].getMain());
+        showHandLeftBottomCorner(g,this.p.getPartie().getJoueurs()[1].getMain());
+        showHandLeftTop(g,this.p.getPartie().getJoueurs()[2].getMain());
+        showHandRightTop(g,this.p.getPartie().getJoueurs()[3].getMain());
+        showHandRightBottomCorner(g,this.p.getPartie().getJoueurs()[4].getMain());
 	}
 
 }
