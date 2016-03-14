@@ -35,6 +35,7 @@ public class FenetrePartie extends JFrame{
 		this.table = new Table();
 		
 		JPanel bg = new JPanel();/*{
+		 une fonction qui affiche 
 			private static final long serialVersionUID = 1L;
 
 			public void paintComponent(Graphics g)
