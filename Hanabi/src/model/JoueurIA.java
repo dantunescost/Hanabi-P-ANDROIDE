@@ -1,6 +1,13 @@
 package model;
 
+import java.util.Random;
+
 public class JoueurIA extends Joueur {
+	
+	/**
+	 * Generateur de nombre aleatoire de ce joueur IA
+	 */
+	Random r;
 
 	/**
 	 * Constructeur d'un joueur IA standard
@@ -11,6 +18,7 @@ public class JoueurIA extends Joueur {
 	 */
 	public JoueurIA(String nom,int nbCartes, Partie p, int id){
 		super(nom,nbCartes, p, id);
+		r = new Random();
 	}
 
 	/**
@@ -22,10 +30,22 @@ public class JoueurIA extends Joueur {
         for (Carte c : this.getMain().main){
             if (c.isCouleurConnue() && c.isValeurConnue()) {
                 for (int i=0; i<this.p.cartesJouees.size(); i++) {
-                    if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)/* && !(p.cartesJouees.get(c.getCouleur()).size()+1==(c.getValeur())))*/){
+                    if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)){
                         return c;
                     }
                 }
+            }
+            else if(c.isValeurConnue()){
+            	//Si toutes les cartes jouees ont la meme valeur(ou qu'il n'y a pas de cartes) et le joueur possede une carte de valeur +1
+            	if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()==(c.getValeur()-1))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()==(c.getValeur()-1))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()==(c.getValeur()-1))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()==(c.getValeur()-1))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1)))
+            	{
+            		return c;
+            	}
+            	
             }
         }
         return null;
@@ -43,9 +63,52 @@ public class JoueurIA extends Joueur {
                     if (this.p.cartesJouees.get(c.getCouleur()).size()>=(c.getValeur())){
                         return c;
                     }
+                    else if(carteInutile(c)){
+                    	System.out.println("je sais que j'ai une carte inutile");
+                    	return c;
+                    }
+                    
                 }
+            }
+            else if(c.isValeurConnue()){
+            	//Si toutes les cartes jouees ont la meme valeur et le joueur possede une carte de valeur -
+            	if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()<=(c.getValeur()))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()<=(c.getValeur()))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()<=(c.getValeur()))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()<=(c.getValeur()))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()<=(c.getValeur())))
+            	{
+            		return c;
+            	}
+            
+            }
+            else if(c.isCouleurConnue() && (this.p.cartesJouees.get(c.getCouleur()).size()==5)){
+            	return c;
             }
         }
         return null;
+    }
+    
+    public boolean carteInutile(Carte c)
+    {
+    	boolean res = false;
+    	if(c.isCouleurConnue() && c.isValeurConnue() && c.getValeur()>1)
+    	{
+    		int compt[] = new int[c.getValeur()-1];
+    		for(int i=0; i<this.p.defausse.size(); i++)
+    		{
+    			if((this.p.defausse.get(i).getCouleur() == c.getCouleur()) && (this.p.defausse.get(i).getValeur()<c.getValeur()))
+    			{
+    				compt[this.p.defausse.get(i).getValeur()-1]++;
+    			}
+    		}
+    		for(int j=0; j<this.p.defausse.size() && !res; j++)
+    		{
+    			if(((j+2)/3 + compt[j])==3)
+    				res=true;
+    		}
+    		
+    	}
+    	return res;
     }
 }

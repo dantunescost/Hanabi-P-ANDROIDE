@@ -1,7 +1,6 @@
 package model;
 
 
-import java.util.Random;
 
 
 /**
@@ -58,7 +57,6 @@ public class DummyJoueurIA extends JoueurIA {
             // ************************ DONNER INDICE **********************************
         } else if (p.jetonIndice != 0) {
 
-            Random r = new Random();
             int joueur;
             do {
                 joueur = r.nextInt(p.getJoueurs().length);
@@ -70,6 +68,7 @@ public class DummyJoueurIA extends JoueurIA {
             if (cORi==0) {
                 if (number == 0) {
                     try {
+                    	System.out.println("Voici tes cartes blanches");
                         p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.BLANC);
                     } catch (IndiceSoitMemeException e) {
                         e.printStackTrace();
@@ -77,6 +76,7 @@ public class DummyJoueurIA extends JoueurIA {
                 }
                 if (number == 1) {
                     try {
+                    	System.out.println("Voici tes cartes rouges");
                         p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.ROUGE);
                     } catch (IndiceSoitMemeException e) {
                         e.printStackTrace();
@@ -84,6 +84,7 @@ public class DummyJoueurIA extends JoueurIA {
                 }
                 if (number == 2) {
                     try {
+                    	System.out.println("Voici tes cartes vertes");
                         p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.VERT);
                     } catch (IndiceSoitMemeException e) {
                         e.printStackTrace();
@@ -91,6 +92,7 @@ public class DummyJoueurIA extends JoueurIA {
                 }
                 if (number == 3) {
                     try {
+                    	System.out.println("Voici tes cartes bleues");
                         p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.BLEU);
                     } catch (IndiceSoitMemeException e) {
                         e.printStackTrace();
@@ -98,6 +100,7 @@ public class DummyJoueurIA extends JoueurIA {
                 }
                 if (number == 4) {
                     try {
+                    	System.out.println("Voici tes cartes jaunes");
                         p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.JAUNE);
                     } catch (IndiceSoitMemeException e) {
                         e.printStackTrace();
@@ -107,6 +110,7 @@ public class DummyJoueurIA extends JoueurIA {
             }
             else {
                 try {
+                	System.out.println("Voici tes cartes de valeur "+Integer.toString(number+1));
                     p.indiceValeur(p.getJoueurs()[joueur], number+1);
                 } catch (IndiceSoitMemeException e) {
                     e.printStackTrace();
@@ -134,14 +138,19 @@ public class DummyJoueurIA extends JoueurIA {
 
             // ************************ DEFAUSSER CARTE SANS INDICE **********************************
             else {
-
-                for (Carte i : this.getMain().main) {
-                    int j = this.getMain().getIndex(i);
-
-                    if (!i.isCouleurConnue() && !i.isValeurConnue()) {
+            	boolean discarded = false;
+            	int i = 0;
+            	while(i < this.main.nbCartes && !discarded){
+            		Carte card = null;
+					try {
+						card = this.main.getCarte(i);
+					} catch (EnleverCarteInexistanteException e1) {
+						e1.printStackTrace();
+					}
+            		if (!card.isCouleurConnue() && !card.isValeurConnue()) {
                         try {
-                            p.defausse(this, j);
-                            break; // Once we "defausse" one card, we are finished, we don't want to defausse more
+                            p.defausse(this, i);
+                            discarded = true;
                         } catch (EnleverCarteInexistanteException e) {
                             e.printStackTrace();
                         } catch (AdditionMainPleineException e) {
@@ -150,27 +159,26 @@ public class DummyJoueurIA extends JoueurIA {
                             e.printStackTrace();
                         }
                     }
-
-                }
-            }
-
-
-
-            // ************************ DEFAUSSER CARTE ALEATOIREMENT **********************************
-
-            Random r = new Random();
-            try {
-                try {
-                    p.defausse(this, r.nextInt(this.getMain().nbCartes));
-                } catch (AdditionMainPleineException e) {
-                    e.printStackTrace();
-                } catch (PiocheVideException e) {
-                    e.printStackTrace();
-                }
-                } catch (EnleverCarteInexistanteException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
+            		i++;
+            	}
+            	
+            	// ************************ DEFAUSSER CARTE ALEATOIREMENT **********************************
+            	if(!discarded){
+            		try {
+                        try {
+                            p.defausse(this, r.nextInt(this.getMain().nbCartes));
+                        } catch (AdditionMainPleineException e) {
+                            e.printStackTrace();
+                        } catch (PiocheVideException e) {
+                            e.printStackTrace();
+                        }
+                        } catch (EnleverCarteInexistanteException e) {
+                        e.printStackTrace();
+                    }
+            	} // Defausse aleatoire
+            } // Defausse carte sans indice ou aleatoire
+        } // Defausse
+    } // jouerCoup
+    
+    
 }
