@@ -35,9 +35,9 @@ public class DummyJoueurIA extends JoueurIA {
     /**
      * Fonction qui decide et joue un coup dans la partie
      */
-    public void quoiFaire() {
-        Carte c = this.obviousCoup(p);
-        Carte defaussable = this.obviousDefaussable(p);
+    public void jouerCoup() {
+        Carte c = this.coupTrivial();
+        Carte defaussable = this.defausseTriviale();
 
         if (c != null) {
             // ************************* JOUER LA CARTE *******************************

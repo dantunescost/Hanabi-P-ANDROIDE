@@ -18,11 +18,11 @@ public class JoueurIA extends Joueur {
 	 * @return	La carte que l'IA peut jouer si elle existe
 	 * 			null sinon
 	 */
-    public Carte obviousCoup (Partie p) {
+    public Carte coupTrivial () {
         for (Carte c : this.getMain().main){
             if (c.isCouleurConnue() && c.isValeurConnue()) {
-                for (int i=0; i<p.cartesJouees.size(); i++) {
-                    if (p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)/* && !(p.cartesJouees.get(c.getCouleur()).size()+1==(c.getValeur())))*/){
+                for (int i=0; i<this.p.cartesJouees.size(); i++) {
+                    if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)/* && !(p.cartesJouees.get(c.getCouleur()).size()+1==(c.getValeur())))*/){
                         return c;
                     }
                 }
@@ -36,11 +36,11 @@ public class JoueurIA extends Joueur {
 	 * @return	La carte que l'IA peut defausser si elle existe
 	 * 			null sinon
 	 */
-    public Carte obviousDefaussable (Partie p) {
+    public Carte defausseTriviale () {
         for (Carte c : this.getMain().main){
             if (c.isCouleurConnue() && c.isValeurConnue()) {
-                for (int i=0; i<p.cartesJouees.size(); i++) {
-                    if (p.cartesJouees.get(c.getCouleur()).size()>=(c.getValeur())){
+                for (int i=0; i<this.p.cartesJouees.size(); i++) {
+                    if (this.p.cartesJouees.get(c.getCouleur()).size()>=(c.getValeur())){
                         return c;
                     }
                 }

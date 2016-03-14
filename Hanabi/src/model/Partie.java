@@ -213,15 +213,15 @@ public class Partie {
 	}
 	
 	/**
-	 * Initialise une partie avec les noms des joueurs donnes, et remplit leurs mains
-	 * @param nomsJoueurs	Noms des joueurs de la partie
+	 * Initialise une partie avec les joueurs donnes, et remplit leurs mains
+	 * @param joue	Joueurs de la partie
 	 * @throws AdditionMainPleineException		Si la main du joueur est deja pleine
 	 * @throws PiocheVideException				Si la pioche ne contient plus de carte
 	 */
-	public void initPartie(String[] nomsJoueurs) throws AdditionMainPleineException, PiocheVideException{
+	public void initPartie(Joueur[] joue) throws AdditionMainPleineException, PiocheVideException{
 		this.joueurs = new Joueur[this.nbJoueurs];
 		for(int i=0; i<this.nbJoueurs; i++){
-			this.joueurs[i] = new JoueurHumain(nomsJoueurs[i],this.nbCartes, this, i+1);
+			this.joueurs[i] = joue[i];
 		}
 		creerLesCartes();
 		for(int i=0; i<this.nbCartes; i++){

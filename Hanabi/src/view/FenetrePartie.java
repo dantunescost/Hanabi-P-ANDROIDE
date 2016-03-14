@@ -10,7 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.AdditionMainPleineException;
+import model.DummyJoueurIA;
 import model.EnleverCarteInexistanteException;
+import model.Joueur;
+import model.JoueurHumain;
 import model.Main;
 import model.Partie;
 import model.PiocheVideException;
@@ -230,11 +233,11 @@ public class FenetrePartie extends JFrame{
 	/************************* MAIN *************************/
 	public static void main(String[] args){
 		Partie game = new Partie(2,8,false);
-	    String[] noms = new String[2];
-	    noms[0] = "Holmes";
-	    noms[1] = "Watson";
+		Joueur[] joue = new Joueur[2];
+	    joue[0] = new JoueurHumain("Holmes", 5, game, 0);
+	    joue[1] = new DummyJoueurIA("Watson", 5, game, 1);
 	    try {
-			game.initPartie(noms);
+			game.initPartie(joue);
 		} catch (AdditionMainPleineException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
