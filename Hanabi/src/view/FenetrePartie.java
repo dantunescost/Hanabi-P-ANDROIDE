@@ -23,8 +23,8 @@ public class FenetrePartie extends JFrame{
 	private static final long serialVersionUID = 2656325461540137440L;
 	private Table table;
 	private Partie partie; 
-	private int tableWidth = 900;
-	private int tableHeight = 450;
+	protected int tableWidth = 692;
+	protected int tableHeight = 365;
 
 	public FenetrePartie(Partie p){
 		super("Hanabi");
@@ -32,7 +32,6 @@ public class FenetrePartie extends JFrame{
 		this.setSize(1000, 600);
 		this.setMinimumSize(new Dimension(1000,600));
 		this.setResizable(true);
-		 une fonction qui affiche 
 		this.table = new Table();
 		
 		JPanel bg = new JPanel();/*{
