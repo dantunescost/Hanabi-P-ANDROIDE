@@ -120,24 +120,12 @@ public class AfficherMains {
     public AfficherMains(FenetrePartie p){
 
         this.p = p;
-
         int nbJ = p.getPartie().getJoueurs().length;
 
-        if (nbJ==2){
-            //p.showHandCenterTop(g, p.getPartie().getJoueurs()[1].getMain());
-        }
 
-
-    /*
-        showHandCenterBottom(g,this.partie.getJoueurs()[1].getMain());
-        showHandLeftBottomCorner(g,this.partie.getJoueurs()[1].getMain());
-        showHandRightBottomCorner(g,this.partie.getJoueurs()[1].getMain());
-        showHandLeftTopCorner(g,this.partie.getJoueurs()[1].getMain());
-        showHandRightTop(g,this.partie.getJoueurs()[1].getMain());
-        */
     }
     
-    public void afficherMain(Graphics g){
+    public void afficherMain(Graphics g) throws EnleverCarteInexistanteException{
     	switch(this.p.getPartie().getJoueurs().length){
     	case 2:
     		show2players(g);
@@ -154,14 +142,26 @@ public class AfficherMains {
     	}
     }
 
-	private void show4players(Graphics g) throws EnleverCarteInexistanteException {
+	
+    public void show2players(Graphics g) throws EnleverCarteInexistanteException {
+        showHandCenterBottom(g, p.getPartie().getJoueurs()[0].getMain());
+        showHandCenterTop(g, p.getPartie().getJoueurs()[1].getMain());
+    }
+
+    public void show3players(Graphics g) throws EnleverCarteInexistanteException {
+        showHandCenterBottom(g, p.getPartie().getJoueurs()[0].getMain());
+        showHandLeftTopCorner(g, p.getPartie().getJoueurs()[1].getMain());
+        showHandRightTopCorner(g, p.getPartie().getJoueurs()[2].getMain());
+    }
+    
+	public void show4players(Graphics g) throws EnleverCarteInexistanteException {
         showHandCenterBottom(g,this.p.getPartie().getJoueurs()[0].getMain());
         showHandLeftTopCorner(g,this.p.getPartie().getJoueurs()[1].getMain());
         showHandCenterTop(g,this.p.getPartie().getJoueurs()[2].getMain());
         showHandLeftTopCorner(g,this.p.getPartie().getJoueurs()[3].getMain());
 	}
 	
-	private void show5players(Graphics g)throws EnleverCarteInexistanteException {
+	public void show5players(Graphics g)throws EnleverCarteInexistanteException {
         showHandCenterBottom(g,this.p.getPartie().getJoueurs()[0].getMain());
         showHandLeftBottomCorner(g,this.p.getPartie().getJoueurs()[1].getMain());
         showHandLeftTop(g,this.p.getPartie().getJoueurs()[2].getMain());
