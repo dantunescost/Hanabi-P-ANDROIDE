@@ -4,6 +4,7 @@ import model.EnleverCarteInexistanteException;
 import model.Main;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 public class AfficherMains {
@@ -135,5 +136,27 @@ public class AfficherMains {
         showHandRightTop(g,this.partie.getJoueurs()[1].getMain());
         */
     }
+    
+    public void afficherMain(Graphics g){
+    	switch(this.p.getPartie().getJoueurs().length){
+    	case 2:
+    		show2players(g);
+    		break;
+    	case 3:
+    		show3players(g);
+    		break;
+    	case 4:
+    		show4players(g);
+    		break;
+    	case 5:
+    		show5players(g);
+    		break;
+    	}
+    }
+
+	private void show4players(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
