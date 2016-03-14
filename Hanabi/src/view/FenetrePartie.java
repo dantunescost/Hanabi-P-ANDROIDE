@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,6 +30,7 @@ public class FenetrePartie extends JFrame{
 		super("Hanabi");
 		this.partie = p;
 		this.setSize(1000, 600);
+		this.setMinimumSize(new Dimension(1000,600));
 		this.setResizable(true);
 		
 		this.table = new Table();
