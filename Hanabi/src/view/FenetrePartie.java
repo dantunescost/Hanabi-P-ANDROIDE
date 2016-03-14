@@ -23,8 +23,8 @@ public class FenetrePartie extends JFrame{
 	private static final long serialVersionUID = 2656325461540137440L;
 	private Table table;
 	private Partie partie; 
-	private int tableWidth = 692;
-	private int tableHeight = 365;
+	protected int tableWidth = 692;
+	protected int tableHeight = 365;
 
 	public FenetrePartie(Partie p){
 		super("Hanabi");
