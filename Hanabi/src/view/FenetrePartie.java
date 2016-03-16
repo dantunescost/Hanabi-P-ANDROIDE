@@ -2,7 +2,9 @@ package view;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Dimension;
 
@@ -83,8 +85,35 @@ public class FenetrePartie extends JFrame{
 	}
 	
 	public void afficherBoutonsIndices(Graphics g){
-		g.setColor(Color.BLUE);
-		g.drawArc(20,this.tableHeight-45,0,360,0,0);
+		g.setColor(Color.red);
+		g.fillOval(20, this.getHeight()-50, 30, 30);
+		g.setColor(Color.blue);
+		g.fillOval(70, this.getHeight()-50, 30, 30);
+		g.setColor(Color.green);
+		g.fillOval(120, this.getHeight()-50, 30, 30);
+		g.setColor(Color.yellow);
+		g.fillOval(170, this.getHeight()-50, 30, 30);
+		g.setColor(Color.white);
+		g.fillOval(220, this.getHeight()-50, 30, 30);
+		if(this.partie.isMulticolor()){
+			g.setColor(Color.MAGENTA);
+			g.fillOval(270, this.getHeight()-75, 30, 30);
+			g.setColor(Color.black);
+			g.drawArc(270, this.getHeight()-75, 30, 30,0,360);
+		}
+		for(int i=1;i<=5;i++){
+			g.setColor(Color.white);
+			g.fillOval(20+(i-1)*50, this.getHeight()-100, 30, 30);
+			g.setColor(Color.black);
+			Font police = new Font("Arial",Font.PLAIN,20);
+			g.setFont(police);
+			g.drawString(Integer.toString(i), 30+(i-1)*50, 22+this.getHeight()-100);
+		}
+		g.setColor(Color.black);
+		for(int i=0;i<5;i++){
+			g.drawArc(20+i*50, this.getHeight()-100, 30, 30, 0, 360);
+			g.drawArc(20+i*50, this.getHeight()-50, 30, 30, 0, 360);
+		}
 	}
 	
 	public void paint(Graphics g){

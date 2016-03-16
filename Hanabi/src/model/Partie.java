@@ -322,4 +322,19 @@ public class Partie {
 	public int getJetonIndice() {
 		return jetonIndice;
 	}
+
+	/**
+	 * @return Renvoie "true" si la partie se joue avec les cartes multicolor {@link #jetonIndice}
+	 */
+	public boolean isMulticolor() {
+		return multicolor;
+	}
+
+	/**
+	 * @return Renvoie "true" si la partie se joue avec les cartes multicolor {@link #jetonIndice}
+	 */
+	public ArrayList<Carte> getPioche() {
+		return pioche;
+	}
+	
 }
