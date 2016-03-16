@@ -322,4 +322,12 @@ public class Partie {
 	public int getJetonIndice() {
 		return jetonIndice;
 	}
+
+
+	/**
+	 * @return Les cartes jouées {@link #cartesJouees}
+	 */
+	public HashMap<Couleur.CardColor, ArrayList<Carte>> getCartesJouees () {
+		return cartesJouees;
+	}
 }
