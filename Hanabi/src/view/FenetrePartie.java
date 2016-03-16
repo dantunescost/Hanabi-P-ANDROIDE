@@ -31,7 +31,7 @@ public class FenetrePartie extends JFrame{
 		super("Hanabi");
 		this.partie = p;
 		this.setSize(1000, 600);
-		this.setMinimumSize(new Dimension(1000,600));
+		this.setMinimumSize(new Dimension(1000,650));
 		this.setResizable(true);
 		this.table = new Table();
 		
@@ -120,7 +120,10 @@ public class FenetrePartie extends JFrame{
 		}
 	}
 	
-	//public void aff
+	public void afficherBoutonsJouerCoup(Graphics g){
+		int startX = (this.getWidth());
+		int startY = (this.getHeight()/2);
+	}
 	
 	public void paint(Graphics g){
 		//super.paint(g);
