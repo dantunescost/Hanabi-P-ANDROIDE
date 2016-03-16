@@ -108,6 +108,8 @@ public class FenetrePartie extends JFrame{
 		afficherLeDeck(g);
 		//draw hint buttons
 		afficherBoutonsIndices(g);
+		//draw cards already played
+		table.afficherCartesJouees(g, this);
 	}
 	
 	public Partie getPartie() {
