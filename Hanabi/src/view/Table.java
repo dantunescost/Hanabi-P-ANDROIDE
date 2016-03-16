@@ -36,11 +36,11 @@ public class Table extends JPanel {
 			Image carte = new ImageIcon("ressources/" + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
 
 			for (int i=0; i<5; i++) {
-				g.drawImage(carte, startX, startY+karteH*(1/6)*i, karteW, karteH, fen);
-				g.drawImage(carte, startX - karteW, startY+karteH*(1/6)*i, karteW, karteH, fen);
-				g.drawImage(carte, startX - karteW * 2, startY+karteH*(1/6)*i, karteW, karteH, fen);
-				g.drawImage(carte, startX + karteW, startY+karteH*(1/6)*i, karteW, karteH, fen);
-				g.drawImage(carte, startX + karteW * 2, startY+karteH*(1/6)*i, karteW, karteH, fen);
+				g.drawImage(carte, startX, startY+(karteH)/6*i, karteW, karteH, fen);
+				g.drawImage(carte, startX - karteW, startY+(karteH)/6*i, karteW, karteH, fen);
+				g.drawImage(carte, startX - karteW * 2, startY+(karteH)/6*i, karteW, karteH, fen);
+				g.drawImage(carte, startX + karteW, startY+(karteH)/6*i, karteW, karteH, fen);
+				g.drawImage(carte, startX + karteW * 2, startY+(karteH)/6*i, karteW, karteH, fen);
 
 			}
 		} catch (EnleverCarteInexistanteException e) {
