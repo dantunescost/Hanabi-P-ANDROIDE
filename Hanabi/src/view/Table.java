@@ -128,7 +128,7 @@ public class Table extends JPanel {
 		int karteH = fen.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);
 		int startX = (fen.getWidth()/2 - fen.getTableWidth()/2)/2-karteW/2;
-		int startY = (fen.getHeight()/2-fen.getTableHeight()/2)-karteH/2;
+		int startY = (fen.getHeight()/2)-karteH/2;
 
 		// Random card for now
 		Image carte = null;
