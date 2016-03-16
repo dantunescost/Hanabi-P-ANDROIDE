@@ -324,17 +324,23 @@ public class Partie {
 	}
 
 	/**
-	 * @return Renvoie "true" si la partie se joue avec les cartes multicolor {@link #jetonIndice}
+	 * @return Renvoie "true" si la partie se joue avec les cartes multicolor, "false" sinon {@link #multicolor}
 	 */
 	public boolean isMulticolor() {
 		return multicolor;
 	}
 
 	/**
-	 * @return Renvoie "true" si la partie se joue avec les cartes multicolor {@link #jetonIndice}
+	 * @return La pile de pioche {@link #pioche}
 	 */
 	public ArrayList<Carte> getPioche() {
 		return pioche;
 	}
-	
+
+	/**
+	 * @return Les cartes jouées {@link #cartesJouees}
+	 */
+	public HashMap<Couleur.CardColor, ArrayList<Carte>> getCartesJouees () {
+		return cartesJouees;
+	}
 }

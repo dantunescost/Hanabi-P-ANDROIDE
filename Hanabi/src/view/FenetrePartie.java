@@ -82,6 +82,10 @@ public class FenetrePartie extends JFrame{
 		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth)/7;
 		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/5;
 		g.drawImage(deck, startX, startY, 100, 150, this);
+		Font police = new Font("Arial",Font.PLAIN,20);
+		g.setColor(Color.white);
+		g.setFont(police);
+		g.drawString(Integer.toString(this.partie.getPioche().size()),startX+25, startY+10);
 	}
 	
 	public void afficherBoutonsIndices(Graphics g){
@@ -137,6 +141,8 @@ public class FenetrePartie extends JFrame{
 		afficherLeDeck(g);
 		//draw hint buttons
 		afficherBoutonsIndices(g);
+		//draw cards already played
+		table.afficherCartesJouees(g, this);
 	}
 	
 	public Partie getPartie() {
