@@ -58,8 +58,8 @@ public class FenetrePartie extends JFrame{
 
 	public void afficherLesJetons(Graphics g){
 		Image jeton = new ImageIcon("ressources/Jeton_bleu_recto.png").getImage();
-		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth * 7)/10;
-		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/5;
+		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth * 75)/100;
+		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/4;
 		//affichage des jetons d'indice
 		for(int i=0;i<this.partie.getJetonIndice();i++){
 			g.drawImage(jeton, startX+(i%3)*25, startY+(i/3)*30, 20, 20, this);
@@ -82,10 +82,10 @@ public class FenetrePartie extends JFrame{
 		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth)/7;
 		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/5;
 		g.drawImage(deck, startX, startY, 100, 150, this);
-		Font police = new Font("Arial",Font.PLAIN,20);
+		Font police = new Font("Times",Font.PLAIN,40);
 		g.setColor(Color.white);
 		g.setFont(police);
-		g.drawString(Integer.toString(this.partie.getPioche().size()),startX+25, startY+10);
+		g.drawString(Integer.toString(this.partie.getPioche().size()),startX+20, startY+90);
 	}
 	
 	public void afficherBoutonsIndices(Graphics g){
@@ -119,6 +119,8 @@ public class FenetrePartie extends JFrame{
 			g.drawArc(20+i*50, this.getHeight()-50, 30, 30, 0, 360);
 		}
 	}
+	
+	//public void aff
 	
 	public void paint(Graphics g){
 		//super.paint(g);
