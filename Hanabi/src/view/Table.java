@@ -28,17 +28,17 @@ public class Table extends JPanel {
 		int karteH = fen.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);
 		int startX = fen.getWidth()/2 - (karteW/2); // Middle of the window, but moves half a card to the left
-		int startY = (fen.getHeight() - fen.tableHeight) /2 + (karteH*1/10); // Top of the table, but moves down to create a margin
+		int startY = (fen.getHeight() - fen.tableHeight) /2 + (karteH*3/10); // Top of the table, but moves down to create a margin
 
 		// Test
 
 		try {
 			Image carte = new ImageIcon("ressources/" + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX-karteW-2, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX-karteW*2-2, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX+karteW+2, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX+karteW*+2, startY, karteW, karteH, fen);
+			g.drawImage(carte, startX-karteW, startY, karteW, karteH, fen);
+			g.drawImage(carte, startX-karteW*2, startY, karteW, karteH, fen);
+			g.drawImage(carte, startX+karteW, startY, karteW, karteH, fen);
+			g.drawImage(carte, startX+karteW*2, startY, karteW, karteH, fen);
 		} catch (EnleverCarteInexistanteException e) {
 			e.printStackTrace();
 		}
