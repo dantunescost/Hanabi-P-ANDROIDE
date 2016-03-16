@@ -34,15 +34,18 @@ public class Table extends JPanel {
 
 		try {
 			Image carte = new ImageIcon("ressources/" + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
-			g.drawImage(carte, startX, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX-karteW, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX-karteW*2, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX+karteW, startY, karteW, karteH, fen);
-			g.drawImage(carte, startX+karteW*2, startY, karteW, karteH, fen);
+
+			for (int i=0; i<5; i++) {
+				g.drawImage(carte, startX, startY-i, karteW, karteH, fen);
+				g.drawImage(carte, startX - karteW, startY-i, karteW, karteH, fen);
+				g.drawImage(carte, startX - karteW * 2, startY-i, karteW, karteH, fen);
+				g.drawImage(carte, startX + karteW, startY-i, karteW, karteH, fen);
+				g.drawImage(carte, startX + karteW * 2, startY-i, karteW, karteH, fen);
+
+			}
 		} catch (EnleverCarteInexistanteException e) {
 			e.printStackTrace();
 		}
-
 
 		// Avec 5 colonnes
 		if (cartesJouees.get(Couleur.CardColor.MULTI)==null) {
