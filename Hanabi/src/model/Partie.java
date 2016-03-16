@@ -343,4 +343,12 @@ public class Partie {
 	public HashMap<Couleur.CardColor, ArrayList<Carte>> getCartesJouees () {
 		return cartesJouees;
 	}
+
+	/**
+	 * @return Les cartes défaussées {@link #defausse}
+	 */
+	public ArrayList<Carte> getDefausse(){
+		return defausse;
+	}
+
 }

@@ -143,6 +143,8 @@ public class FenetrePartie extends JFrame{
 		afficherBoutonsIndices(g);
 		//draw cards already played
 		table.afficherCartesJouees(g, this);
+		//draw pile cartes defaussées
+		table.afficherCartesDefaussees(g,this);
 	}
 	
 	public Partie getPartie() {
