@@ -10,6 +10,8 @@ import java.awt.*;
 public class AfficherMains {
 
     FenetrePartie p;
+    public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
+
 
     public void showHandCenterTop(Graphics g, Main main) throws EnleverCarteInexistanteException {
         int karteH = p.tableHeight/4;
@@ -20,7 +22,7 @@ public class AfficherMains {
         }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW+i*25, startY-(karteH/3)*2, karteW, karteH, this.p);
         }
     }
@@ -34,7 +36,7 @@ public class AfficherMains {
         }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2+ (this.p.tableHeight/8)*7;
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX+i*karteW, startY-(karteH/3)*2, karteW, karteH, this.p);
         }
     }
@@ -48,7 +50,7 @@ public class AfficherMains {
         }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW+i*25, startY-(karteH/3)*2, karteW, karteH, this.p);
         }
     }
@@ -62,7 +64,7 @@ public class AfficherMains {
         }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW+i*25, startY-(karteH/3)*2, karteW, karteH, this.p);
         }
     }
@@ -76,7 +78,7 @@ public class AfficherMains {
             startX -= 25;
         }
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW+i*25, startY-(karteH/3)*2+i*20, karteW, karteH, this.p);
         }
     }
@@ -90,7 +92,7 @@ public class AfficherMains {
             startX -= 25;
         }
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW-i*25, startY-(karteH/3)*2+i*20, karteW, karteH, this.p);
         }
     }
@@ -101,7 +103,7 @@ public class AfficherMains {
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/11)*2;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2 + (this.p.tableHeight/8)*7;
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW-i*20, startY-(karteH/3)*2-i*20, karteW, karteH, this.p);
         }
     }
@@ -112,7 +114,7 @@ public class AfficherMains {
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/11)*10 ;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2 + (this.p.tableHeight/8)*7;
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon("ressources/"+main.getCarte(i).getCardName()).getImage();
+            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW+i*20, startY-(karteH/3)*2-i*20, karteW, karteH, this.p);
         }
     }

@@ -14,12 +14,18 @@ import javax.swing.JPanel;
 public class Table extends JPanel {
 	private static final long serialVersionUID = 1L;
 
+	public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
+
+	Image table = new ImageIcon(R+"table.png").getImage();
+
 	public void paintTable(Graphics g, FenetrePartie fen)
 	{
 		int width = fen.getTableWidth(), height = fen.getTableHeight();
 		int startX = (fen.getWidth() - width) /2;
 		int startY = (fen.getHeight() - height) /2;
-		g.drawImage(new ImageIcon("ressources/table.png").getImage(), startX, startY, width, height, this);
+		g.drawImage(table, startX, startY, width, height, this);
+
+
 	}
 
 	public void afficherCartesJouees (Graphics g, FenetrePartie fen) {
@@ -32,8 +38,8 @@ public class Table extends JPanel {
 
 		// Test
 
-		try {
-			Image carte = new ImageIcon("ressources/" + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
+		/*try {
+			Image carte = new ImageIcon(R + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
 
 			for (int i=0; i<5; i++) {
 				g.drawImage(carte, startX, startY+(karteH)/5*i, karteW, karteH, fen);
@@ -45,37 +51,37 @@ public class Table extends JPanel {
 			}
 		} catch (EnleverCarteInexistanteException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		// Avec 5 colonnes
 		if (cartesJouees.get(Couleur.CardColor.MULTI)==null) {
 			int i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.BLANC)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.BLEU)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX - karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.VERT)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX - karteW * 2, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.ROUGE)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.JAUNE)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW * 2, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
@@ -85,36 +91,36 @@ public class Table extends JPanel {
 		else {
 			int i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.BLANC)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX-karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.BLEU)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX - karteW*2, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.VERT)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX - karteW * 3, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.ROUGE)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.JAUNE)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW * 2, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			for (Carte c : cartesJouees.get(Couleur.CardColor.MULTI)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW * 3, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
@@ -133,7 +139,7 @@ public class Table extends JPanel {
 		// Random card for now
 		Image carte = null;
 		try {
-			carte = new ImageIcon("ressources/" + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
+			carte = new ImageIcon(R + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
 		} catch (EnleverCarteInexistanteException e) {
 			e.printStackTrace();
