@@ -86,6 +86,9 @@ public class Main {
 			if (this.main.get(i).getCouleur() == c) {
 				this.main.get(i).setCouleurConnue(true);
 			}
+			else{
+				this.main.get(i).setCouleurImpossible(c);
+			}	
 		}
 	}
 
@@ -99,6 +102,9 @@ public class Main {
 		for (int i = 0; i < this.nbCartes; i++) {
 			if (this.main.get(i).getValeur() == val) {
 				this.main.get(i).setValeurConnue(true);
+			}
+			else{
+				this.main.get(i).setValeurImpossible(val);
 			}
 		}
 	}
@@ -135,6 +141,38 @@ public class Main {
 	 */
 	public int getNbCartes() {
 		return nbCartes;
+	}
+	/**
+	 * Permet de déterminer si une carte est la seule avec sa valeur dans sa main
+	 * @param v La valeur concernée
+	 * @return vrai ou faux
+	 */
+	public boolean valeurUnique(int v)
+	{
+		int nbCartesValeurV=0;
+		for (Carte c : this.main){
+			if(c.getValeur()==v)
+				nbCartesValeurV++;
+		}
+		if(nbCartesValeurV==1)
+			return true;
+		return false;
+	}
+	/**
+	 * Permet de déterminer si une carte est la seule avec sa couleur dans sa main
+	 * @param col La couleur concernée
+	 * @return vrai ou faux
+	 */
+	public boolean couleurUnique(CardColor col)
+	{
+		int nbCartesCouleurCol=0;
+		for (Carte c : this.main){
+			if(c.getCouleur()==col)
+				nbCartesCouleurCol++;
+		}
+		if(nbCartesCouleurCol==1)
+			return true;
+		return false;
 	}
 }
 

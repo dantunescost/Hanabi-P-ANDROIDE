@@ -57,7 +57,7 @@ public class JoueurIA extends Joueur {
 	 * 			null sinon
 	 */
     public Carte defausseTriviale () {
-        for (Carte c : this.getMain().main){
+        for (Carte c : this.getMain().main){;
             if (c.isCouleurConnue() && c.isValeurConnue()) {
                 for (int i=0; i<this.p.cartesJouees.size(); i++) {
                     if (this.p.cartesJouees.get(c.getCouleur()).size()>=(c.getValeur())){

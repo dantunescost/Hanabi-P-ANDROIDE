@@ -1,5 +1,7 @@
 package model;
 
+import java.util.HashMap;
+
 import model.Couleur.CardColor;
 
 /**
@@ -30,6 +32,10 @@ public class Carte {
 	private boolean valeurConnue;
 	
 	
+	private HashMap<Couleur.CardColor, Boolean> couleursPossibles;
+	
+	private HashMap<Integer,Boolean> valeursPossibles;
+			
 	/**
 	 * Constructeur d'une carte avec une couleur et une valeur definies
 	 * @param couleur	La couleur voulue pour la carte
@@ -40,7 +46,54 @@ public class Carte {
 		this.valeur = valeur;
 		this.valeurConnue = false;
 		this.couleurConnue = false;
+		
+		couleursPossibles= new HashMap<Couleur.CardColor, Boolean>();
+		couleursPossibles.put(Couleur.CardColor.BLANC, true);
+		couleursPossibles.put(Couleur.CardColor.ROUGE, true);
+		couleursPossibles.put(Couleur.CardColor.VERT, true);
+		couleursPossibles.put(Couleur.CardColor.BLEU, true);
+		couleursPossibles.put(Couleur.CardColor.JAUNE, true);
+		
+		valeursPossibles= new HashMap<Integer,Boolean>();
+		valeursPossibles.put(1, true);
+		valeursPossibles.put(2, true);
+		valeursPossibles.put(3, true);
+		valeursPossibles.put(4, true);
+		valeursPossibles.put(5, true);
 	}
+	/**
+	 * Permet de definir si cette carte n'est pas d'une couleur
+	 * 
+	 * @param c	désigne la couleur concernée
+	 */
+	public void setCouleurImpossible(Couleur.CardColor c){
+		couleursPossibles.put(c,false);
+	}
+	/**
+	 * Permet de definir si cette carte n'est pas d'une valeur
+	 * 
+	 * @param v	désigne la valeur concernée
+	 */
+	public void setValeurImpossible(int v){
+		valeursPossibles.put(v,false);
+	}
+	
+	/**
+	 * @param c	désigne la couleur concernée
+	 * @return 	Indique si cette carte peut être de cette couleur
+	 */
+	public boolean couleurPossible(Couleur.CardColor c) {
+		return couleursPossibles.get(c);
+	}
+	
+	/**
+	 * @param v	désigne la couleur concernée
+	 * @return 	Indique si cette carte peut être de cette valeur
+	 */
+	public boolean valeurPossible(int v) {
+		return valeursPossibles.get(v);
+	}
+		
 	
 	
 	/**
@@ -102,5 +155,41 @@ public class Carte {
 		res += this.couleur.convertirEnChaine() + "_";
 		res += Integer.toString(this.valeur) + ".png";
 		return res; 
+	}
+	
+	/**
+	 * Permet de mettre à jour valeurConnue et couleurConnue en
+	 * se basant sur les données de valeursImpossibles et
+	 * couleursImpossibles
+	 * 
+	 * @param multi	vaut true si l'on est dans une partie avec des cartes multicolores
+	 */
+	public void majConnaissanceImmediate(boolean multi){
+		int nbValeurs=5;
+		int nbCImpossibles=0;
+		int nbVImpossibles=0;
+
+		for(int i=0; i<Couleur.getAllCouleurs(multi).size();i++)
+		{
+			if(!(this.couleurPossible(Couleur.getAllCouleurs(multi).get(i))))
+			{
+				nbCImpossibles++;
+			}
+		}
+		if(nbCImpossibles==Couleur.getAllCouleurs(multi).size()-1)
+		{
+			this.setCouleurConnue(true);
+		}
+		for(int i=1; i<(nbValeurs+1); i++)
+		{
+			if(!(this.valeurPossible(i)))
+			{
+				nbVImpossibles++;
+			}
+		}
+		if(nbVImpossibles==(nbValeurs-1))
+		{
+			this.setValeurConnue(true);
+		}
 	}
 }

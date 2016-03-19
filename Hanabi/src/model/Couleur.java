@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Represente les couleurs des cartes.
  */
@@ -73,5 +75,17 @@ public class Couleur {
 			res = "Multi";
 		}
 		return res;
+	}
+	
+	public static ArrayList<CardColor> getAllCouleurs(boolean multi){
+		ArrayList<CardColor> liste= new ArrayList<CardColor>();
+		liste.add(CardColor.BLANC);
+		liste.add(CardColor.BLEU);
+		liste.add(CardColor.ROUGE);
+		liste.add(CardColor.JAUNE);
+		liste.add(CardColor.VERT);
+		if(multi)
+			liste.add(CardColor.MULTI);
+		return liste;
 	}
 }
