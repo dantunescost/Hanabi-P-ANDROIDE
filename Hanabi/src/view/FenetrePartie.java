@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.MouseListener;
 import model.AdditionMainPleineException;
 import model.DummyJoueurIA;
 import model.EnleverCarteInexistanteException;
@@ -23,6 +24,7 @@ public class FenetrePartie extends JFrame{
 	private static final long serialVersionUID = 2656325461540137440L;
 	private Table table;
 	private Partie partie; 
+	private boolean annuler = false;
 	protected int tableWidth = 800;
 	protected int tableHeight = 400;
 	public static String R = System.getProperty("user.dir");
@@ -45,6 +47,7 @@ public class FenetrePartie extends JFrame{
 		bg.setLayout(new FlowLayout());
 		bg.add(table);
 		this.setContentPane(bg);
+		this.addMouseListener(new MouseListener(this));
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -119,9 +122,14 @@ public class FenetrePartie extends JFrame{
 	public void afficherBoutonsJouerCoup(Graphics g){
 		int startX = (this.getWidth()/2)-205;
 		int startY = (this.getHeight())-80;
-		g.drawImage(new ImageIcon("ressources/indice.png").getImage(), startX, startY, 99, 40, this);
-		g.drawImage(new ImageIcon("ressources/jouer.png").getImage(), startX+109, startY, 151, 40, this);
-		g.drawImage(new ImageIcon("ressources/defausser.png").getImage(), startX+270, startY, 140, 40, this);
+		if(!this.annuler){
+			g.drawImage(new ImageIcon(R+"indice.png").getImage(), startX, startY, 99, 40, this);
+			g.drawImage(new ImageIcon(R+"jouer.png").getImage(), startX+109, startY, 151, 40, this);
+			g.drawImage(new ImageIcon(R+"defausser.png").getImage(), startX+270, startY, 140, 40, this);
+		}
+		else{
+			g.drawImage(new ImageIcon(R+"annuler.png").getImage(), (this.getWidth()/2)-60, startY, 121, 40, this);
+		}
 	}
 	
 	public void paint(Graphics g){
@@ -134,7 +142,7 @@ public class FenetrePartie extends JFrame{
 		//draw hand
 		AfficherMains a = new AfficherMains(this);
 		try {
-			a.show2players(g);
+			a.afficherMain(g);
 		} catch (EnleverCarteInexistanteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -181,5 +189,13 @@ public class FenetrePartie extends JFrame{
 			e2.printStackTrace();
 		}
 	    new FenetrePartie(game);
+	}
+
+	public boolean isAnnuler() {
+		return annuler;
+	}
+
+	public void setAnnuler(boolean annuler) {
+		this.annuler = annuler;
 	}
 }
