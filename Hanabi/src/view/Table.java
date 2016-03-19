@@ -116,13 +116,13 @@ public class Table extends JPanel {
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.JAUNE)) {
 				Image carte = new ImageIcon(R + c.getCardName()).getImage();
-				g.drawImage(carte, startX + karteW * 2, startY+(karteH)/5*i, karteW, karteH, fen);
+				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
+			i=0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.MULTI)) {
 				Image carte = new ImageIcon(R + c.getCardName()).getImage();
-				g.drawImage(carte, startX + karteW * 3, startY+(karteH)/5*i, karteW, karteH, fen);
-				i++;
+				g.drawImage(carte, startX + karteW*2, startY+(karteH)/5*i, karteW, karteH, fen);
 			}
 		}
 
@@ -134,17 +134,21 @@ public class Table extends JPanel {
 		int karteH = fen.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);
 		int startX = (fen.getWidth()/2 - fen.getTableWidth()/2)/2-karteW/2;
-		int startY = (fen.getHeight()/2)-karteH;
-
+		int startY = (fen.getHeight()/2)-karteH/2;
 
 		// Afficher derniere carte defaussée
 		int carteAffichee = fen.getPartie().getDefausse().size()-1;
 
-		try {
-			Image carte = new ImageIcon(R + fen.getPartie().getDefausse().get(carteAffichee).getCardName()).getImage();
+		if(defausse.size() != 0){
+			g.setColor(Color.white);
+			Font police = new Font("Arial",Font.BOLD,15);
+			g.setFont(police);
+			g.drawString("Défausse", startX-2, startY-5);
+			carte = new ImageIcon("ressources/" + defausse.get(0).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
 		}
-		catch (Exception e) {
+
+		else {
 			g.setColor(Color.black);
 			g.drawRoundRect(startX,startY,karteW,karteH,1,1);
 		}

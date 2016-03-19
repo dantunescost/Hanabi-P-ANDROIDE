@@ -139,8 +139,8 @@ public class PartieTerminal extends Partie{
 	    Scanner in = new Scanner(System.in);
 	    PartieTerminal game = new PartieTerminal(2,8,false);
 	    Joueur[] joue = new Joueur[2];
-	    joue[0] = new JoueurHumain("Holmes", 5, game, 0);
-	    joue[1] = new DummyJoueurIA("Watson", 5, game, 1);
+	    joue[0] = new JoueurHumain("Holmes", game, 0);
+	    joue[1] = new DummyJoueurIA("Watson", game, 1);
 	    try {
 			game.initPartie(joue);
 		} catch (AdditionMainPleineException e2) {

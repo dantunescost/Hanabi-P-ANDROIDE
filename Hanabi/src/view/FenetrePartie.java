@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.AdditionMainPleineException;
+import model.Carte;
+import model.Couleur.CardColor;
 import model.DummyJoueurIA;
 import model.EnleverCarteInexistanteException;
 import model.Joueur;
@@ -36,18 +38,7 @@ public class FenetrePartie extends JFrame{
 		this.setResizable(true);
 		this.table = new Table();
 		
-		JPanel bg = new JPanel();/*{
-		 une fonction qui affiche 
-			private static final long serialVersionUID = 1L;
-
-			public void paintComponent(Graphics g)
-			{
-				super.paintComponent(g);
-				g.clearRect(0,0,this.getWidth(),this.getHeight());
-				g.drawImage(new ImageIcon("ressources/wood.jpg").getImage(), 0, 0, 1000, 600, this);
-				
-			}
-		};*/
+		JPanel bg = new JPanel();
 		bg.setLayout(new FlowLayout());
 		bg.add(table);
 		this.setContentPane(bg);
@@ -93,13 +84,13 @@ public class FenetrePartie extends JFrame{
 		g.setColor(Color.red);
 		g.fillOval(20, this.getHeight()-50, 30, 30);
 		g.setColor(Color.blue);
-		g.fillOval(70, this.getHeight()-50, 30, 30);
+		g.fillOval(65, this.getHeight()-50, 30, 30);
 		g.setColor(Color.green);
-		g.fillOval(120, this.getHeight()-50, 30, 30);
+		g.fillOval(110, this.getHeight()-50, 30, 30);
 		g.setColor(Color.yellow);
-		g.fillOval(170, this.getHeight()-50, 30, 30);
+		g.fillOval(155, this.getHeight()-50, 30, 30);
 		g.setColor(Color.white);
-		g.fillOval(220, this.getHeight()-50, 30, 30);
+		g.fillOval(200, this.getHeight()-50, 30, 30);
 		if(this.partie.isMulticolor()){
 			g.setColor(Color.MAGENTA);
 			g.fillOval(270, this.getHeight()-75, 30, 30);

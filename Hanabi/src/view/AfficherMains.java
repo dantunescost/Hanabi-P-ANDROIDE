@@ -10,8 +10,11 @@ import java.awt.*;
 public class AfficherMains {
 
     FenetrePartie p;
+    
+    public AfficherMains(FenetrePartie p){
+    	this.p = p;
+    }
     public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
-
 
     public void showHandCenterTop(Graphics g, Main main) throws EnleverCarteInexistanteException {
         int karteH = p.tableHeight/4;
@@ -35,8 +38,8 @@ public class AfficherMains {
             startX -= (karteW/2)*5;
         }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2+ (this.p.tableHeight/8)*7;
+        Image karte = new ImageIcon("ressources/cardback.png").getImage();
         for(int i=0;i<main.getNbCartes();i++){
-            Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX+i*karteW, startY-(karteH/3)*2, karteW, karteH, this.p);
         }
     }
@@ -117,14 +120,6 @@ public class AfficherMains {
             Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW+i*20, startY-(karteH/3)*2-i*20, karteW, karteH, this.p);
         }
-    }
-    
-    public AfficherMains(FenetrePartie p){
-
-        this.p = p;
-        int nbJ = p.getPartie().getJoueurs().length;
-
-
     }
     
     public void afficherMain(Graphics g) throws EnleverCarteInexistanteException{
