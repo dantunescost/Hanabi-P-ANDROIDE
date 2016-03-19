@@ -58,20 +58,20 @@ public class FenetrePartie extends JFrame{
 	}
 
 	public void afficherLesJetons(Graphics g){
-		Image jeton = new ImageIcon("ressources/Jeton_bleu_recto.png").getImage();
+		Image jeton = new ImageIcon(R+"Jeton_bleu_recto.png").getImage();
 		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth * 75)/100;
 		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/4;
 		//affichage des jetons d'indice
 		for(int i=0;i<this.partie.getJetonIndice();i++){
 			g.drawImage(jeton, startX+(i%3)*25, startY+(i/3)*30, 20, 20, this);
 		}
-		jeton = new ImageIcon("ressources/Jeton_rouge_recto.png").getImage();
+		jeton = new ImageIcon(R+"Jeton_rouge_recto.png").getImage();
 		int i;
 		//affichage des jetons eclair "utilises"
 		for(i=0;i<this.partie.getJetonEclair();i++){
 			g.drawImage(jeton, startX+i*25, startY+3*30, 20, 20, this);
 		}
-		jeton = new ImageIcon("ressources/Jeton_rouge_verso.png").getImage();
+		jeton = new ImageIcon(R+"Jeton_rouge_verso.png").getImage();
 		//affichage des jetons eclair "non-utilises", marge d'erreur
 		for(int j=i;j<3-this.partie.getJetonEclair();j++){
 			g.drawImage(jeton, startX+j*25, startY+3*30, 20, 20, this);
@@ -79,7 +79,7 @@ public class FenetrePartie extends JFrame{
 	}
 	
 	public void afficherLeDeck(Graphics g){
-		Image deck = new ImageIcon("ressources/deck.png").getImage();
+		Image deck = new ImageIcon(R+"deck.png").getImage();
 		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth)/7;
 		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/5;
 		g.drawImage(deck, startX, startY, 100, 150, this);

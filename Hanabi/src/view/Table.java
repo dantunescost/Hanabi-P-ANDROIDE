@@ -134,16 +134,19 @@ public class Table extends JPanel {
 		int karteH = fen.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);
 		int startX = (fen.getWidth()/2 - fen.getTableWidth()/2)/2-karteW/2;
-		int startY = (fen.getHeight()/2)-karteH/2;
+		int startY = (fen.getHeight()/2)-karteH;
 
-		// Random card for now
-		Image carte = null;
+
+		// Afficher derniere carte defaussée
+		int carteAffichee = fen.getPartie().getDefausse().size()-1;
+
 		try {
-			carte = new ImageIcon(R + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
+			Image carte = new ImageIcon(R + fen.getPartie().getDefausse().get(carteAffichee).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
-		} catch (EnleverCarteInexistanteException e) {
-			e.printStackTrace();
 		}
-
+		catch (Exception e) {
+			g.setColor(Color.black);
+			g.drawRoundRect(startX,startY,karteW,karteH,1,1);
+		}
 	}
 }
