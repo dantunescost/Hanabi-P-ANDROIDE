@@ -16,8 +16,8 @@ public class JoueurIA extends Joueur {
 	 * @param p			La partie a laquelle participe cette IA
 	 * @param id		Le numero du joueur dans la partie
 	 */
-	public JoueurIA(String nom,int nbCartes, Partie p, int id){
-		super(nom,nbCartes, p, id);
+	public JoueurIA(String nom, Partie p, int id){
+		super(nom, p, id);
 		r = new Random();
 	}
 

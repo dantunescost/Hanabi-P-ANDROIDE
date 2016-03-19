@@ -31,9 +31,9 @@ public abstract class Joueur {
 	 * @param p         La partie dans laquelle il joue
 	 * @param id		Le numero du joueur dans la partie
 	 */
-	public Joueur(String nom,int nbCartes, Partie p, int id){
+	public Joueur(String nom, Partie p, int id){
 		this.nom = nom;
-		this.main = new Main(nbCartes);
+		this.main = new Main(p.nbCartes);
 		this.p = p;
 		this.id = id;
 	}
