@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class Table extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
+	public static String R = System.getProperty("user.dir")+"/ressources/";
 
 	Image table = new ImageIcon(R+"table.png").getImage();
 
@@ -137,12 +137,11 @@ public class Table extends JPanel {
 
 		// Afficher derniere carte defaussée
 		int carteAffichee = fen.getPartie().getDefausse().size()-1;
-
+		g.setColor(Color.white);
+		Font police = new Font("Arial",Font.BOLD,15);
+		g.setFont(police);
+		g.drawString("Défausse", startX-2, startY-5);
 		if(defausse.size() != 0){
-			g.setColor(Color.white);
-			Font police = new Font("Arial",Font.BOLD,15);
-			g.setFont(police);
-			g.drawString("Défausse", startX-2, startY-5);
 			Image carte = new ImageIcon(R + defausse.get(carteAffichee).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
 		}

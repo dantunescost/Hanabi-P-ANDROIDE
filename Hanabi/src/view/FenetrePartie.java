@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Dimension;
 
@@ -13,8 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.AdditionMainPleineException;
-import model.Carte;
-import model.Couleur.CardColor;
 import model.DummyJoueurIA;
 import model.EnleverCarteInexistanteException;
 import model.Joueur;
@@ -93,32 +90,35 @@ public class FenetrePartie extends JFrame{
 		g.fillOval(200, this.getHeight()-50, 30, 30);
 		if(this.partie.isMulticolor()){
 			g.setColor(Color.MAGENTA);
-			g.fillOval(270, this.getHeight()-75, 30, 30);
+			g.fillOval(245, this.getHeight()-75, 30, 30);
 			g.setColor(Color.black);
-			g.drawArc(270, this.getHeight()-75, 30, 30,0,360);
+			g.drawArc(245, this.getHeight()-75, 30, 30,0,360);
 		}
 		for(int i=1;i<=5;i++){
 			g.setColor(Color.white);
-			g.fillOval(20+(i-1)*50, this.getHeight()-100, 30, 30);
+			g.fillOval(20+(i-1)*45, this.getHeight()-100, 30, 30);
 			g.setColor(Color.black);
 			Font police = new Font("Arial",Font.PLAIN,20);
 			g.setFont(police);
-			g.drawString(Integer.toString(i), 30+(i-1)*50, 22+this.getHeight()-100);
+			g.drawString(Integer.toString(i), 30+(i-1)*45, 22+this.getHeight()-100);
 		}
 		g.setColor(Color.black);
 		for(int i=0;i<5;i++){
-			g.drawArc(20+i*50, this.getHeight()-100, 30, 30, 0, 360);
-			g.drawArc(20+i*50, this.getHeight()-50, 30, 30, 0, 360);
+			g.drawArc(20+i*45, this.getHeight()-100, 30, 30, 0, 360);
+			g.drawArc(20+i*45, this.getHeight()-50, 30, 30, 0, 360);
 		}
 	}
 	
+
 	public void afficherBoutonsJouerCoup(Graphics g){
-		int startX = (this.getWidth());
-		int startY = (this.getHeight()/2);
+		int startX = (this.getWidth()/2)-205;
+		int startY = (this.getHeight())-80;
+		g.drawImage(new ImageIcon("ressources/indice.png").getImage(), startX, startY, 99, 40, this);
+		g.drawImage(new ImageIcon("ressources/jouer.png").getImage(), startX+109, startY, 151, 40, this);
+		g.drawImage(new ImageIcon("ressources/defausser.png").getImage(), startX+270, startY, 140, 40, this);
 	}
 	
 	public void paint(Graphics g){
-		System.out.println(R);
 		//super.paint(g);
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
 		//background
@@ -143,6 +143,8 @@ public class FenetrePartie extends JFrame{
 		table.afficherCartesJouees(g, this);
 		//draw pile cartes defaussées
 		table.afficherCartesDefaussees(g,this);
+		//draw buttons
+		afficherBoutonsJouerCoup(g);
 	}
 	
 	public Partie getPartie() {
@@ -159,7 +161,7 @@ public class FenetrePartie extends JFrame{
 
 	/************************* MAIN *************************/
 	public static void main(String[] args){
-		Partie game = new Partie(2,8,false);
+		Partie game = new Partie(2,8,true);
 		Joueur[] joue = new Joueur[2];
 	    joue[0] = new JoueurHumain("Holmes", game, 0);
 	    joue[1] = new DummyJoueurIA("Watson", game, 1);

@@ -14,7 +14,7 @@ public class AfficherMains {
     public AfficherMains(FenetrePartie p){
     	this.p = p;
     }
-    public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
+    public static String R = System.getProperty("user.dir")+"/ressources/";
 
     public void showHandCenterTop(Graphics g, Main main) throws EnleverCarteInexistanteException {
         int karteH = p.tableHeight/4;
