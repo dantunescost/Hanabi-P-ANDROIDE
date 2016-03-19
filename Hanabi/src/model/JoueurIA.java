@@ -102,7 +102,7 @@ public class JoueurIA extends Joueur {
     				compt[this.p.defausse.get(i).getValeur()-1]++;
     			}
     		}
-    		for(int j=0; j<this.p.defausse.size() && !res; j++)
+    		for(int j=0; j<c.getValeur()-1 && !res; j++)
     		{
     			if(((j+2)/3 + compt[j])==3)
     				res=true;
