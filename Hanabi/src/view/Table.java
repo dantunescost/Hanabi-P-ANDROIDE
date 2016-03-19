@@ -32,19 +32,13 @@ public class Table extends JPanel {
 		HashMap<Couleur.CardColor, ArrayList<Carte>> cartesJouees = fen.getPartie().getCartesJouees();
 		int karteH = fen.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);
-		int startX = fen.getWidth()/2; // Middle of the window
+		int startX = fen.getWidth()/2 - (karteW/2); // Middle of the window, but moves half a card to the left
 		int startY = (fen.getHeight() - fen.tableHeight) /2 + (karteH*6/11); // Top of the table, but moves down to create a margin
-		if(!fen.getPartie().isMulticolor()){
-			startX -= karteW/2;
-		}
+
 		// Test
 
 		/*try {
-<<<<<<< HEAD
-			Image carte = new ImageIcon("ressources/" + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
-=======
 			Image carte = new ImageIcon(R + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
->>>>>>> 908b31f92b7e361d7639bbd08b76ade954027d32
 
 			for (int i=0; i<5; i++) {
 				g.drawImage(carte, startX, startY+(karteH)/5*i, karteW, karteH, fen);
@@ -114,40 +108,47 @@ public class Table extends JPanel {
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.ROUGE)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
-				g.drawImage(carte, startX, startY+(karteH)/5*i, karteW, karteH, fen);
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
+				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.JAUNE)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i=0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.MULTI)) {
-				Image carte = new ImageIcon("ressources/" + c.getCardName()).getImage();
+				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW*2, startY+(karteH)/5*i, karteW, karteH, fen);
 			}
 		}
 
 	}
 
-	public void afficherPileDefausse (Graphics g, FenetrePartie fen) {
+	public void afficherCartesDefaussees (Graphics g, FenetrePartie fen) {
+
 		ArrayList<Carte> defausse = fen.getPartie().getDefausse();
 		int karteH = fen.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);
 		int startX = (fen.getWidth()/2 - fen.getTableWidth()/2)/2-karteW/2;
 		int startY = (fen.getHeight()/2)-karteH/2;
-		
-		Image carte = null;
+
+		// Afficher derniere carte defaussée
+		int carteAffichee = fen.getPartie().getDefausse().size()-1;
+
 		if(defausse.size() != 0){
 			g.setColor(Color.white);
 			Font police = new Font("Arial",Font.BOLD,15);
 			g.setFont(police);
 			g.drawString("Défausse", startX-2, startY-5);
-			carte = new ImageIcon("ressources/" + defausse.get(0).getCardName()).getImage();
+			Image carte = new ImageIcon(R + defausse.get(carteAffichee).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
+		}
+		else {
+			g.setColor(Color.white);
+			g.drawRoundRect(startX,startY,karteW,karteH,1,1);
 		}
 	}
 }
