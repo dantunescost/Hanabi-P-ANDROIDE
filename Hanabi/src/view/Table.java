@@ -144,12 +144,11 @@ public class Table extends JPanel {
 			Font police = new Font("Arial",Font.BOLD,15);
 			g.setFont(police);
 			g.drawString("Défausse", startX-2, startY-5);
-			carte = new ImageIcon("ressources/" + defausse.get(0).getCardName()).getImage();
+			Image carte = new ImageIcon(R + defausse.get(carteAffichee).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
 		}
-
 		else {
-			g.setColor(Color.black);
+			g.setColor(Color.white);
 			g.drawRoundRect(startX,startY,karteW,karteH,1,1);
 		}
 	}
