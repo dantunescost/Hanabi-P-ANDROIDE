@@ -10,11 +10,15 @@ import java.awt.*;
 public class AfficherMains {
 
     FenetrePartie p;
+    public static String R = System.getProperty("user.dir");
     
     public AfficherMains(FenetrePartie p){
     	this.p = p;
+		if(System.getProperty("os.name").equals("MAC OS X")){
+			R += "/Hanabi";
+		}
+		R += "/ressources/";
     }
-    public static String R = System.getProperty("user.dir")+"/ressources/";
 
     public void showHandCenterTop(Graphics g, Main main) throws EnleverCarteInexistanteException {
         int karteH = p.tableHeight/4;

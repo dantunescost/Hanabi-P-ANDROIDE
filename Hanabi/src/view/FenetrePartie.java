@@ -25,7 +25,7 @@ public class FenetrePartie extends JFrame{
 	private Partie partie; 
 	protected int tableWidth = 800;
 	protected int tableHeight = 400;
-	public static String R = System.getProperty("user.dir")+"/ressources/";
+	public static String R = System.getProperty("user.dir");
 
 	public FenetrePartie(Partie p){
 		super("Hanabi");
@@ -33,6 +33,12 @@ public class FenetrePartie extends JFrame{
 		this.setSize(1000, 600);
 		this.setMinimumSize(new Dimension(1000,650));
 		this.setResizable(true);
+		
+		if(System.getProperty("os.name").equals("MAC OS X")){
+			R += "/Hanabi";
+		}
+		R += "/ressources/";
+		
 		this.table = new Table();
 		
 		JPanel bg = new JPanel();

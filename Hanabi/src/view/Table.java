@@ -13,9 +13,18 @@ import javax.swing.JPanel;
 public class Table extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public static String R = System.getProperty("user.dir")+"/ressources/";
+	public static String R = System.getProperty("user.dir");
 
-	Image table = new ImageIcon(R+"table.png").getImage();
+	Image table;
+	
+	public Table(){
+		super();
+		if(System.getProperty("os.name").equals("MAC OS X")){
+			R += "/Hanabi";
+		}
+		R += "/ressources/";
+		this.table = new ImageIcon(R+"table.png").getImage();
+	}
 
 	public void paintTable(Graphics g, FenetrePartie fen)
 	{
