@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Dimension;
 
@@ -12,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.MouseListener;
 import model.AdditionMainPleineException;
 import model.DummyJoueurIA;
 import model.EnleverCarteInexistanteException;
@@ -24,9 +24,10 @@ public class FenetrePartie extends JFrame{
 	private static final long serialVersionUID = 2656325461540137440L;
 	private Table table;
 	private Partie partie; 
+	private boolean annuler = false;
 	protected int tableWidth = 800;
 	protected int tableHeight = 400;
-	public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
+	public static String R = System.getProperty("user.dir");
 
 	public FenetrePartie(Partie p){
 		super("Hanabi");
@@ -34,23 +35,19 @@ public class FenetrePartie extends JFrame{
 		this.setSize(1000, 600);
 		this.setMinimumSize(new Dimension(1000,650));
 		this.setResizable(true);
+		
+		if(System.getProperty("os.name").equals("MAC OS X")){
+			R += "/Hanabi";
+		}
+		R += "/ressources/";
+		
 		this.table = new Table();
 		
-		JPanel bg = new JPanel();/*{
-		 une fonction qui affiche 
-			private static final long serialVersionUID = 1L;
-
-			public void paintComponent(Graphics g)
-			{
-				super.paintComponent(g);
-				g.clearRect(0,0,this.getWidth(),this.getHeight());
-				g.drawImage(new ImageIcon("ressources/wood.jpg").getImage(), 0, 0, 1000, 600, this);
-				
-			}
-		};*/
+		JPanel bg = new JPanel();
 		bg.setLayout(new FlowLayout());
 		bg.add(table);
 		this.setContentPane(bg);
+		this.addMouseListener(new MouseListener(this));
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -58,20 +55,20 @@ public class FenetrePartie extends JFrame{
 	}
 
 	public void afficherLesJetons(Graphics g){
-		Image jeton = new ImageIcon("ressources/Jeton_bleu_recto.png").getImage();
+		Image jeton = new ImageIcon(R+"Jeton_bleu_recto.png").getImage();
 		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth * 75)/100;
 		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/4;
 		//affichage des jetons d'indice
 		for(int i=0;i<this.partie.getJetonIndice();i++){
 			g.drawImage(jeton, startX+(i%3)*25, startY+(i/3)*30, 20, 20, this);
 		}
-		jeton = new ImageIcon("ressources/Jeton_rouge_recto.png").getImage();
+		jeton = new ImageIcon(R+"Jeton_rouge_recto.png").getImage();
 		int i;
 		//affichage des jetons eclair "utilises"
 		for(i=0;i<this.partie.getJetonEclair();i++){
 			g.drawImage(jeton, startX+i*25, startY+3*30, 20, 20, this);
 		}
-		jeton = new ImageIcon("ressources/Jeton_rouge_verso.png").getImage();
+		jeton = new ImageIcon(R+"Jeton_rouge_verso.png").getImage();
 		//affichage des jetons eclair "non-utilises", marge d'erreur
 		for(int j=i;j<3-this.partie.getJetonEclair();j++){
 			g.drawImage(jeton, startX+j*25, startY+3*30, 20, 20, this);
@@ -79,7 +76,7 @@ public class FenetrePartie extends JFrame{
 	}
 	
 	public void afficherLeDeck(Graphics g){
-		Image deck = new ImageIcon("ressources/deck.png").getImage();
+		Image deck = new ImageIcon(R+"deck.png").getImage();
 		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth)/7;
 		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/5;
 		g.drawImage(deck, startX, startY, 100, 150, this);
@@ -93,41 +90,49 @@ public class FenetrePartie extends JFrame{
 		g.setColor(Color.red);
 		g.fillOval(20, this.getHeight()-50, 30, 30);
 		g.setColor(Color.blue);
-		g.fillOval(70, this.getHeight()-50, 30, 30);
+		g.fillOval(65, this.getHeight()-50, 30, 30);
 		g.setColor(Color.green);
-		g.fillOval(120, this.getHeight()-50, 30, 30);
+		g.fillOval(110, this.getHeight()-50, 30, 30);
 		g.setColor(Color.yellow);
-		g.fillOval(170, this.getHeight()-50, 30, 30);
+		g.fillOval(155, this.getHeight()-50, 30, 30);
 		g.setColor(Color.white);
-		g.fillOval(220, this.getHeight()-50, 30, 30);
+		g.fillOval(200, this.getHeight()-50, 30, 30);
 		if(this.partie.isMulticolor()){
 			g.setColor(Color.MAGENTA);
-			g.fillOval(270, this.getHeight()-75, 30, 30);
+			g.fillOval(245, this.getHeight()-75, 30, 30);
 			g.setColor(Color.black);
-			g.drawArc(270, this.getHeight()-75, 30, 30,0,360);
+			g.drawArc(245, this.getHeight()-75, 30, 30,0,360);
 		}
 		for(int i=1;i<=5;i++){
 			g.setColor(Color.white);
-			g.fillOval(20+(i-1)*50, this.getHeight()-100, 30, 30);
+			g.fillOval(20+(i-1)*45, this.getHeight()-100, 30, 30);
 			g.setColor(Color.black);
 			Font police = new Font("Arial",Font.PLAIN,20);
 			g.setFont(police);
-			g.drawString(Integer.toString(i), 30+(i-1)*50, 22+this.getHeight()-100);
+			g.drawString(Integer.toString(i), 30+(i-1)*45, 22+this.getHeight()-100);
 		}
 		g.setColor(Color.black);
 		for(int i=0;i<5;i++){
-			g.drawArc(20+i*50, this.getHeight()-100, 30, 30, 0, 360);
-			g.drawArc(20+i*50, this.getHeight()-50, 30, 30, 0, 360);
+			g.drawArc(20+i*45, this.getHeight()-100, 30, 30, 0, 360);
+			g.drawArc(20+i*45, this.getHeight()-50, 30, 30, 0, 360);
 		}
 	}
 	
+
 	public void afficherBoutonsJouerCoup(Graphics g){
-		int startX = (this.getWidth());
-		int startY = (this.getHeight()/2);
+		int startX = (this.getWidth()/2)-205;
+		int startY = (this.getHeight())-80;
+		if(!this.annuler){
+			g.drawImage(new ImageIcon(R+"indice.png").getImage(), startX, startY, 99, 40, this);
+			g.drawImage(new ImageIcon(R+"jouer.png").getImage(), startX+109, startY, 151, 40, this);
+			g.drawImage(new ImageIcon(R+"defausser.png").getImage(), startX+270, startY, 140, 40, this);
+		}
+		else{
+			g.drawImage(new ImageIcon(R+"annuler.png").getImage(), (this.getWidth()/2)-60, startY, 121, 40, this);
+		}
 	}
 	
 	public void paint(Graphics g){
-
 		//super.paint(g);
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
 		//background
@@ -137,7 +142,7 @@ public class FenetrePartie extends JFrame{
 		//draw hand
 		AfficherMains a = new AfficherMains(this);
 		try {
-			a.show2players(g);
+			a.afficherMain(g);
 		} catch (EnleverCarteInexistanteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,6 +157,8 @@ public class FenetrePartie extends JFrame{
 		table.afficherCartesJouees(g, this);
 		//draw pile cartes defaussées
 		table.afficherCartesDefaussees(g,this);
+		//draw buttons
+		afficherBoutonsJouerCoup(g);
 	}
 	
 	public Partie getPartie() {
@@ -168,10 +175,10 @@ public class FenetrePartie extends JFrame{
 
 	/************************* MAIN *************************/
 	public static void main(String[] args){
-		Partie game = new Partie(2,8,false);
+		Partie game = new Partie(2,8,true);
 		Joueur[] joue = new Joueur[2];
-	    joue[0] = new JoueurHumain("Holmes", 5, game, 0);
-	    joue[1] = new DummyJoueurIA("Watson", 5, game, 1);
+	    joue[0] = new JoueurHumain("Holmes", game, 0);
+	    joue[1] = new DummyJoueurIA("Watson", game, 1);
 	    try {
 			game.initPartie(joue);
 		} catch (AdditionMainPleineException e2) {
@@ -182,5 +189,13 @@ public class FenetrePartie extends JFrame{
 			e2.printStackTrace();
 		}
 	    new FenetrePartie(game);
+	}
+
+	public boolean isAnnuler() {
+		return annuler;
+	}
+
+	public void setAnnuler(boolean annuler) {
+		this.annuler = annuler;
 	}
 }

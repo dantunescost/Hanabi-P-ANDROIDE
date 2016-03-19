@@ -12,8 +12,8 @@ public class JoueurHumain extends Joueur {
 	 * @param p         La partie dans laquelle il joue
 	 * @param id		Le numero du joueur dans la partie
 	 */
-	public JoueurHumain(String nom,int nbCartes, Partie p, int id){
-		super(nom,nbCartes, p, id);
+	public JoueurHumain(String nom, Partie p, int id){
+		super(nom, p, id);
 	}
 	
 }

@@ -2,7 +2,6 @@ package view;
 
 import model.Carte;
 import model.Couleur;
-import model.EnleverCarteInexistanteException;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,9 +13,18 @@ import javax.swing.JPanel;
 public class Table extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
+	public static String R = System.getProperty("user.dir");
 
-	Image table = new ImageIcon(R+"table.png").getImage();
+	Image table;
+	
+	public Table(){
+		super();
+		if(System.getProperty("os.name").equals("MAC OS X")){
+			R += "/Hanabi";
+		}
+		R += "/ressources/";
+		this.table = new ImageIcon(R+"table.png").getImage();
+	}
 
 	public void paintTable(Graphics g, FenetrePartie fen)
 	{
@@ -116,13 +124,13 @@ public class Table extends JPanel {
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.JAUNE)) {
 				Image carte = new ImageIcon(R + c.getCardName()).getImage();
-				g.drawImage(carte, startX + karteW * 2, startY+(karteH)/5*i, karteW, karteH, fen);
+				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
+			i=0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.MULTI)) {
 				Image carte = new ImageIcon(R + c.getCardName()).getImage();
-				g.drawImage(carte, startX + karteW * 3, startY+(karteH)/5*i, karteW, karteH, fen);
-				i++;
+				g.drawImage(carte, startX + karteW*2, startY+(karteH)/5*i, karteW, karteH, fen);
 			}
 		}
 
@@ -136,14 +144,19 @@ public class Table extends JPanel {
 		int startX = (fen.getWidth()/2 - fen.getTableWidth()/2)/2-karteW/2;
 		int startY = (fen.getHeight()/2)-karteH/2;
 
-		// Random card for now
-		Image carte = null;
-		try {
-			carte = new ImageIcon(R + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
+		// Afficher derniere carte defaussée
+		int carteAffichee = fen.getPartie().getDefausse().size()-1;
+		g.setColor(Color.white);
+		Font police = new Font("Arial",Font.BOLD,15);
+		g.setFont(police);
+		g.drawString("Défausse", startX-2, startY-5);
+		if(defausse.size() != 0){
+			Image carte = new ImageIcon(R + defausse.get(carteAffichee).getCardName()).getImage();
 			g.drawImage(carte, startX, startY, karteW, karteH, fen);
-		} catch (EnleverCarteInexistanteException e) {
-			e.printStackTrace();
 		}
-
+		else {
+			g.setColor(Color.white);
+			g.drawRoundRect(startX,startY,karteW,karteH,1,1);
+		}
 	}
 }

@@ -27,8 +27,8 @@ public class DummyJoueurIA extends JoueurIA {
 	 * @param p			La partie a laquelle participe cette IA
 	 * @param id		Le numero du joueur dans la partie
 	 */
-    public DummyJoueurIA(String nom, int nbCartes, Partie p, int id) {
-        super(nom, nbCartes, p, id);
+    public DummyJoueurIA(String nom, Partie p, int id) {
+        super(nom, p, id);
     }
     
     /**
