@@ -27,7 +27,7 @@ public class FenetrePartie extends JFrame{
 	private Partie partie; 
 	protected int tableWidth = 800;
 	protected int tableHeight = 400;
-	public static String R = System.getProperty("user.dir")+"/Hanabi/ressources/";
+	public static String R = System.getProperty("user.dir")+"/ressources/";
 
 	public FenetrePartie(Partie p){
 		super("Hanabi");
@@ -120,7 +120,7 @@ public class FenetrePartie extends JFrame{
 	}
 	
 	public void paint(Graphics g){
-
+		System.out.println(R);
 		//super.paint(g);
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
 		//background

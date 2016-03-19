@@ -2,7 +2,6 @@ package view;
 
 import model.Carte;
 import model.Couleur;
-import model.EnleverCarteInexistanteException;
 
 import java.awt.*;
 import java.util.ArrayList;
