@@ -13,8 +13,8 @@ import view.FenetrePartie;
 public class MouseListener extends MouseAdapter {
 	private boolean firstClick = true;
 	private boolean secondClick = false;
+	private boolean jouerCoup = false;
 	private boolean thirdClick = false;
-	private boolean jouerCarte = false;
 	private FenetrePartie partie;
 	
 	public MouseListener(FenetrePartie partie){
@@ -29,7 +29,7 @@ public class MouseListener extends MouseAdapter {
 			this.partie.setAnnuler(true);
 			this.firstClick = false;
 			this.secondClick = true;
-			this.jouerCarte = true;
+			this.jouerCoup = true;
 			this.partie.update(this.partie.getGraphics());
 		}
 		else{ 
@@ -37,11 +37,11 @@ public class MouseListener extends MouseAdapter {
 				this.partie.setAnnuler(false);
 				this.firstClick = true;
 				this.secondClick = false;
-				this.jouerCarte = false;
+				this.jouerCoup = false;
 				this.partie.update(this.partie.getGraphics());
 			}
 			else{
-				if(this.secondClick && isInPlayersCards(x,y)!=0){
+				if(this.secondClick && isInPlayersCards(x,y)!=0 && this.jouerCoup){
 					try {
 						this.partie.getPartie().joueCarte(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
 					} catch (EnleverCarteInexistanteException | PartiePerdueException | AdditionMainPleineException | PiocheVideException e1) {
@@ -51,7 +51,7 @@ public class MouseListener extends MouseAdapter {
 					this.partie.setAnnuler(false);
 					this.firstClick = true;
 					this.secondClick = false;
-					this.jouerCarte = false;
+					this.jouerCoup = false;
 					this.partie.update(this.partie.getGraphics());
 				}
 				else{ 
@@ -60,11 +60,45 @@ public class MouseListener extends MouseAdapter {
 							new Defausse(this.partie.getPartie());
 						}
 					}
+					else{ 
+						if(this.secondClick && isInPlayersCards(x,y) != 0){
+							try {
+								this.partie.getPartie().defausse(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
+							} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							this.partie.setAnnuler(false);
+							this.firstClick = true;
+							this.secondClick = false;
+							this.partie.update(this.partie.getGraphics());
+						}
+						else{ 
+							if(this.firstClick && isInButtonDefausser(x,y)){
+								this.partie.setAnnuler(true);
+								this.firstClick = false;
+								this.secondClick = true;
+								this.partie.update(this.partie.getGraphics());
+							}
+						}
+					}
 				}
 			}
 		}
 	}
 	
+	private boolean isInButtonDefausser(int x, int y) {
+		int startX = (this.partie.getWidth()/2)+65;
+		int startY = (this.partie.getHeight())-80;
+		if(x >= startX && y >= startY && x <= startX+140 && y <= startY+40){
+			System.out.println("You clicked on defausser!");
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 	private boolean isInDefausse(int x, int y) {
 		int karteH = this.partie.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);

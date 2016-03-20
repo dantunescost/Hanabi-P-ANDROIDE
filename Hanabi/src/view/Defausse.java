@@ -17,8 +17,8 @@ public class Defausse extends JFrame {
 	public Defausse(Partie p){
 		super("Hanabi, la pile de défausse");
 		this.partie = p;
-		int x = (p.getDefausse().size()>4)?5*128:p.getDefausse().size()*128;
-		int y = 200 + (p.getDefausse().size()/5)*50;
+		int x = (p.getDefausse().size()>4)?7*128:p.getDefausse().size()*128;
+		int y = 200 + (p.getDefausse().size()/7)*65;
 		this.setSize(x, y);
 		this.setResizable(false);
 		
@@ -36,7 +36,7 @@ public class Defausse extends JFrame {
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		for(int i=0; i<this.partie.getDefausse().size(); i++){
 			Image img = new ImageIcon(Defausse.R+this.partie.getDefausse().get(i).getCardName()).getImage();
-			g.drawImage(img, (i%5)*128, (i/5)*50, 128, 200, this);
+			g.drawImage(img, (i%7)*128, (i/7)*65, 128, 200, this);
 		}
 	}
 }
