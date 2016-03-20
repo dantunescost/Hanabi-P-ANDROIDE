@@ -41,26 +41,11 @@ public class Table extends JPanel {
 		HashMap<Couleur.CardColor, ArrayList<Carte>> cartesJouees = fen.getPartie().getCartesJouees();
 		int karteH = fen.tableHeight/4;
 		int karteW =(int)((float)karteH*0.645);
-		int startX = fen.getWidth()/2 - (karteW/2); // Middle of the window, but moves half a card to the left
+		int startX = fen.getWidth()/2 ; // Middle of the window, but moves half a card to the left
 		int startY = (fen.getHeight() - fen.tableHeight) /2 + (karteH*6/11); // Top of the table, but moves down to create a margin
-
-		// Test
-
-		/*try {
-			Image carte = new ImageIcon(R + fen.getPartie().getJoueurs()[1].getMain().getCarte(1).getCardName()).getImage();
-
-			for (int i=0; i<5; i++) {
-				g.drawImage(carte, startX, startY+(karteH)/5*i, karteW, karteH, fen);
-				g.drawImage(carte, startX - karteW, startY+(karteH)/5*i, karteW, karteH, fen);
-				g.drawImage(carte, startX - karteW * 2, startY+(karteH)/5*i, karteW, karteH, fen);
-				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
-				g.drawImage(carte, startX + karteW * 2, startY+(karteH)/5*i, karteW, karteH, fen);
-
-			}
-		} catch (EnleverCarteInexistanteException e) {
-			e.printStackTrace();
-		}*/
-
+		if(!fen.getPartie().isMulticolor()){
+			startX -= (karteW/2);
+		}
 		// Avec 5 colonnes
 		if (cartesJouees.get(Couleur.CardColor.MULTI)==null) {
 			int i = 0;
@@ -118,7 +103,7 @@ public class Table extends JPanel {
 			i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.ROUGE)) {
 				Image carte = new ImageIcon(R + c.getCardName()).getImage();
-				g.drawImage(carte, startX + karteW, startY+(karteH)/5*i, karteW, karteH, fen);
+				g.drawImage(carte, startX, startY+(karteH)/5*i, karteW, karteH, fen);
 				i++;
 			}
 			i = 0;

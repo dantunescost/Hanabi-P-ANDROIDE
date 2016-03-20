@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 import controller.MouseListener;
 import model.AdditionMainPleineException;
+import model.Carte;
+import model.Couleur.CardColor;
 import model.DummyJoueurIA;
 import model.EnleverCarteInexistanteException;
 import model.Joueur;
@@ -25,8 +27,9 @@ public class FenetrePartie extends JFrame{
 	private Table table;
 	private Partie partie; 
 	private boolean annuler = false;
-	protected int tableWidth = 800;
-	protected int tableHeight = 400;
+	public int tableWidth = 800;
+	public int tableHeight = 400;
+	private AfficherMains a;
 	public static String R = System.getProperty("user.dir");
 
 	public FenetrePartie(Partie p){
@@ -40,6 +43,7 @@ public class FenetrePartie extends JFrame{
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
+		a = new AfficherMains(this);
 		
 		this.table = new Table();
 		
@@ -70,14 +74,14 @@ public class FenetrePartie extends JFrame{
 		}
 		jeton = new ImageIcon(R+"Jeton_rouge_verso.png").getImage();
 		//affichage des jetons eclair "non-utilises", marge d'erreur
-		for(int j=i;j<3-this.partie.getJetonEclair();j++){
+		for(int j=i;j<3;j++){
 			g.drawImage(jeton, startX+j*25, startY+3*30, 20, 20, this);
 		}
 	}
 	
 	public void afficherLeDeck(Graphics g){
 		Image deck = new ImageIcon(R+"deck.png").getImage();
-		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth)/7;
+		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth)/8;
 		int startY = (this.getHeight() - this.tableHeight) /2 + this.tableHeight/5;
 		g.drawImage(deck, startX, startY, 100, 150, this);
 		Font police = new Font("Times",Font.PLAIN,40);
@@ -140,7 +144,6 @@ public class FenetrePartie extends JFrame{
 		//draw table
 		this.table.paintTable(g, this);
 		//draw hand
-		AfficherMains a = new AfficherMains(this);
 		try {
 			a.afficherMain(g);
 		} catch (EnleverCarteInexistanteException e) {
@@ -188,6 +191,12 @@ public class FenetrePartie extends JFrame{
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
+	    game.getCartesJouees().get(CardColor.BLANC).add(new Carte(CardColor.BLANC,1));
+	    game.getCartesJouees().get(CardColor.BLEU).add(new Carte(CardColor.BLEU,1));
+	    game.getCartesJouees().get(CardColor.JAUNE).add(new Carte(CardColor.JAUNE,1));
+	    game.getCartesJouees().get(CardColor.MULTI).add(new Carte(CardColor.MULTI,1));
+	    game.getCartesJouees().get(CardColor.ROUGE).add(new Carte(CardColor.ROUGE,1));
+	    game.getCartesJouees().get(CardColor.VERT).add(new Carte(CardColor.VERT,1));
 	    new FenetrePartie(game);
 	}
 

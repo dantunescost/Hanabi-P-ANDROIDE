@@ -351,4 +351,18 @@ public class Partie {
 		return defausse;
 	}
 
+	/**
+	 * @return Le nombre de joueurs {@link #nbJoueurs}
+	 */
+	public int getNbJoueurs() {
+		return this.nbJoueurs;
+	}
+
+	/**
+	 * @return Le nombre de cartes pour chaque joueur {@link #nbCartes}
+	 */
+	public int getNbCartes() {
+		return nbCartes;
+	}
+
 }
