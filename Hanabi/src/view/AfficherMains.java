@@ -42,7 +42,7 @@ public class AfficherMains {
             startX -= (karteW/2)*5;
         }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2+ (this.p.tableHeight/8)*7;
-        Image karte = new ImageIcon("ressources/cardback.png").getImage();
+        Image karte = new ImageIcon(R+"cardback.png").getImage();
         for(int i=0;i<main.getNbCartes();i++){
             g.drawImage(karte, startX+i*karteW, startY-(karteH/3)*2, karteW, karteH, this.p);
         }

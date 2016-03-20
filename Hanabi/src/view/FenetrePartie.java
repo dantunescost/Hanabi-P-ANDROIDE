@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 
 import controller.MouseListener;
 import model.AdditionMainPleineException;
-import model.Carte;
-import model.Couleur.CardColor;
 import model.DummyJoueurIA;
 import model.EnleverCarteInexistanteException;
 import model.Joueur;
@@ -39,7 +37,7 @@ public class FenetrePartie extends JFrame{
 		this.setMinimumSize(new Dimension(1000,650));
 		this.setResizable(true);
 		
-		if(System.getProperty("os.name").equals("MAC OS X")){
+		if(System.getProperty("os.name").equals("Mac OS X")){
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
@@ -159,7 +157,7 @@ public class FenetrePartie extends JFrame{
 		//draw cards already played
 		table.afficherCartesJouees(g, this);
 		//draw pile cartes defaussées
-		table.afficherCartesDefaussees(g,this);
+		table.afficherPileDefausse(g,this);
 		//draw buttons
 		afficherBoutonsJouerCoup(g);
 	}
@@ -191,12 +189,12 @@ public class FenetrePartie extends JFrame{
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-	    game.getCartesJouees().get(CardColor.BLANC).add(new Carte(CardColor.BLANC,1));
+	    /*game.getCartesJouees().get(CardColor.BLANC).add(new Carte(CardColor.BLANC,1));
 	    game.getCartesJouees().get(CardColor.BLEU).add(new Carte(CardColor.BLEU,1));
 	    game.getCartesJouees().get(CardColor.JAUNE).add(new Carte(CardColor.JAUNE,1));
 	    game.getCartesJouees().get(CardColor.MULTI).add(new Carte(CardColor.MULTI,1));
 	    game.getCartesJouees().get(CardColor.ROUGE).add(new Carte(CardColor.ROUGE,1));
-	    game.getCartesJouees().get(CardColor.VERT).add(new Carte(CardColor.VERT,1));
+	    game.getCartesJouees().get(CardColor.VERT).add(new Carte(CardColor.VERT,1));*/
 	    new FenetrePartie(game);
 	}
 

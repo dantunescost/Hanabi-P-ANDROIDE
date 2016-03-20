@@ -19,7 +19,7 @@ public class Table extends JPanel {
 	
 	public Table(){
 		super();
-		if(System.getProperty("os.name").equals("MAC OS X")){
+		if(System.getProperty("os.name").equals("Mac OS X")){
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
@@ -121,7 +121,7 @@ public class Table extends JPanel {
 
 	}
 
-	public void afficherCartesDefaussees (Graphics g, FenetrePartie fen) {
+	public void afficherPileDefausse (Graphics g, FenetrePartie fen) {
 
 		ArrayList<Carte> defausse = fen.getPartie().getDefausse();
 		int karteH = fen.tableHeight/4;

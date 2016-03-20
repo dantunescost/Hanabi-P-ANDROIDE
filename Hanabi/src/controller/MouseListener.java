@@ -7,13 +7,13 @@ import model.AdditionMainPleineException;
 import model.EnleverCarteInexistanteException;
 import model.PartiePerdueException;
 import model.PiocheVideException;
+import view.Defausse;
 import view.FenetrePartie;
 
 public class MouseListener extends MouseAdapter {
 	private boolean firstClick = true;
 	private boolean secondClick = false;
 	private boolean thirdClick = false;
-	private int x1,y1,x2,y2,x3,y3;
 	private boolean jouerCarte = false;
 	private FenetrePartie partie;
 	
@@ -54,10 +54,32 @@ public class MouseListener extends MouseAdapter {
 					this.jouerCarte = false;
 					this.partie.update(this.partie.getGraphics());
 				}
+				else{ 
+					if(this.firstClick && isInDefausse(x,y)){
+						if(this.partie.getPartie().getDefausse().size() != 0){
+							new Defausse(this.partie.getPartie());
+						}
+					}
+				}
 			}
 		}
 	}
 	
+	private boolean isInDefausse(int x, int y) {
+		int karteH = this.partie.tableHeight/4;
+		int karteW =(int)((float)karteH*0.645);
+		int startX = (this.partie.getWidth()/2 - this.partie.getTableWidth()/2)/2-karteW/2;
+		int startY = (this.partie.getHeight()/2)-karteH/2;
+		
+		if(x >= startX && y >= startY && x <= startX+karteW && y <= startY+karteH){
+			System.out.println("You clicked on defausse!");
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 	private int isInPlayersCards(int x, int y) {
         int karteH = this.partie.tableHeight/4;
         int karteW =(int)( (float)karteH*0.645);
