@@ -116,6 +116,7 @@ public class Table extends JPanel {
 			for (Carte c : cartesJouees.get(Couleur.CardColor.MULTI)) {
 				Image carte = new ImageIcon(R + c.getCardName()).getImage();
 				g.drawImage(carte, startX + karteW*2, startY+(karteH)/5*i, karteW, karteH, fen);
+				i++;
 			}
 		}
 

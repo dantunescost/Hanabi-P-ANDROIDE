@@ -4,10 +4,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import model.AdditionMainPleineException;
-import model.Couleur.CardColor;
+import model.Couleur;
 import model.EnleverCarteInexistanteException;
 import model.IndiceSoitMemeException;
 import model.Joueur;
+import model.JoueurIA;
 import model.PartiePerdueException;
 import model.PiocheVideException;
 import view.Defausse;
@@ -57,6 +58,9 @@ public class MouseListener extends MouseAdapter {
 					} catch (EnleverCarteInexistanteException | PartiePerdueException | AdditionMainPleineException | PiocheVideException e1) {
 						e1.printStackTrace();
 					}
+					if(this.partie.getPartie().getaQuiLeTour()!=0){
+						faireJouerIAs();
+					}
 					this.partie.setAnnuler(false);
 					this.firstClick = true;
 					this.secondClick = false;
@@ -75,6 +79,9 @@ public class MouseListener extends MouseAdapter {
 								this.partie.getPartie().defausse(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
 							} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
 								e1.printStackTrace();
+							}
+							if(this.partie.getPartie().getaQuiLeTour()!=0){
+								faireJouerIAs();
 							}
 							this.partie.setAnnuler(false);
 							this.firstClick = true;
@@ -111,13 +118,9 @@ public class MouseListener extends MouseAdapter {
 										}
 										else{  
 											if(this.thirdClick && isInIndices(x,y) != 0){
-												this.partie.setAnnuler(false);
-												this.firstClick = true;
-												this.thirdClick = false;
-												this.targetPlayer = null;
 												try {
 													if(isInIndices(x, y)>5){
-														this.partie.getPartie().indiceCouleur(this.targetPlayer, intToCardColor(isInIndices(x, y)));
+														this.partie.getPartie().indiceCouleur(this.targetPlayer, Couleur.intToCardColor(isInIndices(x, y)));
 													}
 													else{
 														this.partie.getPartie().indiceValeur(this.targetPlayer, isInIndices(x, y));
@@ -125,6 +128,13 @@ public class MouseListener extends MouseAdapter {
 												} catch (IndiceSoitMemeException e1) {
 													e1.printStackTrace();
 												}
+												if(this.partie.getPartie().getaQuiLeTour()!=0){
+													faireJouerIAs();
+												}
+												this.partie.setAnnuler(false);
+												this.firstClick = true;
+												this.thirdClick = false;
+												this.targetPlayer = null;
 												this.partie.update(this.partie.getGraphics());
 											}
 										}
@@ -135,25 +145,6 @@ public class MouseListener extends MouseAdapter {
 					}
 				}
 			}
-		}
-	}
-	
-	private CardColor intToCardColor(int inIndices) {
-		switch(inIndices){
-		case 6:
-			return CardColor.ROUGE;
-		case 7:
-			return CardColor.BLEU;
-		case 8:
-			return CardColor.VERT;
-		case 9:
-			return CardColor.JAUNE;
-		case 10:
-			return CardColor.BLANC;
-		case 11:
-			return CardColor.MULTI;
-		default: 
-			return null;
 		}
 	}
 
@@ -343,11 +334,11 @@ public class MouseListener extends MouseAdapter {
 	}
 	
 	public boolean isHandCenterTopSelected(int x, int y){
-        int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + this.partie.tableWidth/2;
+        int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + this.partie.tableWidth/2-karteW;
         if(nbCartes==5){
             startX -= 25;
         }
-        int startY = (this.partie.getHeight() - this.partie.tableHeight) /2;
+        int startY = (this.partie.getHeight() - this.partie.tableHeight) /2-(karteH/3)*2;
 		if(x>=startX && y>=startY && x<=startX+nbCartes*25 && y<=startY+karteH){
 			System.out.println("You clicked on the top centered player's cards!");
 			return true;
@@ -441,5 +432,13 @@ public class MouseListener extends MouseAdapter {
         	i++;
         }
         return trouve;
+	}
+	
+	public void faireJouerIAs(){
+		for(int i=1;i<this.partie.getPartie().getNbJoueurs();i++){
+			JoueurIA player = (JoueurIA) this.partie.getPartie().getJoueurs()[i];
+			player.jouerCoup();
+		}
+		
 	}
 }

@@ -20,6 +20,11 @@ public class JoueurIA extends Joueur {
 		super(nom, p, id);
 		r = new Random();
 	}
+	
+	/**
+     * Fonction qui decide et joue un coup dans la partie
+     */
+    public void jouerCoup() {}
 
 	/**
 	 * Permet a l'IA de savoir si une carte de sa main est connue et jouable dans la situation actuelle

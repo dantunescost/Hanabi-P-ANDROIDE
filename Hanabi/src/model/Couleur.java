@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -87,5 +88,43 @@ public class Couleur {
 		if(multi)
 			liste.add(CardColor.MULTI);
 		return liste;
+	}
+	
+	public static CardColor intToCardColor(int inIndices) {
+		switch(inIndices){
+		case 6:
+			return CardColor.ROUGE;
+		case 7:
+			return CardColor.BLEU;
+		case 8:
+			return CardColor.VERT;
+		case 9:
+			return CardColor.JAUNE;
+		case 10:
+			return CardColor.BLANC;
+		case 11:
+			return CardColor.MULTI;
+		default: 
+			return null;
+		}
+	}
+	
+	public static Color cardColorToColor(CardColor c) {
+		switch(c){
+		case ROUGE:
+			return Color.RED;
+		case BLEU:
+			return Color.BLUE;
+		case VERT:
+			return Color.GREEN;
+		case JAUNE:
+			return Color.YELLOW;
+		case BLANC:
+			return Color.WHITE;
+		case MULTI:
+			return Color.MAGENTA;
+		default: 
+			return null;
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package view;
 
+import model.Couleur;
 import model.EnleverCarteInexistanteException;
 import model.Main;
 
@@ -44,8 +45,24 @@ public class AfficherMains {
         }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2+ (this.p.tableHeight/8)*7;
         Image karte = new ImageIcon(R+"cardback.png").getImage();
+        Font police = new Font("Arial",Font.BOLD,20);
+		g.setFont(police);
         for(int i=0;i<main.getNbCartes();i++){
             g.drawImage(karte, startX+i*karteW, startY-(karteH/3)*2, karteW, karteH, this.p);
+            if(this.p.getPartie().getJoueurs()[0].getMain().getCarte(i).isValeurConnue()){
+            	g.setColor(Color.white);
+            	g.fillOval(startX+i*karteW+karteW/6, startY-(karteH/3)*2+karteH/9, karteW/2, karteW/2);
+            	g.setColor(Color.black);
+            	g.drawOval(startX+i*karteW+karteW/6, startY-(karteH/3)*2+karteH/9, karteW/2, karteW/2);
+        		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[0].getMain().getCarte(i).getValeur()), startX+i*karteW+karteW/3, startY-(karteH/3)*2+(karteH/14)*5);
+            }
+            if(this.p.getPartie().getJoueurs()[0].getMain().getCarte(i).isCouleurConnue()){
+            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[0].getMain().getCarte(i).getCouleur()));
+            	g.fillOval(startX+i*karteW+karteW/6, startY-(karteH/3)*2+(karteH/9)*5, karteW/2, karteW/2);
+            	g.setColor(Color.black);
+            	g.drawOval(startX+i*karteW+karteW/6, startY-(karteH/3)*2+(karteH/9)*5, karteW/2, karteW/2);
+            }
+            
         }
     }
 
