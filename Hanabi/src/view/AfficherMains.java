@@ -11,6 +11,9 @@ public class AfficherMains {
 
     FenetrePartie p;
     public static String R = System.getProperty("user.dir");
+    private int karteH;
+    private int karteW;
+    
     
     public AfficherMains(FenetrePartie p){
     	this.p = p;
@@ -18,11 +21,11 @@ public class AfficherMains {
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
+        karteH = this.p.tableHeight/4;
+        karteW =(int)( (float)karteH*0.645);
     }
 
     public void showHandCenterTop(Graphics g, Main main) throws EnleverCarteInexistanteException {
-        int karteH = p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - p.tableWidth) /2 + p.tableWidth/2;
         if(main.getNbCartes()==5){
             startX -= 25;
@@ -35,8 +38,6 @@ public class AfficherMains {
     }
 
     public void showHandCenterBottom(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int karteH = this.p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + this.p.tableWidth/2;
         if(main.getNbCartes()==5){
             startX -= (karteW/2)*5;
@@ -49,12 +50,7 @@ public class AfficherMains {
     }
 
     public void showHandRightTop(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int karteH = this.p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/10)*7;
-        if(main.getNbCartes()==5){
-            startX -= 25;
-        }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
         for(int i=0;i<main.getNbCartes();i++){
             Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
@@ -63,12 +59,7 @@ public class AfficherMains {
     }
 
     public void showHandLeftTop(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int karteH = this.p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/10)*3;
-        if(main.getNbCartes()==5){
-            startX -= 25;
-        }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
         for(int i=0;i<main.getNbCartes();i++){
             Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
@@ -77,8 +68,6 @@ public class AfficherMains {
     }
 
     public void showHandRightTopCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int karteH = this.p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/10)*9;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
         if(main.getNbCartes()==5){
@@ -91,8 +80,6 @@ public class AfficherMains {
     }
 
     public void showHandLeftTopCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int karteH = this.p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/8)*2;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
         if(main.getNbCartes()==5){
@@ -105,8 +92,6 @@ public class AfficherMains {
     }
 
     public void showHandLeftBottomCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int karteH = this.p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/11)*2;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2 + (this.p.tableHeight/8)*7;
         for(int i=0;i<main.getNbCartes();i++){
@@ -116,8 +101,6 @@ public class AfficherMains {
     }
 
     public void showHandRightBottomCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int karteH = this.p.tableHeight/4;
-        int karteW =(int)( (float)karteH*0.645);
         int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/11)*10 ;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2 + (this.p.tableHeight/8)*7;
         for(int i=0;i<main.getNbCartes();i++){
@@ -159,7 +142,7 @@ public class AfficherMains {
         showHandCenterBottom(g,this.p.getPartie().getJoueurs()[0].getMain());
         showHandLeftTopCorner(g,this.p.getPartie().getJoueurs()[1].getMain());
         showHandCenterTop(g,this.p.getPartie().getJoueurs()[2].getMain());
-        showHandLeftTopCorner(g,this.p.getPartie().getJoueurs()[3].getMain());
+        showHandRightTopCorner(g,this.p.getPartie().getJoueurs()[3].getMain());
 	}
 	
 	public void show5players(Graphics g)throws EnleverCarteInexistanteException {
