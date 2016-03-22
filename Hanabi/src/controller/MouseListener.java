@@ -58,14 +58,14 @@ public class MouseListener extends MouseAdapter {
 					} catch (EnleverCarteInexistanteException | PartiePerdueException | AdditionMainPleineException | PiocheVideException e1) {
 						e1.printStackTrace();
 					}
-					if(this.partie.getPartie().getaQuiLeTour()!=0){
-						faireJouerIAs();
-					}
 					this.partie.setAnnuler(false);
 					this.firstClick = true;
 					this.secondClick = false;
 					this.jouerCoup = false;
 					this.partie.update(this.partie.getGraphics());
+					if(this.partie.getPartie().getaQuiLeTour()!=0){
+						faireJouerIAs();
+					}
 				}
 				else{ 
 					if(this.firstClick && isInDefausse(x,y)){
@@ -80,13 +80,13 @@ public class MouseListener extends MouseAdapter {
 							} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
 								e1.printStackTrace();
 							}
-							if(this.partie.getPartie().getaQuiLeTour()!=0){
-								faireJouerIAs();
-							}
 							this.partie.setAnnuler(false);
 							this.firstClick = true;
 							this.secondClick = false;
 							this.partie.update(this.partie.getGraphics());
+							if(this.partie.getPartie().getaQuiLeTour()!=0){
+								faireJouerIAs();
+							}
 						}
 						else{ 
 							if(this.firstClick && isInButtonDefausser(x,y)){
@@ -128,14 +128,14 @@ public class MouseListener extends MouseAdapter {
 												} catch (IndiceSoitMemeException e1) {
 													e1.printStackTrace();
 												}
-												if(this.partie.getPartie().getaQuiLeTour()!=0){
-													faireJouerIAs();
-												}
 												this.partie.setAnnuler(false);
 												this.firstClick = true;
 												this.thirdClick = false;
 												this.targetPlayer = null;
 												this.partie.update(this.partie.getGraphics());
+												if(this.partie.getPartie().getaQuiLeTour()!=0){
+													faireJouerIAs();
+												}
 											}
 										}
 									}
@@ -234,6 +234,9 @@ public class MouseListener extends MouseAdapter {
         int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + this.partie.tableWidth/2;
         if(this.nbCartes==5){
             startX -= (karteW/2)*5;
+        }
+        else{
+        	startX -= karteW*2;
         }
         int startY = (this.partie.getHeight() - this.partie.tableHeight) /2+ (this.partie.tableHeight/8)*7;
 		if(x>=startX && y>=startX && x<=startX+(this.nbCartes*karteW) && y<=startY+karteH){
@@ -364,7 +367,7 @@ public class MouseListener extends MouseAdapter {
         int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + (this.partie.tableWidth/10)*3 - karteW;
         int startY = (this.partie.getHeight() - this.partie.tableHeight) /2-(karteH/3)*2;
         if(x>=startX && y>=startY && x<=startX+nbCartes*25 && y<=startY+karteH){
-			System.out.println("You clicked on the top right player's cards!");
+			System.out.println("You clicked on the top left player's cards!");
 			return true;
 		}
 		else{
@@ -373,15 +376,13 @@ public class MouseListener extends MouseAdapter {
 	}
 	
 	public boolean isHandRightTopCornerSelected(int x, int y){
-        int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + (this.partie.tableWidth/10)*9 - karteW;
+        int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + (this.partie.tableWidth/10)*9 - karteW - 25;
         int startY = (this.partie.getHeight() - this.partie.tableHeight) /2 - (karteH/3)*2;
-        if(nbCartes==5){
-            startX -= 25;
-        }
         int i = 0;
         boolean trouve = false;
         while(i<nbCartes && !trouve){
         	if(x>=startX+i*25 && y>=startY+i*20 && x<=startX+i*25+karteW && y<=startY+i*20+karteH){
+    			System.out.println("You clicked on the top right corner player's cards!");
         		trouve = true;
         	}
         	i++;
@@ -390,15 +391,13 @@ public class MouseListener extends MouseAdapter {
 	}
 	
 	public boolean isHandLeftTopCornerSelected(int x, int y){
-        int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + (this.partie.tableWidth/4) - karteW;
+        int startX = (this.partie.getWidth() - this.partie.tableWidth) /2 + (this.partie.tableWidth/4) - karteW - 25;
         int startY = (this.partie.getHeight() - this.partie.tableHeight) /2 - (karteH/3)*2;
-        if(nbCartes==5){
-            startX -= 25;
-        }
         int i = 0;
         boolean trouve = false;
         while(i<nbCartes && !trouve){
         	if(x>=startX-i*25 && y>=startY+i*20 && x<=startX-i*25+karteW && y<=startY+i*20+karteH){
+    			System.out.println("You clicked on the top left corner player's cards!");
         		trouve = true;
         	}
         	i++;
@@ -413,6 +412,7 @@ public class MouseListener extends MouseAdapter {
         boolean trouve = false;
         while(i<nbCartes && !trouve){
         	if(x>=startX+i*20 && y>=startY-i*20 && x<=startX+i*20+karteW && y<=startY-i*20+karteH){
+    			System.out.println("You clicked on the bottom right corner player's cards!");
         		trouve = true;
         	}
         	i++;
@@ -427,6 +427,7 @@ public class MouseListener extends MouseAdapter {
         boolean trouve = false;
         while(i<nbCartes && !trouve){
         	if(x>=startX-i*20 && y>=startY-i*20 && x<=startX-i*20+karteW && y<=startY-i*20+karteH){
+    			System.out.println("You clicked on the bottom left corner player's cards!");
         		trouve = true;
         	}
         	i++;
@@ -438,6 +439,13 @@ public class MouseListener extends MouseAdapter {
 		for(int i=1;i<this.partie.getPartie().getNbJoueurs();i++){
 			JoueurIA player = (JoueurIA) this.partie.getPartie().getJoueurs()[i];
 			player.jouerCoup();
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.partie.update(this.partie.getGraphics());
 		}
 		
 	}

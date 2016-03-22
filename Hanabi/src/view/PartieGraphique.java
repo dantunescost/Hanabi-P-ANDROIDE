@@ -11,10 +11,13 @@ public class PartieGraphique {
 
 	/************************* MAIN *************************/
 		public static void main(String[] args){
-			Partie game = new Partie(2,8,true);
-			Joueur[] joue = new Joueur[2];
+			Partie game = new Partie(5,8,false);
+			Joueur[] joue = new Joueur[5];
 		    joue[0] = new JoueurHumain("Holmes", game, 0);
 		    joue[1] = new SemiDummyJoueurIA("Watson", game, 1);
+		    joue[2] = new SemiDummyJoueurIA("Moriaty", game, 2);
+		    joue[3] = new SemiDummyJoueurIA("Lestrade", game, 3);
+		    joue[4] = new SemiDummyJoueurIA("Mycroft", game, 4);
 		    try {
 				game.initPartie(joue);
 			} catch (AdditionMainPleineException e2) {

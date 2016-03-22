@@ -43,6 +43,9 @@ public class AfficherMains {
         if(main.getNbCartes()==5){
             startX -= (karteW/2)*5;
         }
+        else{
+        	startX -= karteW*2;
+        }
         int startY = (this.p.getHeight() - this.p.tableHeight) /2+ (this.p.tableHeight/8)*7;
         Image karte = new ImageIcon(R+"cardback.png").getImage();
         Font police = new Font("Arial",Font.BOLD,20);
@@ -85,11 +88,8 @@ public class AfficherMains {
     }
 
     public void showHandRightTopCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/10)*9;
+        int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/10)*9-25;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
-        if(main.getNbCartes()==5){
-            startX -= 25;
-        }
         for(int i=0;i<main.getNbCartes();i++){
             Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW+i*25, startY-(karteH/3)*2+i*20, karteW, karteH, this.p);
@@ -97,11 +97,8 @@ public class AfficherMains {
     }
 
     public void showHandLeftTopCorner(Graphics g, Main main) throws EnleverCarteInexistanteException{
-        int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/8)*2;
+        int startX = (this.p.getWidth() - this.p.tableWidth) /2 + (this.p.tableWidth/8)*2-25;
         int startY = (this.p.getHeight() - this.p.tableHeight) /2;
-        if(main.getNbCartes()==5){
-            startX -= 25;
-        }
         for(int i=0;i<main.getNbCartes();i++){
             Image karte = new ImageIcon(R+main.getCarte(i).getCardName()).getImage();
             g.drawImage(karte, startX-karteW-i*25, startY-(karteH/3)*2+i*20, karteW, karteH, this.p);

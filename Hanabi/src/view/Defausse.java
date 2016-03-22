@@ -26,7 +26,7 @@ public class Defausse extends JFrame {
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
