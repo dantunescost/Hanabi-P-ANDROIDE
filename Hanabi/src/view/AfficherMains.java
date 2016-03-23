@@ -18,7 +18,7 @@ public class AfficherMains {
     
     public AfficherMains(FenetrePartie p){
     	this.p = p;
-		if(System.getProperty("os.name").equals("MAC OS X")){
+		if(System.getProperty("os.name").equals("Mac OS X")){
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
