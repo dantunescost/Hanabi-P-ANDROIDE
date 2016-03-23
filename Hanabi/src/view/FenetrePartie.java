@@ -36,8 +36,9 @@ public class FenetrePartie extends JFrame{
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
+
 		a = new AfficherMains(this);
-		
+
 		this.table = new Table();
 		
 		JPanel bg = new JPanel();
@@ -120,7 +121,10 @@ public class FenetrePartie extends JFrame{
 		int startX = (this.getWidth()/2)-205;
 		int startY = (this.getHeight())-80;
 		if(!this.annuler){
-			g.drawImage(new ImageIcon(R+"indice.png").getImage(), startX, startY, 99, 40, this);
+
+			if (this.getPartie().getJetonIndice()>0) {
+				g.drawImage(new ImageIcon(R + "indice.png").getImage(), startX, startY, 99, 40, this);
+			}
 			g.drawImage(new ImageIcon(R+"jouer.png").getImage(), startX+109, startY, 151, 40, this);
 			g.drawImage(new ImageIcon(R+"defausser.png").getImage(), startX+270, startY, 140, 40, this);
 		}
@@ -137,6 +141,7 @@ public class FenetrePartie extends JFrame{
 		//draw table
 		this.table.paintTable(g, this);
 		//draw hand
+		AfficherMains a = new AfficherMains(this);
 		try {
 			a.afficherMain(g);
 		} catch (EnleverCarteInexistanteException e) {

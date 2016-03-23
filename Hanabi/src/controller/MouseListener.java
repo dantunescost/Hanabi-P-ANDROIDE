@@ -196,7 +196,7 @@ public class MouseListener extends MouseAdapter {
 	private boolean isInButtonIndice(int x, int y) {
 		int startX = (this.partie.getWidth()/2)-205;
 		int startY = (this.partie.getHeight())-80;
-		if(x >= startX && y >= startY && x <= startX+99 && y <= startY+40){
+		if(x >= startX && y >= startY && x <= startX+99 && y <= startY+40 && partie.getPartie().getJetonIndice()>0){
 			System.out.println("You clicked on indice!");
 			return true;
 		}

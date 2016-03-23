@@ -1,5 +1,6 @@
 package view;
 
+import controller.FenetreListener;
 import model.Carte;
 import model.Couleur;
 
@@ -16,7 +17,7 @@ public class Table extends JPanel {
 	public static String R = System.getProperty("user.dir");
 
 	Image table;
-	
+
 	public Table(){
 		super();
 		if(System.getProperty("os.name").equals("Mac OS X")){
@@ -32,8 +33,6 @@ public class Table extends JPanel {
 		int startX = (fen.getWidth() - width) /2;
 		int startY = (fen.getHeight() - height) /2;
 		g.drawImage(table, startX, startY, width, height, this);
-
-
 	}
 
 	public void afficherCartesJouees (Graphics g, FenetrePartie fen) {
@@ -47,7 +46,8 @@ public class Table extends JPanel {
 			startX -= (karteW/2);
 		}
 		// Avec 5 colonnes
-		if (cartesJouees.get(Couleur.CardColor.MULTI)==null) {
+
+		if (!fen.getPartie().isMulticolor()) {
 			int i = 0;
 			for (Carte c : cartesJouees.get(Couleur.CardColor.BLANC)) {
 				Image carte = new ImageIcon(R + c.getCardName()).getImage();

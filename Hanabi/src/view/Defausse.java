@@ -21,11 +21,12 @@ public class Defausse extends JFrame {
 		int y = 200 + (p.getDefausse().size()/7)*65;
 		this.setSize(x, y);
 		this.setResizable(false);
-		
+
 		if(System.getProperty("os.name").equals("Mac OS X")){
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
+
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
