@@ -43,7 +43,7 @@ public class FenetreListener extends MouseAdapter {
 					int i=0;
 					for (Carte c : fen.getPartie().getDefausse()){
 						Image carte = new ImageIcon(R+c.getCardName()).getImage();
-						g.drawImage(carte, 0+karteW*i, 0+karteH*i, karteW, karteH,this);
+						//g.drawImage(carte, 0+karteW*i, 0+karteH*i, karteW, karteH,this);
 						i++;
 					}
 				}

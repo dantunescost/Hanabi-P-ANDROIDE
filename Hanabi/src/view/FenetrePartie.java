@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -9,7 +8,6 @@ import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import controller.MouseListener;
 import model.EnleverCarteInexistanteException;
@@ -23,6 +21,7 @@ public class FenetrePartie extends JFrame{
 	public int tableWidth = 800;
 	public int tableHeight = 400;
 	private AfficherMains a;
+	public boolean afficheDef;
 	public static String R = System.getProperty("user.dir");
 
 	public FenetrePartie(Partie p){
@@ -31,20 +30,16 @@ public class FenetrePartie extends JFrame{
 		this.setSize(1000, 600);
 		this.setMinimumSize(new Dimension(1000,650));
 		this.setResizable(true);
+		this.afficheDef = false;
 		
 		if(System.getProperty("os.name").equals("Mac OS X")){
 			R += "/Hanabi";
 		}
 		R += "/ressources/";
 
-		a = new AfficherMains(this);
-
+		this.a = new AfficherMains(this);
 		this.table = new Table();
-		
-		JPanel bg = new JPanel();
-		bg.setLayout(new FlowLayout());
-		bg.add(table);
-		this.setContentPane(bg);
+
 		this.addMouseListener(new MouseListener(this));
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,6 +111,20 @@ public class FenetrePartie extends JFrame{
 		}
 	}
 	
+	public void afficherLaDefausse(Graphics g){
+		int x = (partie.getDefausse().size()>4)?7*128:partie.getDefausse().size()*128;
+		int y = 200 + (partie.getDefausse().size()/7)*65;
+		int startX = this.getWidth()/2 - (x/2);
+		int startY = this.getHeight()/2 - (y/2);
+		g.setColor(Color.black);
+		g.fillRect(startX, startY, x, y);
+		System.out.println(this.partie.getDefausse().size());
+		for(int i=0; i<this.partie.getDefausse().size(); i++){
+			Image img = new ImageIcon(R+this.partie.getDefausse().get(i).getCardName()).getImage();
+			g.drawImage(img, startX+(i%7)*128, startY+(i/7)*65, 128, 200, this);
+		}
+	}
+	
 
 	public void afficherBoutonsJouerCoup(Graphics g){
 		int startX = (this.getWidth()/2)-205;
@@ -140,8 +149,7 @@ public class FenetrePartie extends JFrame{
 		g.drawImage(new ImageIcon(R+"wood.jpg").getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 		//draw table
 		this.table.paintTable(g, this);
-		//draw hand
-		AfficherMains a = new AfficherMains(this);
+		//draw hands
 		try {
 			a.afficherMain(g);
 		} catch (EnleverCarteInexistanteException e) {
@@ -160,6 +168,11 @@ public class FenetrePartie extends JFrame{
 		table.afficherPileDefausse(g,this);
 		//draw buttons
 		afficherBoutonsJouerCoup(g);
+		//draw defausse
+		System.out.println(this.afficheDef);
+		if(this.afficheDef){
+			afficherLaDefausse(g);
+		}
 	}
 	
 	public Partie getPartie() {

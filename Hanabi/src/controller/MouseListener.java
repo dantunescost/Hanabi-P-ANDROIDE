@@ -11,7 +11,6 @@ import model.Joueur;
 import model.JoueurIA;
 import model.PartiePerdueException;
 import model.PiocheVideException;
-import view.Defausse;
 import view.FenetrePartie;
 
 public class MouseListener extends MouseAdapter {
@@ -36,105 +35,112 @@ public class MouseListener extends MouseAdapter {
 		int x = e.getX();
 		int y = e.getY();
 		
-		if(this.firstClick && isInButtonJouer(x, y)){
-			this.partie.setAnnuler(true);
-			this.firstClick = false;
-			this.secondClick = true;
-			this.jouerCoup = true;
-			this.partie.update(this.partie.getGraphics());
+		if(this.partie.afficheDef){
+			this.partie.afficheDef = false;
+			this.partie.repaint();
 		}
-		else{ 
-			if(this.secondClick && isInButtonAnnuler(x,y)){
-				this.partie.setAnnuler(false);
-				this.firstClick = true;
-				this.secondClick = false;
-				this.jouerCoup = false;
+		else{
+			if(this.firstClick && isInButtonJouer(x, y)){
+				this.partie.setAnnuler(true);
+				this.firstClick = false;
+				this.secondClick = true;
+				this.jouerCoup = true;
 				this.partie.update(this.partie.getGraphics());
 			}
-			else{
-				if(this.secondClick && isInPlayersCards(x,y)!=0 && this.jouerCoup){
-					try {
-						this.partie.getPartie().joueCarte(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
-					} catch (EnleverCarteInexistanteException | PartiePerdueException | AdditionMainPleineException | PiocheVideException e1) {
-						e1.printStackTrace();
-					}
+			else{ 
+				if(this.secondClick && isInButtonAnnuler(x,y)){
 					this.partie.setAnnuler(false);
 					this.firstClick = true;
 					this.secondClick = false;
 					this.jouerCoup = false;
 					this.partie.update(this.partie.getGraphics());
-					if(this.partie.getPartie().getaQuiLeTour()!=0){
-						faireJouerIAs();
-					}
 				}
-				else{ 
-					if(this.firstClick && isInDefausse(x,y)){
-						if(this.partie.getPartie().getDefausse().size() != 0){
-							new Defausse(this.partie.getPartie());
+				else{
+					if(this.secondClick && isInPlayersCards(x,y)!=0 && this.jouerCoup){
+						try {
+							this.partie.getPartie().joueCarte(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
+						} catch (EnleverCarteInexistanteException | PartiePerdueException | AdditionMainPleineException | PiocheVideException e1) {
+							e1.printStackTrace();
+						}
+						this.partie.setAnnuler(false);
+						this.firstClick = true;
+						this.secondClick = false;
+						this.jouerCoup = false;
+						this.partie.update(this.partie.getGraphics());
+						if(this.partie.getPartie().getaQuiLeTour()!=0){
+							faireJouerIAs();
 						}
 					}
 					else{ 
-						if(this.secondClick && isInPlayersCards(x,y) != 0){
-							try {
-								this.partie.getPartie().defausse(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
-							} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
-								e1.printStackTrace();
-							}
-							this.partie.setAnnuler(false);
-							this.firstClick = true;
-							this.secondClick = false;
-							this.partie.update(this.partie.getGraphics());
-							if(this.partie.getPartie().getaQuiLeTour()!=0){
-								faireJouerIAs();
+						if(this.firstClick && isInDefausse(x,y)){
+							if(this.partie.getPartie().getDefausse().size() > 0){
+								this.partie.afficheDef = true;
+								this.partie.repaint();
 							}
 						}
 						else{ 
-							if(this.firstClick && isInButtonDefausser(x,y)){
-								this.partie.setAnnuler(true);
-								this.firstClick = false;
-								this.secondClick = true;
+							if(this.secondClick && isInPlayersCards(x,y) != 0){
+								try {
+									this.partie.getPartie().defausse(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
+								} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
+									e1.printStackTrace();
+								}
+								this.partie.setAnnuler(false);
+								this.firstClick = true;
+								this.secondClick = false;
 								this.partie.update(this.partie.getGraphics());
+								if(this.partie.getPartie().getaQuiLeTour()!=0){
+									faireJouerIAs();
+								}
 							}
 							else{ 
-								if(this.firstClick && isInButtonIndice(x,y)){
+								if(this.firstClick && isInButtonDefausser(x,y)){
 									this.partie.setAnnuler(true);
 									this.firstClick = false;
 									this.secondClick = true;
 									this.partie.update(this.partie.getGraphics());
 								}
-								else{  
-									if(this.secondClick && isInCoPlayersHand(x,y)!=0){
-										this.thirdClick = true;
-										this.secondClick = false;
-										this.targetPlayer  = this.partie.getPartie().getJoueurs()[isInCoPlayersHand(x, y)];
+								else{ 
+									if(this.firstClick && isInButtonIndice(x,y)){
+										this.partie.setAnnuler(true);
+										this.firstClick = false;
+										this.secondClick = true;
+										this.partie.update(this.partie.getGraphics());
 									}
 									else{  
-										if(this.thirdClick && isInButtonAnnuler(x,y)){
-											this.partie.setAnnuler(false);
-											this.firstClick = true;
-											this.thirdClick = false;
-											this.targetPlayer = null;
-											this.partie.update(this.partie.getGraphics());
+										if(this.secondClick && isInCoPlayersHand(x,y)!=0){
+											this.thirdClick = true;
+											this.secondClick = false;
+											this.targetPlayer  = this.partie.getPartie().getJoueurs()[isInCoPlayersHand(x, y)];
 										}
 										else{  
-											if(this.thirdClick && isInIndices(x,y) != 0){
-												try {
-													if(isInIndices(x, y)>5){
-														this.partie.getPartie().indiceCouleur(this.targetPlayer, Couleur.intToCardColor(isInIndices(x, y)));
-													}
-													else{
-														this.partie.getPartie().indiceValeur(this.targetPlayer, isInIndices(x, y));
-													}
-												} catch (IndiceSoitMemeException e1) {
-													e1.printStackTrace();
-												}
+											if(this.thirdClick && isInButtonAnnuler(x,y)){
 												this.partie.setAnnuler(false);
 												this.firstClick = true;
 												this.thirdClick = false;
 												this.targetPlayer = null;
 												this.partie.update(this.partie.getGraphics());
-												if(this.partie.getPartie().getaQuiLeTour()!=0){
-													faireJouerIAs();
+											}
+											else{  
+												if(this.thirdClick && isInIndices(x,y) != 0){
+													try {
+														if(isInIndices(x, y)>5){
+															this.partie.getPartie().indiceCouleur(this.targetPlayer, Couleur.intToCardColor(isInIndices(x, y)));
+														}
+														else{
+															this.partie.getPartie().indiceValeur(this.targetPlayer, isInIndices(x, y));
+														}
+													} catch (IndiceSoitMemeException e1) {
+														e1.printStackTrace();
+													}
+													this.partie.setAnnuler(false);
+													this.firstClick = true;
+													this.thirdClick = false;
+													this.targetPlayer = null;
+													this.partie.update(this.partie.getGraphics());
+													if(this.partie.getPartie().getaQuiLeTour()!=0){
+														faireJouerIAs();
+													}
 												}
 											}
 										}
