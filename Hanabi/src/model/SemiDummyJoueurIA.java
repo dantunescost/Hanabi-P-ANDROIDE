@@ -32,171 +32,27 @@ public class SemiDummyJoueurIA extends JoueurIA {
      * Fonction qui decide et joue un coup dans la partie
      */
     public void jouerCoup() {
-        Carte c = this.coupTrivial();
-        Carte defaussable = this.defausseTriviale();
-
-        if (c != null) {
-            // ************************* JOUER LA CARTE *******************************
-            int j = this.getMain().getIndex(c);
-
-            try {
-                p.joueCarte(this, j);
-            } catch (EnleverCarteInexistanteException e) {
-                e.printStackTrace();
-            } catch (PartiePerdueException e) {
-                e.printStackTrace();
-            } catch (AdditionMainPleineException e) {
-                e.printStackTrace();
-            } catch (PiocheVideException e) {
-                e.printStackTrace();
-            }
-
-            // ************************ DONNER INDICE **********************************
-        } else if (p.jetonIndice != 0) {
-
-            int joueur;
-            do {
-                joueur = r.nextInt(p.getJoueurs().length);
-            } while (joueur==this.getId());
-
-            int number = r.nextInt(5);
-
-            Carte carteJouableIndiquable= this.chercheCarteJouableIndiquable(p.getJoueurs()[joueur]);
-            if(carteJouableIndiquable!=null)
+        boolean aJoue=false;
+        // ************************* JOUER LA CARTE *******************************
+        aJoue=this.jouerCarte();   
+        // ************************ DONNER INDICE **********************************
+        if((!aJoue)&&(p.jetonIndice > 0)){
+        	int j=0;
+            for(j=0; j<p.getJoueurs().length; j++)
             {
-            	if(!(carteJouableIndiquable.isValeurConnue())){
-            		try {
-                    	System.out.println("Voici tes cartes de valeur "+Integer.toString(carteJouableIndiquable.getValeur()));
-                        p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
-                    } catch (IndiceSoitMemeException e) {
-                        e.printStackTrace();
-                    }
-            	}
-            	else{
-            		try {
-                    	System.out.println("Voici tes cartes "+carteJouableIndiquable.getCouleur().toString()+"s");
-                        p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
-                    } catch (IndiceSoitMemeException e) {
-                        e.printStackTrace();
-                    }
-            	}
-            }
-            else{            	
-	            int cORi = r.nextInt(2);
-	            if (cORi==0) {
-	                if (number == 0) {
-	                    try {
-	                    	System.out.println("Voici tes cartes blanches");
-	                        p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.BLANC);
-	                    } catch (IndiceSoitMemeException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	                if (number == 1) {
-	                    try {
-	                    	System.out.println("Voici tes cartes rouges");
-	                        p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.ROUGE);
-	                    } catch (IndiceSoitMemeException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	                if (number == 2) {
-	                    try {
-	                    	System.out.println("Voici tes cartes vertes");
-	                        p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.VERT);
-	                    } catch (IndiceSoitMemeException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	                if (number == 3) {
-	                    try {
-	                    	System.out.println("Voici tes cartes bleues");
-	                        p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.BLEU);
-	                    } catch (IndiceSoitMemeException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	                if (number == 4) {
-	                    try {
-	                    	System.out.println("Voici tes cartes jaunes");
-	                        p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.JAUNE);
-	                    } catch (IndiceSoitMemeException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	
-	            }
-	            else {
-	                try {
-	                	System.out.println("Voici tes cartes de valeur "+Integer.toString(number+1));
-	                    p.indiceValeur(p.getJoueurs()[joueur], number+1);
-	                } catch (IndiceSoitMemeException e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        }
-            // ************************ DEFAUSSER **********************************
-        } else {
-
-            // ************************ DEFAUSSER CARTE CONNUE **********************************
-            if (defaussable!=null) {
-
-                int j=this.getMain().getIndex(defaussable);
-
-                try {
-                    p.defausse(this, j);
-                } catch (EnleverCarteInexistanteException e) {
-                    e.printStackTrace();
-                } catch (AdditionMainPleineException e) {
-                    e.printStackTrace();
-                } catch (PiocheVideException e) {
-                    e.printStackTrace();
+                if((p.getJoueurs()[j]!=this)&&(!aJoue)){
+                    aJoue=this.donnerIndiceIntelligentA(j);
                 }
             }
-
-            // ************************ DEFAUSSER CARTE SANS INDICE **********************************
-            else {
-            	boolean discarded = false;
-            	int i = 0;
-            	while(i < this.main.nbCartes && !discarded){
-            		Carte card = null;
-					try {
-						card = this.main.getCarte(i);
-					} catch (EnleverCarteInexistanteException e1) {
-						e1.printStackTrace();
-					}
-            		if (!card.isCouleurConnue() && !card.isValeurConnue()) {
-                        try {
-                            p.defausse(this, i);
-                            discarded = true;
-                        } catch (EnleverCarteInexistanteException e) {
-                            e.printStackTrace();
-                        } catch (AdditionMainPleineException e) {
-                            e.printStackTrace();
-                        } catch (PiocheVideException e) {
-                            e.printStackTrace();
-                        }
-                    }
-            		i++;
-            	}
-            	
-            	// ************************ DEFAUSSER CARTE ALEATOIREMENT **********************************
-            	if(!discarded){
-            		try {
-                        try {
-                            p.defausse(this, r.nextInt(this.getMain().nbCartes));
-                        } catch (AdditionMainPleineException e) {
-                            e.printStackTrace();
-                        } catch (PiocheVideException e) {
-                            e.printStackTrace();
-                        }
-                        } catch (EnleverCarteInexistanteException e) {
-                        e.printStackTrace();
-                    }
-            	} // Defausse aleatoire
-            } // Defausse carte sans indice ou aleatoire
-        } // Defausse
-    } // jouerCoup
+        }
+        if((!aJoue)&&(p.jetonIndice > 0)){       	
+            aJoue=this.donnerIndiceAleatoire(this.p.multicolor);
+	    }
+        // ************************ DEFAUSSER **********************************
+        if(!aJoue){
+            aJoue=this.defausserCarte();
+        }
+    } 
     
     /**
      * 
@@ -229,4 +85,191 @@ public class SemiDummyJoueurIA extends JoueurIA {
         }
         return CarteAIndiquer;
     }
+    public boolean jouerCarte(){
+        Carte c = this.coupTrivial();
+        if (c != null) {
+            // ************************* JOUER LA CARTE *******************************
+            int j = this.getMain().getIndex(c);
+
+            try {
+                p.joueCarte(this, j);
+                return true;
+            } catch (EnleverCarteInexistanteException e) {
+                e.printStackTrace();
+            } catch (PartiePerdueException e) {
+                e.printStackTrace();
+            } catch (AdditionMainPleineException e) {
+                e.printStackTrace();
+            } catch (PiocheVideException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    public boolean donnerIndiceIntelligentA(int joueur){
+        if (p.jetonIndice <= 0) 
+        {
+            return false;
+        }
+        Carte carteJouableIndiquable= this.chercheCarteJouableIndiquable(p.getJoueurs()[joueur]);
+        if(carteJouableIndiquable!=null)
+        {
+            if(!(carteJouableIndiquable.isValeurConnue())){
+            	try {
+                    p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+            else{
+            	try {
+                    p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean donnerIndiceAleatoire(boolean multi){
+    	int joueur;
+    	do {
+    		joueur=r.nextInt(p.getNbJoueurs());
+    	}while(joueur==this.id);
+        int cORi = r.nextInt(2);
+        int color=0;
+        if(!multi)
+        	color = r.nextInt(5);
+        else if(multi)
+        	color = r.nextInt(6);
+	    if (cORi==0) {
+	    	if (color == 0) {
+	    		try {
+	                p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.BLANC);
+                    return true;
+	            } catch (IndiceSoitMemeException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (color == 1) {
+	            try {
+	                p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.ROUGE);
+                    return true;
+	            } catch (IndiceSoitMemeException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (color == 2) {
+	            try {
+	                p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.VERT);
+                    return true;
+	            } catch (IndiceSoitMemeException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (color == 3) {
+	            try {
+	                p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.BLEU);
+                    return true;
+	            } catch (IndiceSoitMemeException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (color == 4) {
+	            try {
+	                p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.JAUNE);
+                    return true;
+	            } catch (IndiceSoitMemeException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (color == 5) {
+	            try {
+	                p.indiceCouleur(p.getJoueurs()[joueur], Couleur.CardColor.MULTI);
+                    return true;
+	            } catch (IndiceSoitMemeException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	    else {
+	    	int number=r.nextInt(5);
+	        try {
+	            System.out.println("Voici tes cartes de valeur "+Integer.toString(number+1));
+	            p.indiceValeur(p.getJoueurs()[joueur], number+1);
+                return true;
+	        } catch (IndiceSoitMemeException e) {
+	            e.printStackTrace();
+	        }
+	    }
+        return false;
+    }
+    public boolean defausserCarte(){
+        // ************************ DEFAUSSER CARTE CONNUE **********************************
+        Carte defaussable = this.defausseTriviale();
+        if(defaussable==null){
+        	//defaussable=this.carteInutile();
+        }
+        boolean discarded = false;
+        if (defaussable!=null) {
+
+            int j=this.getMain().getIndex(defaussable);
+            try {
+                p.defausse(this, j);
+                discarded=true;
+                return true;
+            } catch (EnleverCarteInexistanteException e) {
+                e.printStackTrace();
+            } catch (AdditionMainPleineException e) {
+                e.printStackTrace();
+            } catch (PiocheVideException e) {
+                e.printStackTrace();
+            }
+        }
+        // ************************ DEFAUSSER CARTE SANS INDICE **********************************
+        if(!discarded){
+
+            int i = 0;
+            while(i < this.main.nbCartes && !discarded){
+                Carte card = null;
+	            try {
+			        card = this.main.getCarte(i);
+		        } catch (EnleverCarteInexistanteException e1) {
+		        e1.printStackTrace();
+		        }
+                if (!card.isCouleurConnue() && !card.isValeurConnue()) {
+                    try {
+                        p.defausse(this, i);
+                        discarded = true;
+                        return true;
+                    } catch (EnleverCarteInexistanteException e) {
+                        e.printStackTrace();
+                    } catch (AdditionMainPleineException e) {
+                        e.printStackTrace();
+                    } catch (PiocheVideException e) {
+                        e.printStackTrace();
+                    }
+                }
+                i++;
+            }      
+        }  	
+        // ************************ DEFAUSSER CARTE ALEATOIREMENT **********************************
+        if(!discarded){
+            try {
+                try {
+                    p.defausse(this, r.nextInt(this.getMain().nbCartes));
+                    return true;
+                } catch (AdditionMainPleineException e) {
+                    e.printStackTrace();
+                } catch (PiocheVideException e) {
+                    e.printStackTrace();
+                }
+            } catch (EnleverCarteInexistanteException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    } 
 }

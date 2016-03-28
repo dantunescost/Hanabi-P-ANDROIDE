@@ -103,6 +103,7 @@ public class Partie {
 	public void pioche(Joueur j) throws AdditionMainPleineException, PiocheVideException{
 		if(!this.pioche.isEmpty()){
 			j.getMain().ajouterCarte(this.pioche.remove(this.pioche.size()-1));
+			System.out.println("Le joueur "+j.id+" pioche.");
 		}else{
 			throw new PiocheVideException();
 		}
@@ -119,6 +120,7 @@ public class Partie {
 	public void defausse(Joueur j, int index) throws EnleverCarteInexistanteException, AdditionMainPleineException, PiocheVideException{
 		Carte carte = j.getMain().enleverCarte(index);
 		this.defausse.add(carte);
+		System.out.println("Le joueur "+j.id+" défausse un"+carte.getCardName());
 
         // Rajoute un jeton indice s'il n'y a pas déjà tous les indices disponibles
 		if(this.jetonIndice != this.maxIndices){
@@ -141,7 +143,7 @@ public class Partie {
 	public void joueCarte(Joueur j, int indice) throws EnleverCarteInexistanteException, PartiePerdueException, AdditionMainPleineException, PiocheVideException{
 		// Enleve la carte de la main du joueur
         Carte carte = j.getMain().enleverCarte(indice);
-
+		System.out.println("Le joueur "+j.id+" joue un"+carte.getCardName());
         // La carte est valide
 		if(this.cartesJouees.get(carte.getCouleur()).size()+1 == carte.getValeur()){
 			this.cartesJouees.get(carte.getCouleur()).add(carte);
@@ -169,6 +171,8 @@ public class Partie {
 	public void indiceCouleur(Joueur j, CardColor c) throws IndiceSoitMemeException{
 		if(j != this.joueurs[this.aQuiLeTour] && this.jetonIndice>0){
 			j.getMain().indiceCouleur(c);
+			System.out.println("Voici les "+c.toString()+" du joueur "+j.id);
+
 			this.jetonIndice--;
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
@@ -187,6 +191,8 @@ public class Partie {
 	public void indiceValeur(Joueur j, int val) throws IndiceSoitMemeException{
 		if(j != this.joueurs[this.aQuiLeTour] && this.jetonIndice>0){
 			j.getMain().indiceValeur(val);
+			System.out.println("Voici les "+val+" du joueur "+j.id);
+			
 			this.jetonIndice--;
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
