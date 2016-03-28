@@ -64,10 +64,10 @@ public class SemiDummyJoueurIA extends JoueurIA {
     	for (Carte c : j.getMain().main){
     		for (int i=0; i<this.p.cartesJouees.size(); i++) {
     			if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)){
-    				if(!((c.isValeurConnue())&&(j.getMain().valeurUnique(c.getValeur()))
+    				if(!(c.isValeurConnue())&&((j.getMain().valeurUnique(c.getValeur()))
     					||c.isCouleurConnue()))
     					CarteAIndiquer = c;
-    				else if((!(c.isCouleurConnue())&&(j.getMain().couleurUnique(c.getCouleur()))
+    				else if(!(c.isCouleurConnue())&&((j.getMain().couleurUnique(c.getCouleur()))
     					||c.isValeurConnue()))
     					CarteAIndiquer = c;
                 }
