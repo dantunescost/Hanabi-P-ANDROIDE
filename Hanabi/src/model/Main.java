@@ -82,7 +82,7 @@ public class Main {
 	 * @param c Couleur indiquee
 	 */
 	public void indiceCouleur(CardColor c) {
-		for (int i = 0; i < this.nbCartes; i++) {
+		for (int i = 0; i < this.getNbCartes(); i++) {
 			if (this.main.get(i).getCouleur() == c) {
 				this.main.get(i).setCouleurConnue(true);
 			}
@@ -99,7 +99,7 @@ public class Main {
 	 * @param val La valeur indiquee
 	 */
 	public void indiceValeur(int val) {
-		for (int i = 0; i < this.nbCartes; i++) {
+		for (int i = 0; i < this.getNbCartes(); i++) {
 			if (this.main.get(i).getValeur() == val) {
 				this.main.get(i).setValeurConnue(true);
 			}
@@ -140,7 +140,7 @@ public class Main {
 	 * @return Le nombre de cartes dans la main
 	 */
 	public int getNbCartes() {
-		return nbCartes;
+		return main.size();
 	}
 	/**
 	 * Permet de déterminer si une carte est la seule avec sa valeur dans sa main

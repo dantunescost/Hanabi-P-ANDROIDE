@@ -42,6 +42,18 @@ public class Partie {
 	 */
 	protected boolean multicolor;
 	/**
+	 * Indique si cette partie en est a son dernier tour (toutes les cartes piochees)
+	 */
+	protected boolean dernierTour;
+	/**
+	 * Indique le joueur ayant piochee la derniere carte pour savoir quand finir
+	 */
+	protected int dernierJoueur;
+	/**
+	 * Indique si cette partie est finie (le dernier joueur a joue)
+	 */
+	protected boolean partieFinie;
+	/**
 	 * Les cartes dans lesquelles les joueurs piochent
 	 * @see <a href="Carte.hhtml">Carte</a>
 	 */
@@ -92,6 +104,9 @@ public class Partie {
 		if(this.multicolor){
 			this.cartesJouees.put(CardColor.MULTI, new ArrayList<Carte>());
 		}
+		this.dernierTour = false;
+		this.dernierJoueur = -1;
+		this.partieFinie = false;
 	}
 	
 	/**
@@ -104,8 +119,17 @@ public class Partie {
 		if(!this.pioche.isEmpty()){
 			j.getMain().ajouterCarte(this.pioche.remove(this.pioche.size()-1));
 			System.out.println("Le joueur "+j.id+" pioche.");
-		}else{
+			if(this.pioche.isEmpty())
+			{
+				this.dernierTour = true;
+				this.dernierJoueur = this.aQuiLeTour;
+			}
+		}else if(!this.dernierTour){
 			throw new PiocheVideException();
+		}else {
+			if(this.aQuiLeTour == this.dernierJoueur) {
+				this.finirPartie();
+			}
 		}
 	}
 	
@@ -369,6 +393,30 @@ public class Partie {
 	 */
 	public int getNbCartes() {
 		return nbCartes;
+	}
+	/**
+	 * @return Si cette partie en est a son dernier tour
+	 */
+	public boolean getDernierTour() {
+		return dernierTour;
+	}
+	/**
+	 * @return L'indice du joueur ayant pioche la derniere carte
+	 */
+	public int getDernierJoueur() {
+		return dernierJoueur;
+	}
+	/**
+	 * Permet d'indiquer que cette partie est finie
+	 */
+	public void finirPartie() {
+		partieFinie = true;
+	}
+	/**
+	 * @return Si cette partie est finie
+	 */
+	public boolean getFinPartie() {
+		return partieFinie;
 	}
 
 }

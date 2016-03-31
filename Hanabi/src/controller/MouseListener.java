@@ -39,7 +39,7 @@ public class MouseListener extends MouseAdapter {
 			this.partie.afficheDef = false;
 			this.partie.repaint();
 		}
-		else{
+		else if(!this.partie.getPartie().getFinPartie()){
 			if(this.firstClick && isInButtonJouer(x, y)){
 				this.partie.setAnnuler(true);
 				this.firstClick = false;
@@ -68,7 +68,13 @@ public class MouseListener extends MouseAdapter {
 						this.jouerCoup = false;
 						this.partie.update(this.partie.getGraphics());
 						if(this.partie.getPartie().getaQuiLeTour()!=0){
-							faireJouerIAs();
+							if(this.partie.getPartie().getFinPartie()){
+								System.out.println("Partie finie 1");
+							}
+							else
+							{
+								faireJouerIAs();
+							}
 						}
 					}
 					else{ 
@@ -90,7 +96,13 @@ public class MouseListener extends MouseAdapter {
 								this.secondClick = false;
 								this.partie.update(this.partie.getGraphics());
 								if(this.partie.getPartie().getaQuiLeTour()!=0){
-									faireJouerIAs();
+									if(this.partie.getPartie().getFinPartie()){
+										System.out.println("Partie finie 2");
+									}
+									else
+									{
+										faireJouerIAs();
+									}
 								}
 							}
 							else{ 
@@ -139,7 +151,13 @@ public class MouseListener extends MouseAdapter {
 													this.targetPlayer = null;
 													this.partie.update(this.partie.getGraphics());
 													if(this.partie.getPartie().getaQuiLeTour()!=0){
-														faireJouerIAs();
+														if(this.partie.getPartie().getFinPartie()){
+															System.out.println("Partie finie 3");
+														}
+														else
+														{
+															faireJouerIAs();
+														}
 													}
 												}
 											}
@@ -443,15 +461,23 @@ public class MouseListener extends MouseAdapter {
 	
 	public void faireJouerIAs(){
 		for(int i=1;i<this.partie.getPartie().getNbJoueurs();i++){
-			JoueurIA player = (JoueurIA) this.partie.getPartie().getJoueurs()[i];
-			player.jouerCoup();
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(!this.partie.getPartie().getFinPartie())
+			{
+				JoueurIA player = (JoueurIA) this.partie.getPartie().getJoueurs()[i];
+				if( (player.getId() == this.partie.getPartie().getDernierJoueur()) && (this.partie.getPartie().getDernierTour()) ){
+					this.partie.getPartie().finirPartie();
+					System.out.println("Partie finie 4, id_ia : " + player.getId());
+				}
+				player.jouerCoup();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.partie.update(this.partie.getGraphics());
 			}
-			this.partie.update(this.partie.getGraphics());
+			
 		}
 		
 	}
