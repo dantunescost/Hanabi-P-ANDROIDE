@@ -1,6 +1,5 @@
 package view;
 
-import controller.FenetreListener;
 import model.Carte;
 import model.Couleur;
 

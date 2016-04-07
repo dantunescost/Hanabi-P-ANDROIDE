@@ -117,7 +117,7 @@ public class FenetrePartie extends JFrame{
 		int startX = this.getWidth()/2 - (x/2);
 		int startY = this.getHeight()/2 - (y/2);
 		g.setColor(Color.black);
-		g.fillRect(startX, startY, x, y);
+		g.fillRect(50, 50, this.getWidth()-100, this.getHeight()-100);
 		System.out.println(this.partie.getDefausse().size());
 		for(int i=0; i<this.partie.getDefausse().size(); i++){
 			Image img = new ImageIcon(R+this.partie.getDefausse().get(i).getCardName()).getImage();
