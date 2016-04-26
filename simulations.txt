@@ -1,0 +1,42 @@
+Simulations IA : 
+
+Test 2 SemiDummy, 50000 échantillons, sans multicolores : 
+Score max : 20
+Score min : 1
+Score moyen : 8.9383
+
+Test 3 SemiDummy, 50000 échantillons, sans multicolores : 
+Score max : 20
+Score min : 5
+Score moyen : 13.63698
+
+Test 4 SemiDummy, 50000 échantillons, sans multicolores : 
+Score max : 19
+Score min : 7
+Score moyen : 13.88206
+
+Test 5 SemiDummy, 50000 échantillons, sans multicolores : 
+Score max : 18
+Score min : 7
+Score moyen : 13.25274
+
+
+Test 2 Dummy, 50000 échantillons, sans multicolores :
+Score max : 13
+Score min : 0
+Score moyen : 3.3917
+
+Test 3 Dummy, 50000 échantillons, sans multicolores :
+Score max : 12
+Score min : 0
+Score moyen : 2.94476
+
+Test 4 Dummy, 50000 échantillons, sans multicolores :
+Score max : 10
+Score min : 0
+Score moyen : 2.35198
+
+Test 5 Dummy, 50000 échantillons, sans multicolores :
+Score max : 9
+Score min : 0
+Score moyen : 1.96494
