@@ -174,5 +174,11 @@ public class Main {
 			return true;
 		return false;
 	}
+	
+	
+	public void clear()
+	{
+		this.main.clear();
+	}
 }
 

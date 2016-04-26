@@ -232,7 +232,7 @@ public class SemiDummyJoueurIA extends JoueurIA {
         if(!discarded){
 
             int i = 0;
-            while(i < this.main.nbCartes && !discarded){
+            while(i < this.main.getNbCartes() && !discarded){
                 Carte card = null;
 	            try {
 			        card = this.main.getCarte(i);
@@ -259,7 +259,7 @@ public class SemiDummyJoueurIA extends JoueurIA {
         if(!discarded){
             try {
                 try {
-                    p.defausse(this, r.nextInt(this.getMain().nbCartes));
+                    p.defausse(this, r.nextInt(this.getMain().getNbCartes()));
                     return true;
                 } catch (AdditionMainPleineException e) {
                     e.printStackTrace();
