@@ -33,7 +33,7 @@ public abstract class Joueur {
 	 */
 	public Joueur(String nom, Partie p, int id){
 		this.nom = nom;
-		this.main = new Main(p.nbCartes);
+		this.main = new Main(p.nbCartes,id);
 		this.p = p;
 		this.id = id;
 	}

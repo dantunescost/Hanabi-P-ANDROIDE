@@ -470,7 +470,7 @@ public class MouseListener extends MouseAdapter {
 				}
 				player.jouerCoup();
 				try {
-					Thread.sleep(500);
+					Thread.sleep(750);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
