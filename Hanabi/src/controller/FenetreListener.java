@@ -35,7 +35,8 @@ public class FenetreListener extends MouseAdapter {
 
 		// If clicked on cartes défaussées
 		if ((x>=(fen.getWidth()/2 - fen.getTableWidth()/2)/2-karteW/2 && x<= (fen.getWidth()/2 - fen.getTableWidth()/2)/2-karteW/2 + karteW) && (y<=(fen.getHeight()/2)-karteH/2+karteH && y>=(fen.getHeight()/2)-karteH/2)) {
-			System.out.println("IT WORKS");
+
+
 
 			JOptionPane optionPane = new JOptionPane(){
 				public void paint(Graphics g){
@@ -51,9 +52,6 @@ public class FenetreListener extends MouseAdapter {
 			optionPane.setMinimumSize(new Dimension(800,550));
 			optionPane.setVisible(true);
 
-		}
-		else{
-			System.out.println("NOPE");
 		}
 
 	}
