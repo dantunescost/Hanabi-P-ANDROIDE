@@ -20,8 +20,11 @@ public class FenetrePartie extends JFrame{
 	private boolean annuler = false;
 	public int tableWidth = 800;
 	public int tableHeight = 400;
+    public int karteH = this.tableHeight/4;
+    public int karteW =(int)( (float)karteH*0.645);
 	private AfficherMains a;
 	public boolean afficheDef;
+	public int playerSelected = 0;
 	public static String R = System.getProperty("user.dir");
 
 	public FenetrePartie(Partie p){
@@ -118,7 +121,6 @@ public class FenetrePartie extends JFrame{
 		int startY = this.getHeight()/2 - (y/2);
 		g.setColor(Color.black);
 		g.fillRect(50, 50, this.getWidth()-100, this.getHeight()-100);
-		System.out.println(this.partie.getDefausse().size());
 		for(int i=0; i<this.partie.getDefausse().size(); i++){
 			Image img = new ImageIcon(R+this.partie.getDefausse().get(i).getCardName()).getImage();
 			g.drawImage(img, startX+(i%7)*128, startY+(i/7)*65, 128, 200, this);
@@ -142,6 +144,149 @@ public class FenetrePartie extends JFrame{
 		}
 	}
 	
+	public void afficherMainSelectionnee(Graphics g){
+		switch(this.playerSelected){
+		case 1:
+			switch(this.partie.getNbJoueurs()){
+			case 2:
+				highlightCenterTop(g);
+				break;
+			case 3:
+				highlightLeftTopCorner(g);
+				break;
+			case 4:
+				highlightLeftTopCorner(g);
+				break;
+			case 5:
+				highlightLeftBottomCorner(g);
+				break;
+			}
+			break;
+		case 2:
+			switch(this.partie.getNbJoueurs()){
+			case 3:
+				highlightRightTopCorner(g);
+				break;
+			case 4:
+				highlightCenterTop(g);
+				break;
+			case 5:
+				highlightLeftTop(g);
+				break;
+			}
+			break;
+		case 3:
+			switch(this.partie.getNbJoueurs()){
+			case 4:
+				highlightRightTopCorner(g);
+				break;
+			case 5:
+				highlightRightTop(g);
+				break;
+			}
+			break;
+		case 4:
+			highlightRightBottomCorner(g);
+			break;
+		}
+	}
+	
+	private void highlightRightBottomCorner(Graphics g) {
+		int nbCartes = partie.getJoueurs()[this.playerSelected].getMain().getNbCartes();
+        int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/11)*10 ;
+        int startY = (this.getHeight() - this.tableHeight) /2 + (this.tableHeight/8)*7;
+        g.setColor(Color.GREEN);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2+karteH, 6+karteW, 3);
+        g.fillRect(startX-karteW+(nbCartes-1)*20-3, startY-(karteH/3)*2-(nbCartes-1)*20, karteW+6, 3);
+        g.fillRect(startX-karteW-3,startY-(karteH/3)*2-3, 3, karteH+6);
+        g.fillRect(startX+(nbCartes-1)*20, startY-(karteH/3)*2-(nbCartes-1)*20, 3, karteH+3);
+        for(int i=1;i<4;i++){
+        	g.drawLine(startX-karteW-3, startY-(karteH/3)*2-i, startX-karteW+(nbCartes-1)*20-i, startY-(karteH/3)*2-(nbCartes-1)*20);
+        	g.drawLine(startX+i, startY-(karteH/3)*2+3+karteH, startX+(nbCartes-1)*20+3, startY-(karteH/3)*2+karteH-(nbCartes-1)*20+i);
+        }	
+	}
+
+	private void highlightLeftBottomCorner(Graphics g) {
+		int nbCartes = partie.getJoueurs()[this.playerSelected].getMain().getNbCartes();
+        int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/11)*2;
+        int startY = (this.getHeight() - this.tableHeight) /2 + (this.tableHeight/8)*7;
+        g.setColor(Color.GREEN);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2+karteH, 6+karteW, 3);
+        g.fillRect(startX-karteW-(nbCartes-1)*20-3, startY-(karteH/3)*2-(nbCartes-1)*20, karteW+6, 3);
+        g.fillRect(startX,startY-(karteH/3)*2-3, 3, karteH+6);
+        g.fillRect(startX-karteW-(nbCartes-1)*20-3, startY-(karteH/3)*2-(nbCartes-1)*20, 3, karteH+3);
+        for(int i=1;i<4;i++){
+        	g.drawLine(startX+3, startY-(karteH/3)*2-i, startX-(nbCartes-1)*20+i, startY-(karteH/3)*2-(nbCartes-1)*20);
+        	g.drawLine(startX-karteW-i, startY-(karteH/3)*2+3+karteH, startX-karteW-(nbCartes-1)*20-3, startY-(karteH/3)*2+karteH-(nbCartes-1)*20+i);
+        }			
+	}
+
+	private void highlightRightTopCorner(Graphics g) {
+		int nbCartes = partie.getJoueurs()[this.playerSelected].getMain().getNbCartes();
+        int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/10)*9-25;
+        int startY = (this.getHeight() - this.tableHeight) /2;
+        g.setColor(Color.GREEN);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2-3, 6+karteW, 3);
+        g.fillRect(startX-karteW+(nbCartes-1)*25-3, startY-(karteH/3)*2+(nbCartes-1)*20+karteH, karteW+6, 3);
+        g.fillRect(startX-karteW-3,startY-(karteH/3)*2-3, 3, karteH+6);
+        g.fillRect(startX+(nbCartes-1)*25,startY-(karteH/3)*2+(nbCartes-1)*20, 3, karteH+3);
+        for(int i=1;i<4;i++){
+        	g.drawLine(startX+3, startY-(karteH/3)*2-i, startX+(nbCartes-1)*25+i, startY-(karteH/3)*2+(nbCartes-1)*20);
+        	g.drawLine(startX-karteW-i, startY-(karteH/3)*2+3+karteH, startX-karteW+(nbCartes-1)*25-3, startY-(karteH/3)*2+karteH+(nbCartes-1)*20+i);
+        }	
+	}
+
+	private void highlightLeftTopCorner(Graphics g) {
+		int nbCartes = partie.getJoueurs()[this.playerSelected].getMain().getNbCartes();
+        int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/8)*2-25;
+        int startY = (this.getHeight() - this.tableHeight) /2;
+        g.setColor(Color.GREEN);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2-3, 6+karteW, 3);
+        g.fillRect(startX-karteW-(nbCartes-1)*25-3, startY-(karteH/3)*2+(nbCartes-1)*20+karteH, karteW+6, 3);
+        g.fillRect(startX,startY-(karteH/3)*2-3, 3, karteH+6);
+        g.fillRect(startX-karteW-(nbCartes-1)*25-3,startY-(karteH/3)*2+(nbCartes-1)*20, 3, karteH+3);
+        for(int i=1;i<4;i++){
+        	g.drawLine(startX-karteW-3, startY-(karteH/3)*2-i, startX-karteW-(nbCartes-1)*25-i, startY-(karteH/3)*2+(nbCartes-1)*20);
+        	g.drawLine(startX+i, startY-(karteH/3)*2+3+karteH, startX-(nbCartes-1)*25+3, startY-(karteH/3)*2+karteH+(nbCartes-1)*20+i);
+        }
+	}
+
+	private void highlightRightTop(Graphics g) {
+		int nbCartes = partie.getJoueurs()[this.playerSelected].getMain().getNbCartes();
+        int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/10)*7;
+        int startY = (this.getHeight() - this.tableHeight) /2;
+        g.setColor(Color.GREEN);
+        g.fillRect(startX-karteW, startY-(karteH/3)*2-3, (nbCartes-1)*25+karteW, 3);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2-3, 3, karteH+3);
+        g.fillRect(startX+(nbCartes-1)*25, startY-(karteH/3)*2-3, 3, karteH+6);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2+karteH,(nbCartes-1)*25+karteW+3, 3);		
+	}
+
+	private void highlightLeftTop(Graphics g) {
+		int nbCartes = partie.getJoueurs()[this.playerSelected].getMain().getNbCartes();
+		int startX = (this.getWidth() - this.tableWidth) /2 + (this.tableWidth/10)*3;
+        int startY = (this.getHeight() - this.tableHeight) /2;
+        g.setColor(Color.GREEN);
+        g.fillRect(startX-karteW, startY-(karteH/3)*2-3, (nbCartes-1)*25+karteW, 3);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2-3, 3, karteH+3);
+        g.fillRect(startX+(nbCartes-1)*25, startY-(karteH/3)*2-3, 3, karteH+6);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2+karteH,(nbCartes-1)*25+karteW+3, 3);		
+	}
+
+	private void highlightCenterTop(Graphics g) {
+		int nbCartes = partie.getJoueurs()[this.playerSelected].getMain().getNbCartes();
+		int startX = (this.getWidth() - tableWidth) /2 + tableWidth/2;
+        if(partie.getJoueurs()[this.playerSelected].getMain().getNbCartes()==5){
+            startX -= 25;
+        }
+        int startY = (this.getHeight() - this.tableHeight) /2;
+        g.setColor(Color.GREEN);
+        g.fillRect(startX-karteW, startY-(karteH/3)*2-3, (nbCartes-1)*25+karteW, 3);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2-3, 3, karteH+3);
+        g.fillRect(startX+(nbCartes-1)*25, startY-(karteH/3)*2-3, 3, karteH+6);
+        g.fillRect(startX-karteW-3, startY-(karteH/3)*2+karteH,(nbCartes-1)*25+karteW+3, 3);
+	}
+
 	public void paint(Graphics g){
 		//super.paint(g);
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
@@ -169,9 +314,12 @@ public class FenetrePartie extends JFrame{
 		//draw buttons
 		afficherBoutonsJouerCoup(g);
 		//draw defausse
-		System.out.println(this.afficheDef);
 		if(this.afficheDef){
 			afficherLaDefausse(g);
+		}
+		//draw selection of a player's hand
+		if(this.playerSelected != 0){
+			afficherMainSelectionnee(g);
 		}
 	}
 	

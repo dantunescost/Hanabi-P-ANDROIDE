@@ -124,10 +124,12 @@ public class MouseListener extends MouseAdapter {
 											this.thirdClick = true;
 											this.secondClick = false;
 											this.targetPlayer  = this.partie.getPartie().getJoueurs()[isInCoPlayersHand(x, y)];
+											this.partie.repaint();
 										}
 										else{  
 											if(this.thirdClick && isInButtonAnnuler(x,y)){
 												this.partie.setAnnuler(false);
+												this.partie.playerSelected = 0;
 												this.firstClick = true;
 												this.thirdClick = false;
 												this.targetPlayer = null;
@@ -146,6 +148,7 @@ public class MouseListener extends MouseAdapter {
 														e1.printStackTrace();
 													}
 													this.partie.setAnnuler(false);
+													this.partie.playerSelected = 0;
 													this.firstClick = true;
 													this.thirdClick = false;
 													this.targetPlayer = null;
@@ -320,39 +323,49 @@ public class MouseListener extends MouseAdapter {
 		switch(this.partie.getPartie().getNbJoueurs()){
 		case 2:
 			if(isHandCenterTopSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			break;
 		case 3:
 			if(isHandLeftTopCornerSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			if(isHandRightTopCornerSelected(x, y)){
+				this.partie.playerSelected = 2;
 				return 2;
 			}
 			break;
 		case 4:
 			if(isHandLeftTopCornerSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			if(isHandCenterTopSelected(x, y)){
+				this.partie.playerSelected = 2;
 				return 2;
 			}
 			if(isHandRightTopCornerSelected(x, y)){
+				this.partie.playerSelected = 3;
 				return 3;
 			}
 			break;
 		case 5:
 			if(isHandLeftBottomCornerSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			if(isHandLeftTopSelected(x, y)){
+				this.partie.playerSelected = 2;
 				return 2;
 			}
 			if(isHandRightTopSelected(x, y)){
+				this.partie.playerSelected = 3;
 				return 3;
 			}
 			if(isHandRightBottomCornerSelected(x, y)){
+				this.partie.playerSelected = 4;
 				return 4;
 			}
 			break;
