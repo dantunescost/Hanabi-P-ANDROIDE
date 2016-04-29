@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  28 APR 2016 21:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  29 APR 2016 11:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"Rapport Final Hanabi.tex"
-(./Rapport Final Hanabi.tex
+**main.tex
+(./main.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 21 languages loaded.
 (/usr/local/texlive/2015basic/texmf-dist/tex/latex/base/article.cls
@@ -365,8 +365,8 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
 \@eurobox=\box28
 )
-(./Rapport Final Hanabi.aux)
-\openout1 = `"Rapport Final Hanabi.aux"'.
+(./main.aux)
+\openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
@@ -484,16 +484,16 @@ Package pdftex.def Info: upmc.png used on input line 26.
 
 {/usr/local/texlive/2015basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./
 upmc.png>]
-(./Rapport Final Hanabi.toc
+(./main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 4.
+(Font)              <10.95> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 4.
+(Font)              <8> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 4.
+(Font)              <6> on input line 3.
 )
 \tf@toc=\write3
-\openout3 = `"Rapport Final Hanabi.toc"'.
+\openout3 = `main.toc'.
 
 
 
@@ -502,29 +502,313 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[1] [1] (./Rapport Final Hanabi.aux) ) 
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 61--63
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--69
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--72
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--75
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--99
+
+ []
+
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 107--109
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 110--112
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--115
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
+
+ []
+
+[3] <ihm.jpg, id=27, 861.2175pt x 559.08875pt>
+File: ihm.jpg Graphic file (type jpg)
+ <use ihm.jpg>
+Package pdftex.def Info: ihm.jpg used on input line 206.
+(pdftex.def)             Requested size: 344.4809pt x 223.63153pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--217
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--220
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
+
+ []
+
+[4 <./ihm.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 228--230
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--239
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--250
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--253
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--256
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 257--259
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 263--265
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--269
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 270--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--276
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--285
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--294
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--298
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 303--304
+
+ []
+
+[6] [7] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3768 strings out of 494501
- 51809 string characters out of 6167031
- 121865 words of memory out of 5000000
- 6987 multiletter control sequences out of 15000+600000
- 13386 words of font info for 32 fonts, out of 8000000 for 9000
+ 3779 strings out of 494501
+ 51752 string characters out of 6167031
+ 124865 words of memory out of 5000000
+ 6995 multiletter control sequences out of 15000+600000
+ 14062 words of font info for 33 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 38i,10n,43p,423b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
- </Users/catalinaassmann/Library/texlive/
-2015basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/catalin
-aassmann/Library/texlive/2015basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm10
-95.600pk> </Users/catalinaassmann/Library/texlive/2015basic/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecbx1095.600pk> </Users/catalinaassmann/Library/texlive/2015
-basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/catalinaass
-mann/Library/texlive/2015basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.6
-00pk> </Users/catalinaassmann/Library/texlive/2015basic/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecbx1440.600pk> </Users/catalinaassmann/Library/texlive/2015basi
-c/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk>
-Output written on "Rapport Final Hanabi.pdf" (3 pages, 103303 bytes).
+ 38i,10n,43p,687b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </Users/catalinaassmann/Library/texlive/2015basic/texmf-
+var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk> </Users/catalinaassmann/Library
+/texlive/2015basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </User
+s/catalinaassmann/Library/texlive/2015basic/texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecrm1095.600pk> </Users/catalinaassmann/Library/texlive/2015basic/texmf-var/
+fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/catalinaassmann/Library/tex
+live/2015basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/ca
+talinaassmann/Library/texlive/2015basic/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+crm1440.600pk> </Users/catalinaassmann/Library/texlive/2015basic/texmf-var/font
+s/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/catalinaassmann/Library/texlive
+/2015basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/local/tex
+live/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local
+/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
+cal/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
+sr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+></usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
+pfb></usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y8.pfb>
+Output written on main.pdf (9 pages, 280816 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 404 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

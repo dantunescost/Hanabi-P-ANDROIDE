@@ -36,24 +36,28 @@ public class HeuristicJoueurIA extends JoueurIA{
 		}
 		
 		/*********Tests indices************/
-		for(Joueur j : p.joueurs)
-    	{
-    		if (j.getId()!=this.id)
-    		{
-    			h_indice_valeur[j.getId()]=testIndice(j, null, 1);
-    			h_indice_valeur[j.getId()+1]=testIndice(j, null, 2);
-    			h_indice_valeur[j.getId()+2]=testIndice(j, null, 3);
-    			h_indice_valeur[j.getId()+3]=testIndice(j, null, 4);
-    			h_indice_valeur[j.getId()+4]=testIndice(j, null, 5);
-    			h_indice_couleur[j.getId()]=testIndice(j, Couleur.CardColor.BLANC, 0);
-    			h_indice_couleur[j.getId()+1]=testIndice(j, Couleur.CardColor.BLEU, 0);
-    			h_indice_couleur[j.getId()+2]=testIndice(j, Couleur.CardColor.VERT, 0);
-    			h_indice_couleur[j.getId()+3]=testIndice(j, Couleur.CardColor.JAUNE, 0);
-    			h_indice_couleur[j.getId()+4]=testIndice(j, Couleur.CardColor.ROUGE, 0);
-    		}
-    		
+		if(p.getJetonIndice()>0)
+		{
+
+			for(Joueur j : p.joueurs)
+	    	{
+	    		if (j.getId()!=this.id)
+	    		{
+	    			h_indice_valeur[j.getId()]=testIndice(j, null, 1);
+	    			h_indice_valeur[j.getId()+1]=testIndice(j, null, 2);
+	    			h_indice_valeur[j.getId()+2]=testIndice(j, null, 3);
+	    			h_indice_valeur[j.getId()+3]=testIndice(j, null, 4);
+	    			h_indice_valeur[j.getId()+4]=testIndice(j, null, 5);
+	    			h_indice_couleur[j.getId()]=testIndice(j, Couleur.CardColor.BLANC, 0);
+	    			h_indice_couleur[j.getId()+1]=testIndice(j, Couleur.CardColor.BLEU, 0);
+	    			h_indice_couleur[j.getId()+2]=testIndice(j, Couleur.CardColor.VERT, 0);
+	    			h_indice_couleur[j.getId()+3]=testIndice(j, Couleur.CardColor.JAUNE, 0);
+	    			h_indice_couleur[j.getId()+4]=testIndice(j, Couleur.CardColor.ROUGE, 0);
+	    		}
+	    	}	
     	}
 		/*********Recherche h max**********/
+		
 		for(i=0; i<this.getMain().main.size();i++)
 		{
 			if(h_jouer[i]>h_max)
@@ -73,53 +77,61 @@ public class HeuristicJoueurIA extends JoueurIA{
     	}
 		//selection coup
 		boolean a_joue=false;
-		for(Joueur j : p.joueurs)
-    	{
-			if (j.getId()!=this.id)
-    		{
-				for(i=0; i<5;i++)
-				{
-					if(a_joue==false)
+		if(p.getJetonIndice()>0)
+		{
+			for(Joueur j : p.joueurs)
+	    	{
+				if (j.getId()!=this.id)
+	    		{
+					for(i=0; i<5;i++)
 					{
-						if(h_indice_valeur[j.getId()+i]==h_max)
+						if(a_joue==false)
 						{
-							try {
-								p.indiceValeur(j, i+1);
-							} catch (IndiceSoitMemeException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+							if(h_indice_valeur[j.getId()+i]==h_max)
+							{
+	
+								System.out.println("IA qui donne:"+this.getId());
+								System.out.println("IA qui recoit:"+j.getId());
+								System.out.println("IA tour:"+p.aQuiLeTour);
+								try {
+									p.indiceValeur(j, i+1);
+								} catch (IndiceSoitMemeException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								a_joue=true;
 							}
-							a_joue=true;
 						}
-					}
-					if(a_joue==false)
-					{
-						if(h_indice_couleur[j.getId()+i]==h_max)
+						if(a_joue==false)
 						{
-							Couleur.CardColor coul=null;
-							if(i==0)
-								coul=Couleur.CardColor.BLANC;
-							else if(i==1)
-								coul=Couleur.CardColor.BLEU;
-							else if(i==2)
-								coul=Couleur.CardColor.VERT;
-							else if(i==3)
-								coul=Couleur.CardColor.JAUNE;
-							else if(i==4)
-								coul=Couleur.CardColor.ROUGE;
-							System.out.println(i);
-							System.out.println(coul.toString());
-							try {
-								p.indiceCouleur(j, coul);
-							} catch (IndiceSoitMemeException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+							if(h_indice_couleur[j.getId()+i]==h_max)
+							{
+								Couleur.CardColor coul=null;
+								if(i==0)
+									coul=Couleur.CardColor.BLANC;
+								else if(i==1)
+									coul=Couleur.CardColor.BLEU;
+								else if(i==2)
+									coul=Couleur.CardColor.VERT;
+								else if(i==3)
+									coul=Couleur.CardColor.JAUNE;
+								else if(i==4)
+									coul=Couleur.CardColor.ROUGE;
+								System.out.println("IA qui donne:"+this.getId());
+								System.out.println("IA qui recoit:"+j.getId());
+								System.out.println("IA tour:"+p.aQuiLeTour);
+								try {
+									p.indiceCouleur(j, coul);
+								} catch (IndiceSoitMemeException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								a_joue=true;
 							}
-							a_joue=true;
 						}
 					}
 				}
-			}
+    		}
     	}
 		for(i=0; i<this.getMain().main.size();i++)
 		{
