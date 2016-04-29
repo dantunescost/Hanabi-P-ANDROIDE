@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.Couleur.CardColor;
@@ -7,7 +8,8 @@ import model.Couleur.CardColor;
 /**
  * Represente la main d'un joueur.
  */
-public class Main {
+public class Main implements Serializable{
+	private static final long serialVersionUID = -6633148306428227300L;
 	/**
 	 * La liste de cartes qui composent cette main
 	 *

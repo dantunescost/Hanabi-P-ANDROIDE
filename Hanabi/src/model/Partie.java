@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -9,7 +10,8 @@ import model.Couleur.CardColor;
 /**
  * Represente une partie.
  */
-public class Partie {
+public class Partie implements Serializable{
+	private static final long serialVersionUID = 6520676106667719370L;
 	/**
 	 * Nombre de joueurs dans cette partie
 	 * @see <a href="Joueur.html">Joueur</a>

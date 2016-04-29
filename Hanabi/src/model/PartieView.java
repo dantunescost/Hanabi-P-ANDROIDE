@@ -1,11 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-
-import model.Couleur.CardColor;
 
 public class PartieView extends Partie{
-	
+	private static final long serialVersionUID = 2075863595013544665L;
 	private int nb_points;
 	private int nb_indices;
 	private int nb_erreurs;

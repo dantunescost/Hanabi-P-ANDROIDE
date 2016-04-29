@@ -3,6 +3,7 @@ package model;
 import java.util.Scanner;
 
 public class SimulationPartie extends Partie {
+	private static final long serialVersionUID = 595418792495031308L;
 
 	public SimulationPartie(int nbJoueurs, int maxIndices, boolean multicolor) {
 		super(nbJoueurs, maxIndices, multicolor);

@@ -4,7 +4,8 @@ package model;
  * Sous-classe pour le joueur humain
  */
 public class JoueurHumain extends Joueur {
-	
+	private static final long serialVersionUID = 6994448977196451580L;
+
 	/**
 	 * Constructeur pour le joueur humain	
 	 * @param nom		Le nom du joueur

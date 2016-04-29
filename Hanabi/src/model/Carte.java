@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import model.Couleur.CardColor;
@@ -7,7 +8,8 @@ import model.Couleur.CardColor;
 /**
  * Represente les cartes du jeu Hanabi.
  */
-public class Carte {
+public class Carte implements Serializable{
+	private static final long serialVersionUID = 1539421190585703606L;
 	/**
 	 * La couleur de cette carte
 	 * @see <a href="Couleur.html">Couleur</a>
