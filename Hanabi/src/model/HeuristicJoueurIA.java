@@ -77,7 +77,6 @@ public class HeuristicJoueurIA extends JoueurIA{
     	}
 		//selection coup
 		boolean a_joue=false;
-		System.out.println("H MAX: "+h_max);
 		if(p.getJetonIndice()>0)
 		{
 			for(Joueur j : p.joueurs)
