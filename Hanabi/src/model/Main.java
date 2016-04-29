@@ -18,6 +18,10 @@ public class Main {
 	 * Le nombre de cartes que peut contenir la main au maximum
 	 */
 	protected final int nbCartes; // Nombre de cartes par joueur
+	/**
+	 * L'identifiant du joueur auquel appartient cette main 
+	 */
+	protected final int id; // Nombre de cartes par joueur
 
 	/**
 	 * Constructeur d'une main avec les cartes donnees en parametre
@@ -25,7 +29,8 @@ public class Main {
 	 * @param nbCartes Nombre de cartes que peut contenir cette main
 	 * @param cartes   Cartes a ajouter dans cette main
 	 */
-	public Main(int nbCartes, Carte[] cartes) {
+	public Main(int nbCartes, Carte[] cartes, int id) {
+		this.id = id;
 		this.nbCartes = nbCartes;
 		main = new ArrayList<Carte>(nbCartes);
 		for (int i = 0; i < nbCartes; i++) {
@@ -39,7 +44,8 @@ public class Main {
 	 *
 	 * @param nbCartes Nombre de cartes que peut contenir cette main
 	 */
-	public Main(int nbCartes) {
+	public Main(int nbCartes, int id) {
+		this.id = id;
 		this.nbCartes = nbCartes;
 		main = new ArrayList<Carte>(nbCartes);
 	}
@@ -173,6 +179,20 @@ public class Main {
 		if(nbCartesCouleurCol==1)
 			return true;
 		return false;
+	}
+	/**
+	 * Ce getter retourne l'identifiant du joueur auquel appartient cette main
+	 * @return l'identifiant du joueur auquel appartient cette main
+	 */
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void clear()
+	{
+		this.main.clear();
 	}
 }
 

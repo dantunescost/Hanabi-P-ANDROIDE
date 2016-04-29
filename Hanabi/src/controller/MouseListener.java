@@ -13,6 +13,7 @@ import model.PartiePerdueException;
 import model.PiocheVideException;
 import view.FenetrePartie;
 
+
 public class MouseListener extends MouseAdapter {
 	private boolean firstClick = true;
 	private boolean secondClick = false;
@@ -47,7 +48,7 @@ public class MouseListener extends MouseAdapter {
 				this.jouerCoup = true;
 				this.partie.update(this.partie.getGraphics());
 			}
-			else{ 
+			else{
 				if(this.secondClick && isInButtonAnnuler(x,y)){
 					this.partie.setAnnuler(false);
 					this.firstClick = true;
@@ -77,14 +78,14 @@ public class MouseListener extends MouseAdapter {
 							}
 						}
 					}
-					else{ 
+					else{
 						if(this.firstClick && isInDefausse(x,y)){
 							if(this.partie.getPartie().getDefausse().size() > 0){
 								this.partie.afficheDef = true;
 								this.partie.repaint();
 							}
 						}
-						else{ 
+						else{
 							if(this.secondClick && isInPlayersCards(x,y) != 0){
 								try {
 									this.partie.getPartie().defausse(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
@@ -105,35 +106,37 @@ public class MouseListener extends MouseAdapter {
 									}
 								}
 							}
-							else{ 
+							else{
 								if(this.firstClick && isInButtonDefausser(x,y)){
 									this.partie.setAnnuler(true);
 									this.firstClick = false;
 									this.secondClick = true;
 									this.partie.update(this.partie.getGraphics());
 								}
-								else{ 
+								else{
 									if(this.firstClick && isInButtonIndice(x,y)){
 										this.partie.setAnnuler(true);
 										this.firstClick = false;
 										this.secondClick = true;
 										this.partie.update(this.partie.getGraphics());
 									}
-									else{  
+									else{
 										if(this.secondClick && isInCoPlayersHand(x,y)!=0){
 											this.thirdClick = true;
 											this.secondClick = false;
 											this.targetPlayer  = this.partie.getPartie().getJoueurs()[isInCoPlayersHand(x, y)];
+											this.partie.repaint();
 										}
-										else{  
+										else{
 											if(this.thirdClick && isInButtonAnnuler(x,y)){
 												this.partie.setAnnuler(false);
+												this.partie.playerSelected = 0;
 												this.firstClick = true;
 												this.thirdClick = false;
 												this.targetPlayer = null;
 												this.partie.update(this.partie.getGraphics());
 											}
-											else{  
+											else{
 												if(this.thirdClick && isInIndices(x,y) != 0){
 													try {
 														if(isInIndices(x, y)>5){
@@ -146,6 +149,7 @@ public class MouseListener extends MouseAdapter {
 														e1.printStackTrace();
 													}
 													this.partie.setAnnuler(false);
+													this.partie.playerSelected = 0;
 													this.firstClick = true;
 													this.thirdClick = false;
 													this.targetPlayer = null;
@@ -320,39 +324,49 @@ public class MouseListener extends MouseAdapter {
 		switch(this.partie.getPartie().getNbJoueurs()){
 		case 2:
 			if(isHandCenterTopSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			break;
 		case 3:
 			if(isHandLeftTopCornerSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			if(isHandRightTopCornerSelected(x, y)){
+				this.partie.playerSelected = 2;
 				return 2;
 			}
 			break;
 		case 4:
 			if(isHandLeftTopCornerSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			if(isHandCenterTopSelected(x, y)){
+				this.partie.playerSelected = 2;
 				return 2;
 			}
 			if(isHandRightTopCornerSelected(x, y)){
+				this.partie.playerSelected = 3;
 				return 3;
 			}
 			break;
 		case 5:
 			if(isHandLeftBottomCornerSelected(x, y)){
+				this.partie.playerSelected = 1;
 				return 1;
 			}
 			if(isHandLeftTopSelected(x, y)){
+				this.partie.playerSelected = 2;
 				return 2;
 			}
 			if(isHandRightTopSelected(x, y)){
+				this.partie.playerSelected = 3;
 				return 3;
 			}
 			if(isHandRightBottomCornerSelected(x, y)){
+				this.partie.playerSelected = 4;
 				return 4;
 			}
 			break;
@@ -470,7 +484,7 @@ public class MouseListener extends MouseAdapter {
 				}
 				player.jouerCoup();
 				try {
-					Thread.sleep(500);
+					Thread.sleep(750);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

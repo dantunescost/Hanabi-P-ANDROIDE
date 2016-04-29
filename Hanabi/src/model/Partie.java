@@ -211,6 +211,12 @@ public class Partie {
 			System.out.println("Voici les "+c.toString()+" du joueur "+j.id);
 
 			this.jetonIndice--;
+			if(this.pioche.isEmpty())
+			{
+				if(this.aQuiLeTour == this.dernierJoueur) {
+					this.finirPartie();
+				}
+			}
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
 		else{
@@ -231,6 +237,12 @@ public class Partie {
 			System.out.println("Voici les "+val+" du joueur "+j.id);
 			
 			this.jetonIndice--;
+			if(this.pioche.isEmpty())
+			{
+				if(this.aQuiLeTour == this.dernierJoueur) {
+					this.finirPartie();
+				}
+			}
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
 		else{
@@ -272,6 +284,37 @@ public class Partie {
 				pioche(j);
 			}
 		}
+	}
+	
+	/**
+	 * Remet a zero la partie, pour les simulations
+	 * @param joue	Joueurs de la partie
+	 * @throws AdditionMainPleineException		Si la main du joueur est deja pleine
+	 * @throws PiocheVideException				Si la pioche ne contient plus de carte
+	 */
+	public void reinitPartie(Joueur[] joue) throws AdditionMainPleineException, PiocheVideException{
+		this.pioche.clear();
+		this.defausse.clear();
+		this.cartesJouees.clear();
+		this.jetonEclair = 0;
+		this.aQuiLeTour = 0;
+		this.jetonIndice = maxIndices;
+		this.cartesJouees.put(CardColor.BLANC, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.BLEU, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.VERT, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.ROUGE, new ArrayList<Carte>());
+		this.cartesJouees.put(CardColor.JAUNE, new ArrayList<Carte>());
+		if(this.multicolor){
+			this.cartesJouees.put(CardColor.MULTI, new ArrayList<Carte>());
+		}
+		this.dernierTour = false;
+		this.dernierJoueur = -1;
+		this.partieFinie = false;
+		for(int i=0; i<joue.length; i++)
+		{
+			joue[i].main.clear();
+		}
+		initPartie(joue);
 	}
 
 	
@@ -436,5 +479,4 @@ public class Partie {
 		PartieView p=new PartieView(this);
 		return p;
 	}
-
 }
