@@ -20,6 +20,7 @@ import controller.EcouteItem;
 import controller.EcouteFocus;
 import model.DummyJoueurIA;
 import model.SemiDummyJoueurIA;
+import model.HeuristicJoueurIA;
 
 public class Parametres extends JFrame {
 	private static final long serialVersionUID = -5591954412370299930L;
@@ -77,12 +78,16 @@ public class Parametres extends JFrame {
 		}
 		joueurIA1.addItem(DummyJoueurIA.class.getName());
 		joueurIA1.addItem(SemiDummyJoueurIA.class.getName());
+		joueurIA1.addItem(HeuristicJoueurIA.class.getName());
 		joueurIA2.addItem(DummyJoueurIA.class.getName());
 		joueurIA2.addItem(SemiDummyJoueurIA.class.getName());
+		joueurIA2.addItem(HeuristicJoueurIA.class.getName());
 		joueurIA3.addItem(DummyJoueurIA.class.getName());
 		joueurIA3.addItem(SemiDummyJoueurIA.class.getName());
+		joueurIA3.addItem(HeuristicJoueurIA.class.getName());
 		joueurIA4.addItem(DummyJoueurIA.class.getName());
 		joueurIA4.addItem(SemiDummyJoueurIA.class.getName());
+		joueurIA4.addItem(HeuristicJoueurIA.class.getName());
 		joueurIA3.setEnabled(false);
 		joueurIA4.setEnabled(false);
 		p21[0].setLayout(new FlowLayout());

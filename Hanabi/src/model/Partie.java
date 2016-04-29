@@ -108,6 +108,19 @@ public class Partie {
 		this.dernierJoueur = -1;
 		this.partieFinie = false;
 	}
+	public Partie(int nbJoueurs, int maxIndices, boolean multicolor,boolean clonage)
+	{
+		this.nbJoueurs = nbJoueurs;
+		if(nbJoueurs == 2 || nbJoueurs == 3){
+			this.nbCartes = 5;
+		}
+		else if(nbJoueurs == 4 || nbJoueurs == 5){
+			this.nbCartes = 4;
+		}
+		this.maxIndices = maxIndices;
+		this.multicolor = multicolor;
+		//this.cartesJouees = new HashMap<CardColor, ArrayList<Carte>>(5);
+	}
 	
 	/**
 	 * Pioche une carte dans la main du joueur donne
@@ -417,6 +430,11 @@ public class Partie {
 	 */
 	public boolean getFinPartie() {
 		return partieFinie;
+	}
+	public PartieView createView()
+	{
+		PartieView p=new PartieView(this);
+		return p;
 	}
 
 }

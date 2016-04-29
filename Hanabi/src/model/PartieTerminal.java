@@ -140,7 +140,7 @@ public class PartieTerminal extends Partie{
 	    PartieTerminal game = new PartieTerminal(2,8,false);
 	    Joueur[] joue = new Joueur[2];
 	    joue[0] = new JoueurHumain("Holmes", game, 0);
-	    joue[1] = new SemiDummyJoueurIA("Watson", game, 1);
+	    joue[1] = new HeuristicJoueurIA("Watson", game, 1);
 
 	    try {
 			game.initPartie(joue);
@@ -237,7 +237,7 @@ public class PartieTerminal extends Partie{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    SemiDummyJoueurIA ia = (SemiDummyJoueurIA) game.getJoueurs()[1];
+		    HeuristicJoueurIA ia = (HeuristicJoueurIA) game.getJoueurs()[1];
 		    ia.jouerCoup();
 		    try {
 		    	if(!gameover)

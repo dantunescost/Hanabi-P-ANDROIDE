@@ -192,4 +192,33 @@ public class Carte {
 			this.setValeurConnue(true);
 		}
 	}
+	public boolean isJouableOmniscient(Partie p)
+	{
+		return (p.cartesJouees.get(this.getCouleur()).size()==(this.getValeur()-1));
+	}
+	public boolean isDefaussableOmniscient(Partie p)
+	{
+		boolean res=false;
+		if(p.cartesJouees.get(this.getCouleur()).size()>=(this.getValeur()))
+		{
+			res=true;
+		}
+		else
+		{
+			int compt[] = new int[this.getValeur()-1];
+    		for(int i=0; i<p.defausse.size(); i++)
+    		{
+    			if((p.defausse.get(i).getCouleur() == this.getCouleur()) && (p.defausse.get(i).getValeur()<this.getValeur()))
+    			{
+    				compt[p.defausse.get(i).getValeur()-1]++;
+    			}
+    		}
+    		for(int j=0; j<this.getValeur()-1 && !res; j++)
+    		{
+    			if(((j+2)/3 + compt[j])==3)
+    				res=true;
+    		}
+		}
+		return res;
+	}
 }

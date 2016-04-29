@@ -34,10 +34,10 @@ public class JoueurIA extends Joueur {
     public Carte coupTrivial () {
         for (Carte c : this.getMain().main){
             if (c.isCouleurConnue() && c.isValeurConnue()) {
-                for (int i=0; i<this.p.cartesJouees.size(); i++) {
+               // for (int i=0; i<this.p.cartesJouees.size(); i++) {
                     if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)){
                         return c;
-                    }
+                 //   }
                 }
             }
             else if(c.isValeurConnue()){
@@ -50,10 +50,30 @@ public class JoueurIA extends Joueur {
             	{
             		return c;
             	}
-            	
             }
         }
         return null;
+    }
+    
+    public boolean isJouableTrivial (Carte c) {
+    	boolean res=false;
+    	if (c.isCouleurConnue() && c.isValeurConnue()) {
+    		if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)){
+    			res=true;
+    		}
+    	}
+    	else if(c.isValeurConnue()){
+        //Si toutes les cartes jouees ont la meme valeur(ou qu'il n'y a pas de cartes) et le joueur possede une carte de valeur +1
+            if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()==(c.getValeur()-1))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()==(c.getValeur()-1))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()==(c.getValeur()-1))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()==(c.getValeur()-1))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1)))
+            {
+            	res=true;
+            }
+    	}
+        return res;
     }
 
     /**
@@ -62,9 +82,9 @@ public class JoueurIA extends Joueur {
 	 * 			null sinon
 	 */
     public Carte defausseTriviale () {
-        for (Carte c : this.getMain().main){;
+        for (Carte c : this.getMain().main){
             if (c.isCouleurConnue() && c.isValeurConnue()) {
-                for (int i=0; i<this.p.cartesJouees.size(); i++) {
+                //for (int i=0; i<this.p.cartesJouees.size(); i++) {
                     if (this.p.cartesJouees.get(c.getCouleur()).size()>=(c.getValeur())){
                         return c;
                     }
@@ -72,8 +92,7 @@ public class JoueurIA extends Joueur {
                     	System.out.println("je sais que j'ai une carte inutile");
                     	return c;
                     }
-                    
-                }
+                //}
             }
             else if(c.isValeurConnue()){
             	//Si toutes les cartes jouees ont la meme valeur et le joueur possede une carte de valeur -
@@ -93,7 +112,35 @@ public class JoueurIA extends Joueur {
         }
         return null;
     }
-    
+    public boolean isDefaussableTrivial(Carte c){
+    	boolean res=false;
+    	if (c.isCouleurConnue() && c.isValeurConnue()) {
+    		//for (int i=0; i<this.p.cartesJouees.size(); i++) {
+            	if (this.p.cartesJouees.get(c.getCouleur()).size()>=(c.getValeur())){
+            		res=true;
+                }
+                else if(carteInutile(c)){
+                	System.out.println("je sais que j'ai une carte inutile");
+                    res=true;
+                }
+            //}
+    	}
+        else if(c.isValeurConnue()){
+            //Si toutes les cartes jouees ont la meme valeur et le joueur possede une carte de valeur -
+            if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()<=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()<=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()<=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()<=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()<=(c.getValeur())))
+            {
+            	res=true;
+            }
+        }
+        else if(c.isCouleurConnue() && (this.p.cartesJouees.get(c.getCouleur()).size()==5)){
+        	 res=true;
+        }
+    return res;
+    }
     public boolean carteInutile(Carte c)
     {
     	boolean res = false;
@@ -116,4 +163,147 @@ public class JoueurIA extends Joueur {
     	}
     	return res;
     }
+    public int compterCartesJouables()
+    {
+    	int nb=0;
+    	for(Carte c : this.getMain().main)
+		{
+			if(this.isJouableTrivial(c))
+			{
+				nb++;
+			}
+		}
+    	for(Joueur j : p.joueurs)
+    	{
+    		if (j.getId()!=this.id)
+    		{
+    			for(Carte c : j.getMain().main)
+    			{
+    				if(c.isJouableOmniscient(p))
+    				{
+    					nb++;
+    				}
+    			}
+    		}
+    	}
+    return nb;	
+    }
+    public int compterCartesDefaussables()
+    {
+    	int nb=0;
+    	for(Carte c : this.getMain().main)
+		{
+			if(this.isDefaussableTrivial(c))
+			{
+				nb++;
+			}
+		}
+    	for(Joueur j : p.joueurs)
+    	{
+    		if (j.getId()!=this.id)
+    		{
+    			for(Carte c : j.getMain().main)
+    			{
+    				if(c.isDefaussableOmniscient(p))
+    				{
+    					nb++;
+    				}
+    			}
+    		}
+    	}
+    return nb;	
+    }
+    public int compterInfosJouables()
+    {
+    	int nb=0;
+    	for(Carte c : this.getMain().main)
+		{
+			if(this.isJouableTrivial(c))
+			{
+				if (c.isCouleurConnue())
+					nb++;
+				if (c.isValeurConnue())
+					nb++;
+			}
+		}
+    	for(Joueur j : p.joueurs)
+    	{
+    		if (j.getId()!=this.id)
+    		{
+    			for(Carte c : j.getMain().main)
+    			{
+    				if(c.isJouableOmniscient(p))
+    				{
+    					if (c.isCouleurConnue())
+    						nb++;
+    					if (c.isValeurConnue())
+    						nb++;
+    				}
+    			}
+    		}
+    	}
+    return nb;	
+    } 
+    public int compterInfosDefaussables()
+    {
+    	int nb=0;
+    	for(Carte c : this.getMain().main)
+		{
+			if(this.isDefaussableTrivial(c))
+			{
+				if (c.isCouleurConnue())
+					nb++;
+				if (c.isValeurConnue())
+					nb++;
+			}
+		}
+    	for(Joueur j : p.joueurs)
+    	{
+    		if (j.getId()!=this.id)
+    		{
+    			for(Carte c : j.getMain().main)
+    			{
+    				if(c.isDefaussableOmniscient(p))
+    				{
+    					if (c.isCouleurConnue())
+    						nb++;
+    					if (c.isValeurConnue())
+    						nb++;
+    				}
+    			}
+    		}
+    	}
+    return nb;	
+    } 
+    public int compterInfosNeutres()
+    {
+    	int nb=0;
+    	for(Carte c : this.getMain().main)
+		{
+			if((!this.isDefaussableTrivial(c))&&(!this.isDefaussableTrivial(c)))
+			{
+				if (c.isCouleurConnue())
+					nb++;
+				if (c.isValeurConnue())
+					nb++;
+			}
+		}
+    	for(Joueur j : p.joueurs)
+    	{
+    		if (j.getId()!=this.id)
+    		{
+    			for(Carte c : j.getMain().main)
+    			{
+    				if((!c.isDefaussableOmniscient(p))&&(!c.isJouableOmniscient(p)))
+    				{
+    					if (c.isCouleurConnue())
+    						nb++;
+    					if (c.isValeurConnue())
+    						nb++;
+    				}
+    			}
+    		}
+    	}
+    return nb;	
+    } 
 }

@@ -6,7 +6,7 @@ package model;
  * 	Mode de fonctionnement :
  * 	<ul>
  * 		<li>Si une carte est connu a 100% et qu'elle est jouable alors jouer la carte
- * 		<li>Sinon donner un indice à un joueur aleatoire s'il y a des jetons restants
+ * 		<li>Sinon donner un indice à un joueur s'il y a des jetons restants
  *  	<li>Sinon defausser :
  *  </ul>
  *  	<ol>
@@ -88,7 +88,7 @@ public class SemiDummyJoueurIA extends JoueurIA {
     public boolean jouerCarte(){
         Carte c = this.coupTrivial();
         if (c != null) {
-            // ************************* JOUER LA CARTE *******************************
+            // ********* JOUER LA CARTE *****************
             int j = this.getMain().getIndex(c);
 
             try {
