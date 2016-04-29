@@ -89,7 +89,7 @@ public class JoueurIA extends Joueur {
                         return c;
                     }
                     else if(carteInutile(c)){
-                    	System.out.println("je sais que j'ai une carte inutile");
+                    	//System.out.println("je sais que j'ai une carte inutile");
                     	return c;
                     }
                 //}
@@ -120,7 +120,7 @@ public class JoueurIA extends Joueur {
             		res=true;
                 }
                 else if(carteInutile(c)){
-                	System.out.println("je sais que j'ai une carte inutile");
+                	//System.out.println("je sais que j'ai une carte inutile");
                     res=true;
                 }
             //}

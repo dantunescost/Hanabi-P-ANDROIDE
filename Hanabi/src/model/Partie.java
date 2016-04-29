@@ -75,6 +75,11 @@ public class Partie implements Serializable{
 	 * Indique quel joueur joue
 	 */
 	protected int aQuiLeTour;
+
+	/**
+	 * Indique si la partie est perdu ou pas
+	 */
+	protected boolean lost = false;
 	
 	/**
 	 * Constructeur d'une partie avec un nombre de joueur, d'indice donnes, et si la couleur multicolore est autorisee
@@ -133,7 +138,6 @@ public class Partie implements Serializable{
 	public void pioche(Joueur j) throws AdditionMainPleineException, PiocheVideException{
 		if(!this.pioche.isEmpty()){
 			j.getMain().ajouterCarte(this.pioche.remove(this.pioche.size()-1));
-			System.out.println("Le joueur "+j.id+" pioche.");
 			if(this.pioche.isEmpty())
 			{
 				this.dernierTour = true;
@@ -159,7 +163,6 @@ public class Partie implements Serializable{
 	public void defausse(Joueur j, int index) throws EnleverCarteInexistanteException, AdditionMainPleineException, PiocheVideException{
 		Carte carte = j.getMain().enleverCarte(index);
 		this.defausse.add(carte);
-		System.out.println("Le joueur "+j.id+" défausse un"+carte.getCardName());
 
         // Rajoute un jeton indice s'il n'y a pas déjà tous les indices disponibles
 		if(this.jetonIndice != this.maxIndices){
@@ -182,7 +185,6 @@ public class Partie implements Serializable{
 	public void joueCarte(Joueur j, int indice) throws EnleverCarteInexistanteException, PartiePerdueException, AdditionMainPleineException, PiocheVideException{
 		// Enleve la carte de la main du joueur
         Carte carte = j.getMain().enleverCarte(indice);
-		System.out.println("Le joueur "+j.id+" joue un"+carte.getCardName());
         // La carte est valide
 		if(this.cartesJouees.get(carte.getCouleur()).size()+1 == carte.getValeur()){
 			this.cartesJouees.get(carte.getCouleur()).add(carte);
@@ -193,7 +195,8 @@ public class Partie implements Serializable{
 			this.defausse.add(carte);
 			this.jetonEclair++;
 			if(this.jetonEclair == 3){
-				throw new PartiePerdueException();
+				setLost();
+				finirPartie();
 			}
 		}
 		pioche(j);
@@ -210,7 +213,6 @@ public class Partie implements Serializable{
 	public void indiceCouleur(Joueur j, CardColor c) throws IndiceSoitMemeException{
 		if(j != this.joueurs[this.aQuiLeTour] && this.jetonIndice>0){
 			j.getMain().indiceCouleur(c);
-			System.out.println("Voici les "+c.toString()+" du joueur "+j.id);
 
 			this.jetonIndice--;
 			if(this.pioche.isEmpty())
@@ -236,7 +238,6 @@ public class Partie implements Serializable{
 	public void indiceValeur(Joueur j, int val) throws IndiceSoitMemeException{
 		if(j != this.joueurs[this.aQuiLeTour] && this.jetonIndice>0){
 			j.getMain().indiceValeur(val);
-			System.out.println("Voici les "+val+" du joueur "+j.id);
 			
 			this.jetonIndice--;
 			if(this.pioche.isEmpty())
@@ -476,9 +477,11 @@ public class Partie implements Serializable{
 	public boolean getFinPartie() {
 		return partieFinie;
 	}
-	public PartieView createView()
-	{
-		PartieView p=new PartieView(this);
-		return p;
+	public void setLost(){
+		lost = true;
+	}
+
+	public boolean getLost() {
+		return lost;
 	}
 }

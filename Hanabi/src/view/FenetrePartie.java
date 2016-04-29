@@ -366,6 +366,11 @@ public class FenetrePartie extends JFrame{
 		if(this.playerSelected != 0){
 			afficherMainSelectionnee(g);
 		}
+
+		if (partie.getLost()==true){
+			new PartiePerdue(partie);
+		}
+
 	}
 	
 	public Partie getPartie() {

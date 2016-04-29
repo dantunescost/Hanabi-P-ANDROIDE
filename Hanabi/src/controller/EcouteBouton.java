@@ -11,6 +11,7 @@ import model.SemiDummyJoueurIA;
 import model.HeuristicJoueurIA;
 import model.Joueur;
 import model.JoueurHumain;
+import model.ParamHeuristic;
 import model.Partie;
 import view.FenetrePartie;
 import view.Parametres;
@@ -39,7 +40,8 @@ public class EcouteBouton implements ActionListener {
 			    	joue[1] = new SemiDummyJoueurIA("Sherlock", game, 1);
 			    }
 			    else {
-			    	joue[1] = new HeuristicJoueurIA("Sherlock", game, 1);
+			    	ParamHeuristic param=new ParamHeuristic();
+			    	joue[1] = new HeuristicJoueurIA("Sherlock", game, 1,param);
 			    }
 			    if((Integer)p.nbJoueurs.getSelectedItem()>2){
 				    if(p.joueurIA2.getSelectedItem().equals(DummyJoueurIA.class.getName())){
@@ -49,7 +51,8 @@ public class EcouteBouton implements ActionListener {
 				    	joue[2] = new SemiDummyJoueurIA("Watson", game, 2);
 				    }
 				    else {
-				    	joue[2] = new HeuristicJoueurIA("Watson", game, 2);
+				    	ParamHeuristic param=new ParamHeuristic();
+				    	joue[2] = new HeuristicJoueurIA("Watson", game, 2,param);
 				    }
 			    }
 			    if((Integer)p.nbJoueurs.getSelectedItem()>3){
@@ -60,7 +63,8 @@ public class EcouteBouton implements ActionListener {
 				    	joue[3] = new SemiDummyJoueurIA("Moriarty", game, 3);
 				    }
 				    else{
-				    	joue[3] = new HeuristicJoueurIA("Moriarty", game, 3);
+				    	ParamHeuristic param=new ParamHeuristic();
+				    	joue[3] = new HeuristicJoueurIA("Moriarty", game, 3,param);
 				    }
 			    }
 			    if((Integer)p.nbJoueurs.getSelectedItem()>4){
@@ -71,7 +75,8 @@ public class EcouteBouton implements ActionListener {
 				    	joue[4] = new SemiDummyJoueurIA("Lestrade", game, 4);
 				    }
 				    else{
-				    	joue[4] = new HeuristicJoueurIA("Lestrade", game, 4);
+				    	ParamHeuristic param=new ParamHeuristic();
+				    	joue[4] = new HeuristicJoueurIA("Lestrade", game, 4, param);
 				    }
 			    }
 			    try {
