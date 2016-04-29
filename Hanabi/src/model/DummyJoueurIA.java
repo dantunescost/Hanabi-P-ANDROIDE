@@ -19,6 +19,7 @@ package model;
  *  	</ol>
  */
 public class DummyJoueurIA extends JoueurIA {
+	private static final long serialVersionUID = -6758471606475814137L;
 
 	/**
 	 * Constructeur pour joueur Dummy IA

@@ -1,9 +1,7 @@
 package model;
 
 public class HeuristicJoueurIA extends JoueurIA{
-
-	
-	
+	private static final long serialVersionUID = 5998778971436218754L;
 	public HeuristicJoueurIA(String nom, Partie p, int id) 
 	{
         super(nom, p, id);

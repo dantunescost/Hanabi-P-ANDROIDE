@@ -1,9 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Represente un joueur.
  */
-public abstract class Joueur {
+public abstract class Joueur implements Serializable{
+	private static final long serialVersionUID = 6204450811065130112L;
 	/**
 	 * La main du joueur
 	 * @see <a href="Main.html">Main</a>

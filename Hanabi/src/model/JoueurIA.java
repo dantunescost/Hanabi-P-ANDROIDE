@@ -3,7 +3,7 @@ package model;
 import java.util.Random;
 
 public class JoueurIA extends Joueur {
-	
+	private static final long serialVersionUID = 882515923322600787L;
 	/**
 	 * Generateur de nombre aleatoire de ce joueur IA
 	 */

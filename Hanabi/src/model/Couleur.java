@@ -1,12 +1,15 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Represente les couleurs des cartes.
  */
-public class Couleur {
+public class Couleur implements Serializable{ 
+	private static final long serialVersionUID = 6840858689928410251L;
+
 	/**
 	 * Enumeration des couleurs possibles
 	 */

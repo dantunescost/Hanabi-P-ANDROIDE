@@ -9,7 +9,8 @@ import model.Couleur.CardColor;
  * Permet de jouer une partie dans le terminal
  */
 public class PartieTerminal extends Partie{
-	
+	private static final long serialVersionUID = -81892360097821424L;
+
 	/**
 	 * Constructeur d'une partie dans le terminal avec un nombre de joueur, d'indice donnes, et si la couleur multicolore est autorisee
 	 * @param nbJoueurs		Nombre de joueurs dans la partie

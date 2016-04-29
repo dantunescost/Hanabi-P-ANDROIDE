@@ -1,13 +1,18 @@
 package view;
 
 import java.awt.Color;
+import java.awt.FileDialog;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import controller.MouseListener;
 import model.EnleverCarteInexistanteException;
@@ -115,12 +120,15 @@ public class FenetrePartie extends JFrame{
 	}
 	
 	public void afficherLaDefausse(Graphics g){
-		int x = (partie.getDefausse().size()>4)?7*128:partie.getDefausse().size()*128;
+		int x = (partie.getDefausse().size()>7)?7*128:partie.getDefausse().size()*128;
 		int y = 200 + (partie.getDefausse().size()/7)*65;
 		int startX = this.getWidth()/2 - (x/2);
 		int startY = this.getHeight()/2 - (y/2);
-		g.setColor(Color.black);
-		g.fillRect(50, 50, this.getWidth()-100, this.getHeight()-100);
+		Color c = new Color(128,128,128,127);
+		g.setColor(c);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		g.setColor(Color.BLACK);
+		g.fillRect(startX-10, startY-10, x+20, y+20);
 		for(int i=0; i<this.partie.getDefausse().size(); i++){
 			Image img = new ImageIcon(R+this.partie.getDefausse().get(i).getCardName()).getImage();
 			g.drawImage(img, startX+(i%7)*128, startY+(i/7)*65, 128, 200, this);
@@ -285,6 +293,38 @@ public class FenetrePartie extends JFrame{
         g.fillRect(startX-karteW-3, startY-(karteH/3)*2-3, 3, karteH+3);
         g.fillRect(startX+(nbCartes-1)*25, startY-(karteH/3)*2-3, 3, karteH+6);
         g.fillRect(startX-karteW-3, startY-(karteH/3)*2+karteH,(nbCartes-1)*25+karteW+3, 3);
+	}
+	
+	public void saveToFile(){
+		FileDialog dialog = new FileDialog(this,"Enregistrer Partie",FileDialog.SAVE);
+		dialog.setVisible(true);
+		String dir = dialog.getDirectory();
+		String fileName = dialog.getFile();
+		String filePath = dir + fileName;
+		if(fileName != null && fileName.trim().length() != 0)
+		{
+			File file = new File(filePath);
+			try{
+				FileOutputStream fileStream = new FileOutputStream(file);
+				ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+
+				objectStream.writeObject(this.partie);
+				
+				objectStream.close();
+				fileStream.close();
+				
+				JOptionPane.showConfirmDialog(this, "Enregistrer avec succes ", "Jeu Hanabi", JOptionPane.DEFAULT_OPTION);
+				
+			}
+			catch(Exception e){
+				JOptionPane.showConfirmDialog(this, e.toString()+"\nEnregistrer avec erreur", 
+						"Jeu Hanabi", JOptionPane.DEFAULT_OPTION);			
+			}
+		}
+		else{
+			JOptionPane.showConfirmDialog(this,"Erreur d'enregistrement","Jeu Hanabi",
+					JOptionPane.DEFAULT_OPTION);					
+		}
 	}
 
 	public void paint(Graphics g){

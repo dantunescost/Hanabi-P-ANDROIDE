@@ -16,7 +16,7 @@ package model;
  *  	</ol>
  */
 public class SemiDummyJoueurIA extends JoueurIA {
-
+	private static final long serialVersionUID = 2308625908918058364L;
 	/**
 	 * Constructeur pour joueur SemiDummy IA
 	 * @param nom		Le nom associe au joueur
