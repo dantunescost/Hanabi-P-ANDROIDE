@@ -471,9 +471,5 @@ public class Partie implements Serializable{
 	public boolean getFinPartie() {
 		return partieFinie;
 	}
-	public PartieView createView()
-	{
-		PartieView p=new PartieView(this);
-		return p;
-	}
+
 }

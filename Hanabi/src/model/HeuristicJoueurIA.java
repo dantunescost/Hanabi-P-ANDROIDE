@@ -2,10 +2,19 @@ package model;
 
 public class HeuristicJoueurIA extends JoueurIA{
 	private static final long serialVersionUID = 5998778971436218754L;
-	public HeuristicJoueurIA(String nom, Partie p, int id) 
+	
+	private ParamHeuristic param;
+	
+	public HeuristicJoueurIA(String nom, Partie p, int id,ParamHeuristic param) 
 	{
         super(nom, p, id);
+        this.param=param;
     }
+	public PartieView createView(Partie p)
+	{
+		PartieView pv=new PartieView(p,this.param);
+		return pv;
+	}
 	public void jouerCoup()
 	{
 		int i=0;
@@ -161,7 +170,7 @@ public class HeuristicJoueurIA extends JoueurIA{
 	public double testJouerCarte(Carte c1)
 	{
 		double h=0;
-		PartieView pw=this.p.createView();
+		PartieView pw=createView(this.p);
 		pw.majJoueur(this);
 		pw.decr_nb_jouables();//la carte que l'on va jouer
 		if(this.isJouableTrivial(c1))
@@ -246,7 +255,7 @@ public class HeuristicJoueurIA extends JoueurIA{
 	}
 	public double testDefausserCarte(Carte c1)
 	{
-		PartieView pw=this.p.createView();
+		PartieView pw=this.createView(this.p);
 		pw.majJoueur(this);
 		pw.incr_nb_indices();//puisque l'on defausse une carte
 		boolean bloquage=false;
@@ -359,7 +368,7 @@ public class HeuristicJoueurIA extends JoueurIA{
 	}
 	public double testIndice(Joueur j, Couleur.CardColor couleur, int valeur)//laisser un des 2 à null/0
 	{
-		PartieView pw=this.p.createView();
+		PartieView pw=this.createView(this.p);
 		pw.majJoueur(this);
 		pw.decr_nb_indices();
 		if(couleur != null)

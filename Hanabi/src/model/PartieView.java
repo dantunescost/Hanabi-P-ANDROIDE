@@ -12,16 +12,16 @@ public class PartieView extends Partie{
 	private int info_defaussables;
 	private int info_neutres;
 	
-	private double h_nbp=50;
-	private double h_nbi=5;
-	private double h_nbe=5;
-	private double h_nbj=10;
-	private double h_nbd=3;
-	private double h_ij=15;
-	private double h_id=3;
-	private double h_in=2;
+	private double h_nbp;
+	private double h_nbi;
+	private double h_nbe;
+	private double h_nbj;
+	private double h_nbd;
+	private double h_ij;
+	private double h_id;
+	private double h_in;
 	
-	public PartieView(Partie p)
+	public PartieView(Partie p,ParamHeuristic param)
 	{
 		/*Partie clone*/
 		super(p.nbJoueurs,p.maxIndices, p.multicolor, true);
@@ -49,6 +49,15 @@ public class PartieView extends Partie{
 		this.nb_points=p.calculerPoints();
 		this.nb_indices=p.jetonIndice;
 		this.nb_erreurs=p.jetonEclair;
+		
+		this.h_nbp=param.get_h_nbp();
+		this.h_nbi=param.get_h_nbi();
+		this.h_nbe=param.get_h_nbe();
+		this.h_nbj=param.get_h_nbj();
+		this.h_nbd=param.get_h_nbd();
+		this.h_ij=param.get_h_ij();
+		this.h_id=param.get_h_id();
+		this.h_in=param.get_h_in();
 	}
 	public void majJoueur(JoueurIA j)
 	{
