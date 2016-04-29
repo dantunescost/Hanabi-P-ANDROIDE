@@ -31,6 +31,7 @@ public class FenetrePartie extends JFrame{
 	public boolean afficheDef;
 	public int playerSelected = 0;
 	public static String R = System.getProperty("user.dir");
+	private Menu menu = new Menu();
 
 	public FenetrePartie(Partie p){
 		super("Hanabi");
@@ -49,6 +50,9 @@ public class FenetrePartie extends JFrame{
 		this.table = new Table();
 
 		this.addMouseListener(new MouseListener(this));
+		
+		this.menu.addListeners(this);
+		this.setJMenuBar(menu);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -330,8 +334,9 @@ public class FenetrePartie extends JFrame{
 	public void paint(Graphics g){
 		//super.paint(g);
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
+		this.paintComponents(g);
 		//background
-		g.drawImage(new ImageIcon(R+"wood.jpg").getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+		g.drawImage(new ImageIcon(R+"wood.jpg").getImage(), 0, 20, this.getWidth(), this.getHeight()-20, this);
 		//draw table
 		this.table.paintTable(g, this);
 		//draw hands

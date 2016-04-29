@@ -47,7 +47,6 @@ public class MouseListener extends MouseAdapter {
 				this.secondClick = true;
 				this.jouerCoup = true;
 				this.partie.update(this.partie.getGraphics());
-				this.partie.saveToFile();
 			}
 			else{
 				if(this.secondClick && isInButtonAnnuler(x,y)){
@@ -175,6 +174,7 @@ public class MouseListener extends MouseAdapter {
 				}
 			}
 		}
+		this.partie.repaint();
 	}
 
 	private int isInIndices(int x, int y) {
