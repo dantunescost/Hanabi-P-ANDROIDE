@@ -75,6 +75,11 @@ public class Partie implements Serializable{
 	 * Indique quel joueur joue
 	 */
 	protected int aQuiLeTour;
+
+	/**
+	 * Indique si la partie est perdu ou pas
+	 */
+	protected boolean lost = false;
 	
 	/**
 	 * Constructeur d'une partie avec un nombre de joueur, d'indice donnes, et si la couleur multicolore est autorisee
@@ -190,7 +195,8 @@ public class Partie implements Serializable{
 			this.defausse.add(carte);
 			this.jetonEclair++;
 			if(this.jetonEclair == 3){
-				throw new PartiePerdueException();
+				setLost();
+				finirPartie();
 			}
 		}
 		pioche(j);
@@ -471,5 +477,11 @@ public class Partie implements Serializable{
 	public boolean getFinPartie() {
 		return partieFinie;
 	}
+	public void setLost(){
+		lost = true;
+	}
 
+	public boolean getLost() {
+		return lost;
+	}
 }
