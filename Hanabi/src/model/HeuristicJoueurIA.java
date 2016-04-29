@@ -77,45 +77,48 @@ public class HeuristicJoueurIA extends JoueurIA{
 		boolean a_joue=false;
 		for(Joueur j : p.joueurs)
     	{
-			for(i=0; i<5;i++)
-			{
-				if(a_joue==false)
+			if (j.getId()!=this.id)
+    		{
+				for(i=0; i<5;i++)
 				{
-					if(h_indice_valeur[j.getId()+i]==h_max)
+					if(a_joue==false)
 					{
-						try {
-							p.indiceValeur(j, i+1);
-						} catch (IndiceSoitMemeException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						if(h_indice_valeur[j.getId()+i]==h_max)
+						{
+							try {
+								p.indiceValeur(j, i+1);
+							} catch (IndiceSoitMemeException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							a_joue=true;
 						}
-						a_joue=true;
 					}
-				}
-				if(a_joue==false)
-				{
-					if(h_indice_couleur[j.getId()+i]==h_max)
+					if(a_joue==false)
 					{
-						Couleur.CardColor coul=null;
-						if(i==0)
-							coul=Couleur.CardColor.BLANC;
-						else if(i==1)
-							coul=Couleur.CardColor.BLEU;
-						else if(i==2)
-							coul=Couleur.CardColor.VERT;
-						else if(i==3)
-							coul=Couleur.CardColor.JAUNE;
-						else if(i==4)
-							coul=Couleur.CardColor.ROUGE;
-						System.out.println(i);
-						System.out.println(coul.toString());
-						try {
-							p.indiceCouleur(j, coul);
-						} catch (IndiceSoitMemeException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						if(h_indice_couleur[j.getId()+i]==h_max)
+						{
+							Couleur.CardColor coul=null;
+							if(i==0)
+								coul=Couleur.CardColor.BLANC;
+							else if(i==1)
+								coul=Couleur.CardColor.BLEU;
+							else if(i==2)
+								coul=Couleur.CardColor.VERT;
+							else if(i==3)
+								coul=Couleur.CardColor.JAUNE;
+							else if(i==4)
+								coul=Couleur.CardColor.ROUGE;
+							System.out.println(i);
+							System.out.println(coul.toString());
+							try {
+								p.indiceCouleur(j, coul);
+							} catch (IndiceSoitMemeException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							a_joue=true;
 						}
-						a_joue=true;
 					}
 				}
 			}
