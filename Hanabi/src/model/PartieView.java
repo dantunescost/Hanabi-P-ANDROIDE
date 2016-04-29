@@ -15,14 +15,14 @@ public class PartieView extends Partie{
 	private int info_defaussables;
 	private int info_neutres;
 	
-	private double h_nbp=5;
-	private double h_nbi=1.5;
-	private double h_nbe=4;
-	private double h_nbj=1.5;
-	private double h_nbd=1.25;
-	private double h_ij=2;
-	private double h_id=1.6;
-	private double h_in=1.25;
+	private double h_nbp=50;
+	private double h_nbi=5;
+	private double h_nbe=5;
+	private double h_nbj=10;
+	private double h_nbd=3;
+	private double h_ij=15;
+	private double h_id=3;
+	private double h_in=2;
 	
 	public PartieView(Partie p)
 	{
@@ -174,10 +174,10 @@ public class PartieView extends Partie{
 		this.info_neutres = info_neutres;
 	}
 	public void incr_info_neutres(){
-		info_defaussables++;
+		info_neutres++;
 	}
 	public void decr_info_neutres(){
-		info_defaussables--;
+		info_neutres--;
 	}
 
 	public double valeur_heuristique(){

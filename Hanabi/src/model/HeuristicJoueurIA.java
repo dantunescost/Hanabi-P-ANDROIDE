@@ -45,16 +45,16 @@ public class HeuristicJoueurIA extends JoueurIA{
 	    	{
 	    		if (j.getId()!=this.id)
 	    		{
-	    			h_indice_valeur[j.getId()]=testIndice(j, null, 1);
-	    			h_indice_valeur[j.getId()+1]=testIndice(j, null, 2);
-	    			h_indice_valeur[j.getId()+2]=testIndice(j, null, 3);
-	    			h_indice_valeur[j.getId()+3]=testIndice(j, null, 4);
-	    			h_indice_valeur[j.getId()+4]=testIndice(j, null, 5);
-	    			h_indice_couleur[j.getId()]=testIndice(j, Couleur.CardColor.BLANC, 0);
-	    			h_indice_couleur[j.getId()+1]=testIndice(j, Couleur.CardColor.BLEU, 0);
-	    			h_indice_couleur[j.getId()+2]=testIndice(j, Couleur.CardColor.VERT, 0);
-	    			h_indice_couleur[j.getId()+3]=testIndice(j, Couleur.CardColor.JAUNE, 0);
-	    			h_indice_couleur[j.getId()+4]=testIndice(j, Couleur.CardColor.ROUGE, 0);
+	    			h_indice_valeur[j.getId()*5]=testIndice(j, null, 1);
+	    			h_indice_valeur[j.getId()*5+1]=testIndice(j, null, 2);
+	    			h_indice_valeur[j.getId()*5+2]=testIndice(j, null, 3);
+	    			h_indice_valeur[j.getId()*5+3]=testIndice(j, null, 4);
+	    			h_indice_valeur[j.getId()*5+4]=testIndice(j, null, 5);
+	    			h_indice_couleur[j.getId()*5]=testIndice(j, Couleur.CardColor.BLANC, 0);
+	    			h_indice_couleur[j.getId()*5+1]=testIndice(j, Couleur.CardColor.BLEU, 0);
+	    			h_indice_couleur[j.getId()*5+2]=testIndice(j, Couleur.CardColor.VERT, 0);
+	    			h_indice_couleur[j.getId()*5+3]=testIndice(j, Couleur.CardColor.JAUNE, 0);
+	    			h_indice_couleur[j.getId()*5+4]=testIndice(j, Couleur.CardColor.ROUGE, 0);
 	    		}
 	    	}	
     	}
@@ -71,14 +71,15 @@ public class HeuristicJoueurIA extends JoueurIA{
     	{
 			for(i=0; i<5;i++)
 			{
-				if(h_indice_valeur[j.getId()+i]>h_max)
-					h_max=h_indice_valeur[j.getId()+i];
-				if(h_indice_couleur[j.getId()+i]>h_max)
-					h_max=h_indice_couleur[j.getId()+i];
+				if(h_indice_valeur[j.getId()*5+i]>h_max)
+					h_max=h_indice_valeur[j.getId()*5+i];
+				if(h_indice_couleur[j.getId()*5+i]>h_max)
+					h_max=h_indice_couleur[j.getId()*5+i];
 			}
     	}
 		//selection coup
 		boolean a_joue=false;
+		System.out.println("H MAX: "+h_max);
 		if(p.getJetonIndice()>0)
 		{
 			for(Joueur j : p.joueurs)
@@ -89,12 +90,8 @@ public class HeuristicJoueurIA extends JoueurIA{
 					{
 						if(a_joue==false)
 						{
-							if(h_indice_valeur[j.getId()+i]==h_max)
+							if(h_indice_valeur[j.getId()*5+i]==h_max)
 							{
-	
-								System.out.println("IA qui donne:"+this.getId());
-								System.out.println("IA qui recoit:"+j.getId());
-								System.out.println("IA tour:"+p.aQuiLeTour);
 								try {
 									p.indiceValeur(j, i+1);
 								} catch (IndiceSoitMemeException e) {
@@ -106,7 +103,7 @@ public class HeuristicJoueurIA extends JoueurIA{
 						}
 						if(a_joue==false)
 						{
-							if(h_indice_couleur[j.getId()+i]==h_max)
+							if(h_indice_couleur[j.getId()*5+i]==h_max)
 							{
 								Couleur.CardColor coul=null;
 								if(i==0)
@@ -119,9 +116,6 @@ public class HeuristicJoueurIA extends JoueurIA{
 									coul=Couleur.CardColor.JAUNE;
 								else if(i==4)
 									coul=Couleur.CardColor.ROUGE;
-								System.out.println("IA qui donne:"+this.getId());
-								System.out.println("IA qui recoit:"+j.getId());
-								System.out.println("IA tour:"+p.aQuiLeTour);
 								try {
 									p.indiceCouleur(j, coul);
 								} catch (IndiceSoitMemeException e) {
@@ -173,9 +167,9 @@ public class HeuristicJoueurIA extends JoueurIA{
 		PartieView pw=this.p.createView();
 		pw.majJoueur(this);
 		pw.decr_nb_jouables();//la carte que l'on va jouer
-		pw.incr_nb_points();
 		if(this.isJouableTrivial(c1))
 		{
+			pw.incr_nb_points();
 			for(Carte c2 : this.getMain().main)
 			{
 				if((c2.isValeurConnue())&&(c2.isCouleurConnue()))
@@ -245,8 +239,11 @@ public class HeuristicJoueurIA extends JoueurIA{
 						}
 	    			}
 	    		}
+	    		h=pw.valeur_heuristique();
 	    	}
-			h=pw.valeur_heuristique();
+		}
+		else{
+			h=-10000;
 		}
 		return h;
 	}
