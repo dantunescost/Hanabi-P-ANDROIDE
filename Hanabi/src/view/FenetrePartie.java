@@ -366,8 +366,6 @@ public class FenetrePartie extends JFrame{
 		if(this.playerSelected != 0){
 			afficherMainSelectionnee(g);
 		}
-
-
 	}
 	
 	public Partie getPartie() {

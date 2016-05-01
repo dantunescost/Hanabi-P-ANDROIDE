@@ -28,8 +28,8 @@ public class PartiePerdue extends JFrame{
 
     public void paint(Graphics g){
 
-        //g.clearRect(0,0,this.getWidth(),this.getHeight());
-        //g.drawImage(new ImageIcon(R+"lose.png").getImage(), 0, 0, this.getWidth(), this.getHeight()-51, this);
+        g.clearRect(0,0,this.getWidth(),this.getHeight());
+        g.drawImage(new ImageIcon(R+"lose.png").getImage(), 0, 0, this.getWidth(), this.getHeight()-51, this);
 
         g.drawImage(new ImageIcon(R+"nouvellePartie.png").getImage(), 10, 449+6, 193, 40, this);
         g.drawImage(new ImageIcon(R+"chargerPartie.png").getImage(), 10+193+10, 449+6, 184, 40, this);
