@@ -321,7 +321,7 @@ public class FenetrePartie extends JFrame{
 				
 			}
 			catch(Exception e){
-				JOptionPane.showConfirmDialog(this, e.toString()+"\nEnregistrer avec erreur", 
+				JOptionPane.showConfirmDialog(this, e.toString()+"\nErreur d'enregistrement", 
 						"Jeu Hanabi", JOptionPane.DEFAULT_OPTION);			
 			}
 		}
@@ -370,6 +370,10 @@ public class FenetrePartie extends JFrame{
 	
 	public Partie getPartie() {
 		return partie;
+	}
+	
+	public void setPartie(Partie p) {
+		this.partie = p;
 	}
 
 	public int getTableWidth() {

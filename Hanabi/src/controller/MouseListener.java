@@ -478,7 +478,7 @@ public class MouseListener extends MouseAdapter {
 	}
 	
 	public void faireJouerIAs(){
-		for(int i=1;i<this.partie.getPartie().getNbJoueurs();i++){
+		for(int i=this.partie.getPartie().getaQuiLeTour();i<this.partie.getPartie().getNbJoueurs();i++){
 			if(!this.partie.getPartie().getFinPartie())
 			{
 				JoueurIA player = (JoueurIA) this.partie.getPartie().getJoueurs()[i];

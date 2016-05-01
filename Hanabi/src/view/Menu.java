@@ -16,13 +16,13 @@ public class Menu extends JMenuBar {
 	private static final long serialVersionUID = 2401343171737574518L;
 	JMenu fichier = new JMenu("Fichier");
 	JMenu help = new JMenu("Help");
-	JMenuItem quitter = new JMenuItem("Quitter");
-	JMenuItem nouvPartie = new JMenuItem("Nouvelle Partie");
-	JMenuItem chargPartie = new JMenuItem("Charger Partie");
-	JMenuItem savePartie = new JMenuItem("Enregistrer Partie");
+	public JMenuItem quitter = new JMenuItem("Quitter");
+	public JMenuItem nouvPartie = new JMenuItem("Nouvelle Partie");
+	public JMenuItem chargPartie = new JMenuItem("Charger Partie");
+	public JMenuItem savePartie = new JMenuItem("Enregistrer Partie");
 
-	JMenuItem aide = new JMenuItem("Aide");
-	JMenuItem propos = new JMenuItem("A propos");
+	public JMenuItem aide = new JMenuItem("Aide");
+	public JMenuItem propos = new JMenuItem("A propos");
 
 	public Menu(){
 		quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
