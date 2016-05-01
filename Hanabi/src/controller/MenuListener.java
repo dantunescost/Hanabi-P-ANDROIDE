@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import view.FenetrePartie;
 
 public class MenuListener implements ActionListener {
 	private JFrame fen;
@@ -22,6 +23,8 @@ public class MenuListener implements ActionListener {
 
 			if(option ==JOptionPane.YES_OPTION)
 				System.exit(0);
+		}else if(command.equals("Enregistrer Partie")){
+			//(FenetrePartie) fen.saveToFile();
 		}
 		
 		if(fen != null){

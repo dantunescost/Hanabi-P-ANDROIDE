@@ -12,6 +12,7 @@ import model.JoueurIA;
 import model.PartiePerdueException;
 import model.PiocheVideException;
 import view.FenetrePartie;
+import view.PartiePerdue;
 
 
 public class MouseListener extends MouseAdapter {
@@ -60,8 +61,10 @@ public class MouseListener extends MouseAdapter {
 					if(this.secondClick && isInPlayersCards(x,y)!=0 && this.jouerCoup){
 						try {
 							this.partie.getPartie().joueCarte(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
-						} catch (EnleverCarteInexistanteException | PartiePerdueException | AdditionMainPleineException | PiocheVideException e1) {
+						} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
 							e1.printStackTrace();
+						} catch(PartiePerdueException e2){
+							new PartiePerdue(this.partie.getPartie());
 						}
 						this.partie.setAnnuler(false);
 						this.firstClick = true;

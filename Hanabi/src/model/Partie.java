@@ -197,6 +197,7 @@ public class Partie implements Serializable{
 			if(this.jetonEclair == 3){
 				setLost();
 				finirPartie();
+				throw new PartiePerdueException();
 			}
 		}
 		pioche(j);

@@ -11,6 +11,7 @@ import javax.swing.KeyStroke;
 
 import controller.MenuListener;
 
+
 public class Menu extends JMenuBar {
 	private static final long serialVersionUID = 2401343171737574518L;
 	JMenu fichier = new JMenu("Fichier");
@@ -32,7 +33,7 @@ public class Menu extends JMenuBar {
 		fichier.add(nouvPartie);
 		fichier.add(chargPartie);
 		fichier.add(savePartie);
-		fichier.add(new JMenuItem("_"));
+		fichier.addSeparator();
 		fichier.add(quitter);	
 
 		help.add(aide);
@@ -42,7 +43,7 @@ public class Menu extends JMenuBar {
 		this.setVisible(true);
 	}
 	
-	public void addListeners(JFrame fen){
+	public void addListeners(final JFrame fen){
 		MenuListener ml = new MenuListener(fen);
 		this.quitter.addActionListener(ml);
 		this.nouvPartie.addActionListener(ml);
