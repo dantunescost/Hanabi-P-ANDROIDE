@@ -25,6 +25,7 @@ public class MouseListener extends MouseAdapter {
 	private int nbCartes;
 	private int karteH;
 	private int karteW;
+	private boolean defausser = false;
 	
 	public MouseListener(FenetrePartie partie){
 		this.partie = partie;
@@ -55,6 +56,7 @@ public class MouseListener extends MouseAdapter {
 					this.firstClick = true;
 					this.secondClick = false;
 					this.jouerCoup = false;
+					this.defausser  = false;
 					this.partie.update(this.partie.getGraphics());
 				}
 				else{
@@ -89,7 +91,7 @@ public class MouseListener extends MouseAdapter {
 							}
 						}
 						else{
-							if(this.secondClick && isInPlayersCards(x,y) != 0){
+							if(this.secondClick && isInPlayersCards(x,y) != 0 && this.defausser){
 								try {
 									this.partie.getPartie().defausse(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
 								} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
@@ -98,6 +100,7 @@ public class MouseListener extends MouseAdapter {
 								this.partie.setAnnuler(false);
 								this.firstClick = true;
 								this.secondClick = false;
+								this.defausser=false;
 								this.partie.update(this.partie.getGraphics());
 								if(this.partie.getPartie().getaQuiLeTour()!=0){
 									if(this.partie.getPartie().getFinPartie()){
@@ -114,6 +117,7 @@ public class MouseListener extends MouseAdapter {
 									this.partie.setAnnuler(true);
 									this.firstClick = false;
 									this.secondClick = true;
+									this.defausser = true;
 									this.partie.update(this.partie.getGraphics());
 								}
 								else{

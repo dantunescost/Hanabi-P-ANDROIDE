@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.JoueurIA;
 import model.Partie;
 import view.FenetrePartie;
+import view.Parametres;
 
 public class MenuListener implements ActionListener {
 	private JFrame fen;
@@ -64,8 +65,10 @@ public class MenuListener implements ActionListener {
 					fen.dispose();
 				}
 			}
+		} else if(command.equals("Nouvelle Partie")){
+			new Parametres();
+			fen.dispose();
 		}
-		
 		if(fen != null){
 			fen.repaint();
 		}
