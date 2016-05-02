@@ -61,8 +61,28 @@ public class MenuListener implements ActionListener {
 						}
 					}
 				}else{
-					new FenetrePartie(p);
 					fen.dispose();
+					fen = new FenetrePartie(p);
+					if(p.getaQuiLeTour()!=0){
+						for(int i=((FenetrePartie)fen).getPartie().getaQuiLeTour();i<((FenetrePartie)fen).getPartie().getNbJoueurs();i++){
+							if(!((FenetrePartie)fen).getPartie().getFinPartie())
+							{
+								JoueurIA player = (JoueurIA) ((FenetrePartie)fen).getPartie().getJoueurs()[i];
+								if( (player.getId() == ((FenetrePartie)fen).getPartie().getDernierJoueur()) && (((FenetrePartie)fen).getPartie().getDernierTour()) ){
+									((FenetrePartie)fen).getPartie().finirPartie();
+									System.out.println("Partie finie 4, id_ia : " + player.getId());
+								}
+								player.jouerCoup();
+								try {
+									Thread.sleep(750);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								((FenetrePartie)fen).update(((FenetrePartie)fen).getGraphics());
+							}
+						}
+					}
 				}
 			}
 		} else if(command.equals("Nouvelle Partie")){

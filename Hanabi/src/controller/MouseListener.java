@@ -34,7 +34,7 @@ public class MouseListener extends MouseAdapter {
         karteH = this.partie.tableHeight/4;
         karteW =(int)( (float)karteH*0.645);
 	}
-	
+
 	public void mouseClicked(MouseEvent e){
 		int x = e.getX();
 		int y = e.getY();
