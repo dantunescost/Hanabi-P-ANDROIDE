@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd61464d-c34a-4b8c-9f44-d94fd7dad3a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/ressources/lose.png" afterPath="$PROJECT_DIR$/Hanabi/ressources/lose.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java" afterPath="$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/model/Partie.java" afterPath="$PROJECT_DIR$/Hanabi/src/model/Partie.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java" afterPath="$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java" afterPath="$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java" />
     </list>
     <ignored path="Hanabi-P-ANDROIDE.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,26 +32,21 @@
         <entry file="file://$PROJECT_DIR$/Hanabi/src/model/Partie.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+              <caret line="222" column="39" selection-start-line="222" selection-start-column="20" selection-end-line="222" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#13460#13461#0" expanded="true" />
-                <element signature="e#13478#13479#0" expanded="true" />
-                <element signature="e#13507#13508#0" expanded="true" />
-                <element signature="e#13525#13526#0" expanded="true" />
+                <marker date="1462195779000" expanded="true" signature="13586:13590" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Table.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hanabi/src/view/Table.java">
+      <file leaf-file-name="PartiePerdueException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hanabi/src/model/PartiePerdueException.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="344" column="29" selection-start-line="344" selection-start-column="29" selection-end-line="344" selection-end-column="29" />
+              <caret line="349" column="29" selection-start-line="349" selection-start-column="29" selection-end-line="349" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,8 +66,8 @@
       <file leaf-file-name="PartiePerdue.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6883365">
-              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.34034416">
+              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,11 +75,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Defausse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hanabi/src/view/Defausse.java">
+      <file leaf-file-name="PartieGagne.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+              <caret line="40" column="84" selection-start-line="40" selection-start-column="84" selection-end-line="40" selection-end-column="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MouseListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,13 +134,15 @@
         <option value="$PROJECT_DIR$/Hanabi/src/model/DummyJoueurIA.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/model/PartieTerminal.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/controller/FenetreListener.java" />
-        <option value="$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/Defausse.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/PartieGraphique.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/AfficherMains.java" />
-        <option value="$PROJECT_DIR$/Hanabi/src/model/Partie.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/Table.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/view/PartieGagné.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/model/Partie.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java" />
       </list>
     </option>
@@ -144,9 +155,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="207" />
-    <option name="y" value="24" />
-    <option name="width" value="1072" />
+    <option name="x" value="351" />
+    <option name="y" value="23" />
+    <option name="width" value="929" />
     <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -174,6 +185,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -301,31 +313,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ressources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hanabi-P-ANDROIDE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hanabi-P-ANDROIDE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hanabi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value=".settings" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -356,10 +349,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/HeuristicJoueurIA.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/JoueurIA.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/Partie.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/PartieView.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/controller/MenuListener.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/view/Menu.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -980,11 +973,17 @@
       <option name="project" value="LOCAL" />
       <updated>1458764785515</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="PartiePerdu popup (les boutons ne marchent pas encore)">
+      <created>1461929498823</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1461929498823</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="207" y="24" width="1072" height="773" extended-state="0" />
+    <frame x="351" y="23" width="929" height="773" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -997,8 +996,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21732955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20988806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2378902" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1009,6 +1007,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1047,7 +1046,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Joueur IA" />
     <MESSAGE value="Commentaires Dummy IA (Joueur IA)" />
     <MESSAGE value="Rajouté changement Joueur" />
     <MESSAGE value="Ajouté classe DummyJoueurIA - Commencé methode quoiFaire" />
@@ -1072,7 +1070,8 @@
     <MESSAGE value="Changed path for images" />
     <MESSAGE value="Travail interface" />
     <MESSAGE value="Donner indice que s'il y a plus de 0 jetons indices. Affiche pas le bouton donner indice sinon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Donner indice que s'il y a plus de 0 jetons indices. Affiche pas le bouton donner indice sinon" />
+    <MESSAGE value="PartiePerdu popup (les boutons ne marchent pas encore)" />
+    <option name="LAST_COMMIT_MESSAGE" value="PartiePerdu popup (les boutons ne marchent pas encore)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1105,6 +1104,7 @@
           <caret line="104" column="21" selection-start-line="104" selection-start-column="14" selection-end-line="104" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1462195779000" expanded="true" signature="13586:13590" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1165,6 +1165,7 @@
           <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1462195779000" expanded="true" signature="13586:13590" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1211,6 +1212,7 @@
           <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1462195779000" expanded="true" signature="13586:13590" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1304,14 +1306,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="29" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hanabi/src/model/PartieView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6634799">
@@ -1364,15 +1358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/model/PartiePerdueException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1400,26 +1385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/Defausse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/Table.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hanabi/ressources/indice.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1435,24 +1400,69 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/model/Partie.java">
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/Defausse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13460#13461#0" expanded="true" />
-            <element signature="e#13478#13479#0" expanded="true" />
-            <element signature="e#13507#13508#0" expanded="true" />
-            <element signature="e#13525#13526#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7705545">
+          <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/model/PartiePerdueException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="344" column="29" selection-start-line="344" selection-start-column="29" selection-end-line="344" selection-end-column="29" />
+          <caret line="349" column="29" selection-start-line="349" selection-start-column="29" selection-end-line="349" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/model/Partie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="222" column="39" selection-start-line="222" selection-start-column="20" selection-end-line="222" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1462195779000" expanded="true" signature="13586:13590" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="84" selection-start-line="40" selection-start-column="84" selection-end-line="40" selection-end-column="84" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1461,8 +1471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6883365">
-          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.34034416">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

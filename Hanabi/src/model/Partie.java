@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import model.Couleur.CardColor;
+import view.PartieGagne;
 
 /**
  * Represente une partie.
@@ -478,6 +479,7 @@ public class Partie implements Serializable{
 	public boolean getFinPartie() {
 		return partieFinie;
 	}
+
 	public void setLost(){
 		lost = true;
 	}

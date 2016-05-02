@@ -12,6 +12,7 @@ import model.JoueurIA;
 import model.PartiePerdueException;
 import model.PiocheVideException;
 import view.FenetrePartie;
+import view.PartieGagne;
 import view.PartiePerdue;
 
 
@@ -76,6 +77,7 @@ public class MouseListener extends MouseAdapter {
 						if(this.partie.getPartie().getaQuiLeTour()!=0){
 							if(this.partie.getPartie().getFinPartie()){
 								System.out.println("Partie finie 1");
+								new PartieGagne(this.partie.getPartie());
 							}
 							else
 							{
@@ -105,6 +107,7 @@ public class MouseListener extends MouseAdapter {
 								if(this.partie.getPartie().getaQuiLeTour()!=0){
 									if(this.partie.getPartie().getFinPartie()){
 										System.out.println("Partie finie 2");
+										new PartieGagne(this.partie.getPartie());
 									}
 									else
 									{
@@ -164,6 +167,7 @@ public class MouseListener extends MouseAdapter {
 													if(this.partie.getPartie().getaQuiLeTour()!=0){
 														if(this.partie.getPartie().getFinPartie()){
 															System.out.println("Partie finie 3");
+															new PartieGagne(this.partie.getPartie());
 														}
 														else
 														{
