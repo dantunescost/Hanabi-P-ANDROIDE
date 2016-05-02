@@ -1,6 +1,7 @@
 package view;
 
 import model.Couleur;
+import model.Couleur.CardColor;
 import model.EnleverCarteInexistanteException;
 import model.Main;
 
@@ -47,8 +48,13 @@ public class AfficherMains {
         		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getValeur()), startX-karteW+i*25+3, startY-(karteH/3)*2-3);
             }
             if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).isCouleurConnue()){
-            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
-            	g.fillOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
+            	if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur().equals(CardColor.MULTI)){
+            		Image img = new ImageIcon(R+"multicolor.png").getImage();
+        			g.drawImage(img,startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2, this.p);
+            	} else{
+                	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
+                	g.fillOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
+            	}
             	g.setColor(Color.black);
             	g.drawOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
             }
@@ -104,8 +110,13 @@ public class AfficherMains {
         		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getValeur()), startX-karteW+i*25+3, startY-(karteH/3)*2-3);
             }
             if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).isCouleurConnue()){
-            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
-            	g.fillOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
+            	if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur().equals(CardColor.MULTI)){
+            		Image img = new ImageIcon(R+"multicolor.png").getImage();
+        			g.drawImage(img,startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2, this.p);
+            	} else{
+	            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
+	            	g.fillOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
+            	}
             	g.setColor(Color.black);
             	g.drawOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
             }
@@ -130,8 +141,13 @@ public class AfficherMains {
         		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getValeur()), startX-karteW+i*25+3, startY-(karteH/3)*2-3);
             }
             if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).isCouleurConnue()){
-            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
-            	g.fillOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
+            	if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur().equals(CardColor.MULTI)){
+            		Image img = new ImageIcon(R+"multicolor.png").getImage();
+        			g.drawImage(img,startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2, this.p);
+            	} else{
+	            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
+	            	g.fillOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
+            	}
             	g.setColor(Color.black);
             	g.drawOval(startX-karteW+i*25+rayon, startY-(karteH/3)*2-rayon+1, rayon-2, rayon-2);
             }
@@ -156,8 +172,13 @@ public class AfficherMains {
         		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getValeur()), startX+i*25-rayon*2+8, startY-(karteH/3)*2-3+i*20);
             }
             if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).isCouleurConnue()){
-            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
-            	g.fillOval(startX+i*25-rayon+5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2);
+            	if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur().equals(CardColor.MULTI)){
+            		Image img = new ImageIcon(R+"multicolor.png").getImage();
+        			g.drawImage(img,startX+i*25-rayon+5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2, this.p);
+            	} else{
+	            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
+	            	g.fillOval(startX+i*25-rayon+5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2);
+            	}
             	g.setColor(Color.black);
             	g.drawOval(startX+i*25-rayon+5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2);
             }
@@ -182,8 +203,13 @@ public class AfficherMains {
         		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getValeur()), startX-karteW-i*25+3-5, startY-(karteH/3)*2-3+i*20);
             }
             if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).isCouleurConnue()){
-            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
-            	g.fillOval(startX-karteW-i*25+rayon-5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2);
+            	if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur().equals(CardColor.MULTI)){
+            		Image img = new ImageIcon(R+"multicolor.png").getImage();
+        			g.drawImage(img,startX-karteW-i*25+rayon-5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2, this.p);
+            	} else{
+	            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
+	            	g.fillOval(startX-karteW-i*25+rayon-5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2);
+            	}
             	g.setColor(Color.black);
             	g.drawOval(startX-karteW-i*25+rayon-5, startY-(karteH/3)*2-rayon+1+i*20, rayon-2, rayon-2);
             }
@@ -208,8 +234,13 @@ public class AfficherMains {
         		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getValeur()), startX-karteW-i*20+3-7, startY+(karteH/3)*1-3-i*20+rayon);
             }
             if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).isCouleurConnue()){
-            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
-            	g.fillOval(startX-karteW-i*20+rayon-7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2);
+            	if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur().equals(CardColor.MULTI)){
+            		Image img = new ImageIcon(R+"multicolor.png").getImage();
+        			g.drawImage(img,startX-karteW-i*20+rayon-7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2, this.p);
+            	} else{
+	            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
+	            	g.fillOval(startX-karteW-i*20+rayon-7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2);
+            	}
             	g.setColor(Color.black);
             	g.drawOval(startX-karteW-i*20+rayon-7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2);
             }
@@ -234,8 +265,13 @@ public class AfficherMains {
         		g.drawString(Integer.toString(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getValeur()), startX+i*20-rayon*2+10, startY+(karteH/3)*1-3-i*20+rayon);
             }
             if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).isCouleurConnue()){
-            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
-            	g.fillOval(startX+i*20-rayon+7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2);
+            	if(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur().equals(CardColor.MULTI)){
+            		Image img = new ImageIcon(R+"multicolor.png").getImage();
+        			g.drawImage(img,startX+i*20-rayon+7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2, this.p);
+            	} else{
+	            	g.setColor(Couleur.cardColorToColor(this.p.getPartie().getJoueurs()[main.getId()].getMain().getCarte(i).getCouleur()));
+	            	g.fillOval(startX+i*20-rayon+7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2);
+            	}
             	g.setColor(Color.black);
             	g.drawOval(startX+i*20-rayon+7, startY+(karteH/3)*1+1-i*20, rayon-2, rayon-2);
             }

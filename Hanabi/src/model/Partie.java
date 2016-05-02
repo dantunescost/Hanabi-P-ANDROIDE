@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 import model.Couleur.CardColor;
-import view.PartieGagne;
 
 /**
  * Represente une partie.

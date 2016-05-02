@@ -103,8 +103,8 @@ public class FenetrePartie extends JFrame{
 		g.setColor(Color.white);
 		g.fillOval(200, this.getHeight()-50, 30, 30);
 		if(this.partie.isMulticolor()){
-			g.setColor(Color.MAGENTA);
-			g.fillOval(245, this.getHeight()-75, 30, 30);
+			Image img = new ImageIcon(R+"multicolor.png").getImage();
+			g.drawImage(img,245, this.getHeight()-75, 30, 30, this);
 			g.setColor(Color.black);
 			g.drawArc(245, this.getHeight()-75, 30, 30,0,360);
 		}

@@ -120,8 +120,4 @@ public class Parametres extends JFrame {
 		contentPane.add(p4);
 		this.setVisible(true);
 	}
-	
-	public static void main(String[] args){
-		new Parametres();
-	}
 }
