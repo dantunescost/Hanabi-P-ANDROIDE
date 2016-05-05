@@ -33,6 +33,7 @@ public class FenetrePartie extends JFrame{
 	public static String R = System.getProperty("user.dir");
 	private Menu menu = new Menu();
 
+
 	public FenetrePartie(Partie p){
 		super("Hanabi");
 		this.partie = p;
