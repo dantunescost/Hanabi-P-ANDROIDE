@@ -88,7 +88,13 @@ public class EcouteBouton implements ActionListener {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-			    new FenetrePartie(game);
+			    if(this.p.getFen() == null){
+			    	new FenetrePartie(game);
+			    }
+			    else{
+			    	this.p.getFen().setPartie(game);
+			    	this.p.getFen().setVisible(true);
+			    }			    
 			    p.dispose();
 			}
 		}

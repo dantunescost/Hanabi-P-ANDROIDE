@@ -86,8 +86,14 @@ public class MenuListener implements ActionListener {
 				}
 			}
 		} else if(command.equals("Nouvelle Partie")){
-			new Parametres();
-			fen.dispose();
+			if(this.fen.getClass().equals(FenetrePartie.class)){
+				new Parametres((FenetrePartie)this.fen);
+				this.fen.setVisible(false);
+			}
+			else{
+				new Parametres();
+				this.fen.dispose();
+			}
 		}
 		if(fen != null){
 			fen.repaint();

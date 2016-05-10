@@ -24,6 +24,7 @@ import model.HeuristicJoueurIA;
 
 public class Parametres extends JFrame {
 	private static final long serialVersionUID = -5591954412370299930L;
+	private FenetrePartie fen = null;
 	public JButton ok;
 	public JComboBox<String> joueurIA1 = new JComboBox<String>();
 	public JComboBox<String> joueurIA2 = new JComboBox<String>();
@@ -34,6 +35,15 @@ public class Parametres extends JFrame {
 	public JCheckBox multiColor = new JCheckBox("Jouer avec les cartes multicolor");
 	
 	public Parametres(){
+		initParametres();
+	}
+	
+	public Parametres(FenetrePartie fen){
+		this.fen = fen;
+		initParametres();
+	}
+	
+	public void initParametres(){
 		this.setTitle("Paramètres de jeu");
 		this.setSize(575,390);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -120,4 +130,9 @@ public class Parametres extends JFrame {
 		contentPane.add(p4);
 		this.setVisible(true);
 	}
+	
+	public FenetrePartie getFen() {
+		return fen;
+	}
+
 }
