@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class ApprentissagePartie extends Partie {
 	private static final long serialVersionUID = 595418792495031308L;
@@ -11,112 +11,67 @@ public class ApprentissagePartie extends Partie {
 	}
 
 	public static void main(String[] args) {
-		SimulationPartie game;
+		ApprentissagePartie game;
+		Random r = new Random();
 		final int nbIndices = 8;
 		Joueur[] joue;
-		int nbSimulations;
-		int nbJoueurs;
+		int nbSimulations=200;
+		int nbJoueurs=3;
 		boolean multi = false;
-		float scoreTotal = 0;
-		float scoreMoyen = 0;
-		int max = -1;
-		int min = 42;
-	    Scanner in = new Scanner(System.in);
-	    
-	    String choixIA = "Veuillez entrer le type d'IA desire : \n" 
-	    			   	+ "0 -> DummyJoueurIA\n"
-	    			   	+ "1 -> SemiDummyJoueurIA\n"
-	    			   	+ "2 -> HeuristicJoueurIA";
 		
-		System.out.println("Veuillez entrer le nombre de simulations : ");
-		while(!in.hasNextInt());
-		nbSimulations = in.nextInt();
-		in.nextLine();
 		
-		System.out.println("Veuillez entrer le nombre de joueurs : ");
-		while(!in.hasNextInt())
-			in.nextLine();
-		nbJoueurs = in.nextInt();
-		in.nextLine();
-		
-		System.out.println("Cartes multicolors : (y/n)");
-		String mul = in.nextLine();
-		if(mul.toUpperCase().equals("Y"))
-			multi = true;
-		
-		game = new SimulationPartie(nbJoueurs, nbIndices, multi);
-		joue = new Joueur[nbJoueurs];		
-		
-		System.out.println(choixIA);
-		for(int i=1; i<= nbJoueurs; i++)
+		for(int i=0; i<1000; i++)
 		{
-			System.out.println("Pour le joueur " + i + " :");
-			while(!in.hasNextInt())
-				in.nextLine();
-			int c = in.nextInt();
-			switch (c)
+			float scoreTotal = 0;
+			float scoreMoyen = 0;
+			int max = -1;
+			int min = 42;
+			
+			game = new ApprentissagePartie(nbJoueurs, nbIndices, multi);
+			joue = new Joueur[nbJoueurs];		
+			double h[]= new double[8];
+			h[0]=r.nextDouble()*50+50;
+			for(int l=1; l<8; l++)
+				h[l]=r.nextDouble()*100;
+			
+			ParamHeuristic param=new ParamHeuristic(h[0],h[1],h[2],h[3],h[4],h[5],h[6],h[7]);
+			for(int l=0; l<nbJoueurs; l++)
 			{
-			case 0:
-				joue[i-1] = new DummyJoueurIA(Integer.toString(i), game, i-1);
-				System.out.println("Vous avez selectionne DummyJoueurIA pour le joueur " + i);
-				break;
-			case 1:
-				joue[i-1] = new SemiDummyJoueurIA(Integer.toString(i), game, i-1);
-				System.out.println("Vous avez selectionne SemiDummyJoueurIA pour le joueur " + i);
-				break;
-			case 2:
-				ParamHeuristic param=new ParamHeuristic();
-				joue[i-1] = new HeuristicJoueurIA(Integer.toString(i), game, i-1,param);
-				System.out.println("Vous avez selectionne HeuristicJoueurIA pour le joueur " + i);
-				break;
-			default:
-				joue[i-1] = new SemiDummyJoueurIA(Integer.toString(i), game, i-1);
-				System.out.println("Valeur non definie, par defaut SemiDummyJoueurIA pour le joueur " + i);
-			}
-		}
-		
-		
-		for(int i=0; i<nbSimulations; i++)
-		{			
-			try {
-				game.reinitPartie(joue);
-			} catch (AdditionMainPleineException | PiocheVideException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				joue[l] = new HeuristicJoueurIA(Integer.toString(l), game, l,param);
 			}
 			
-			while(!game.getFinPartie())
-			{
-				int j = game.getaQuiLeTour();
-				Joueur[] p = game.getJoueurs();
-				if(p[j].getClass().getName().equals(DummyJoueurIA.class.getName()))
-				{
-					DummyJoueurIA ia = (DummyJoueurIA) p[j];
-					ia.jouerCoup();
+			
+			for(int k=0; k<nbSimulations; k++)
+			{			
+				try {
+					game.reinitPartie(joue);
+				} catch (AdditionMainPleineException | PiocheVideException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				else if(p[j].getClass().getName().equals(SemiDummyJoueurIA.class.getName()))
+				
+				while(!game.getFinPartie())
 				{
-					SemiDummyJoueurIA ia = (SemiDummyJoueurIA) p[j];
-					ia.jouerCoup();
-				}
-				else if(p[j].getClass().getName().equals(HeuristicJoueurIA.class.getName()))
-				{
+					int j = game.getaQuiLeTour();
+					Joueur[] p = game.getJoueurs();
 					HeuristicJoueurIA ia = (HeuristicJoueurIA) p[j];
 					ia.jouerCoup();
-				}
- 			}
-			
-			int score = game.calculerPoints();
-			scoreTotal += score;
-			min = (score < min)? score:min;
-			max = (score > max)? score:max;
-			
-			System.out.println("Partie " + (i+1) + " terminee. Score : " + score);
-		}
-		scoreMoyen = scoreTotal / nbSimulations;
-		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen);
-		
-		in.close();
-	}
+	 			}
+				
+				int score = game.calculerPoints();
+				scoreTotal += score;
+				min = (score < min)? score:min;
+				max = (score > max)? score:max;
+				
+				//System.out.println("Partie " + (i+1) + " terminee. Score : " + score);
+			}
+			scoreMoyen = scoreTotal / nbSimulations;
+			if(scoreMoyen>10.0)
+			{
+				System.out.println(i+": Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen);
+				System.out.println("Parametres : "+h[0]+" "+h[1]+" "+h[2]+" "+h[3]+" "+h[4]+" "+h[5]+" "+h[6]+" "+h[7]);
 
+			}
+		}
+	}
 }

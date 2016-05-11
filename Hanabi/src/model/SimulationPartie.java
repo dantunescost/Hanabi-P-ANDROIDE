@@ -65,7 +65,7 @@ public class SimulationPartie extends Partie {
 				System.out.println("Vous avez selectionne SemiDummyJoueurIA pour le joueur " + i);
 				break;
 			case 2:
-				ParamHeuristic param=new ParamHeuristic();
+				ParamHeuristic param=new ParamHeuristic(100,0,0,50,0,20,0,20);
 				joue[i-1] = new HeuristicJoueurIA(Integer.toString(i), game, i-1,param);
 				System.out.println("Vous avez selectionne HeuristicJoueurIA pour le joueur " + i);
 				break;
