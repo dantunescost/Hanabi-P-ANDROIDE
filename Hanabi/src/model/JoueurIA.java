@@ -1,6 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import model.Couleur.CardColor;
 
 public class JoueurIA extends Joueur {
 	private static final long serialVersionUID = 882515923322600787L;
@@ -46,7 +49,8 @@ public class JoueurIA extends Joueur {
             		&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()==(c.getValeur()-1))
             		&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()==(c.getValeur()-1))
             		&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()==(c.getValeur()-1))
-            		&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1)))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1))
+                	&&(!this.p.isMulticolor() || this.p.cartesJouees.get(Couleur.CardColor.MULTI).size()==(c.getValeur()-1)))
             	{
             		return c;
             	}
@@ -68,7 +72,8 @@ public class JoueurIA extends Joueur {
             	&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()==(c.getValeur()-1))
             	&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()==(c.getValeur()-1))
             	&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()==(c.getValeur()-1))
-            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1)))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1))
+            	&&(!this.p.isMulticolor() || this.p.cartesJouees.get(Couleur.CardColor.MULTI).size()==(c.getValeur()-1)))
             {
             	res=true;
             }
@@ -100,7 +105,8 @@ public class JoueurIA extends Joueur {
             		&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()<=(c.getValeur()))
             		&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()<=(c.getValeur()))
             		&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()<=(c.getValeur()))
-            		&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()<=(c.getValeur())))
+            		&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()<=(c.getValeur()))
+                	&&(!this.p.isMulticolor() || this.p.cartesJouees.get(Couleur.CardColor.MULTI).size()<=(c.getValeur())))
             	{
             		return c;
             	}
@@ -131,7 +137,8 @@ public class JoueurIA extends Joueur {
             	&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()<=(c.getValeur()))
             	&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()<=(c.getValeur()))
             	&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()<=(c.getValeur()))
-            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()<=(c.getValeur())))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()<=(c.getValeur()))
+            	&&(!this.p.isMulticolor() || this.p.cartesJouees.get(Couleur.CardColor.MULTI).size()<=(c.getValeur())))
             {
             	res=true;
             }
@@ -306,4 +313,41 @@ public class JoueurIA extends Joueur {
     	}
     return nb;	
     } 
+    
+    /**
+     * 
+     * @param j le joueur à qui l'on cherche à donner un indice
+     * @return la carte sur laquelle donner l'indice
+     */
+    public Carte chercheCarteJouableIndiquable(Joueur j){
+    	Carte CarteAIndiquer=null;
+    	for (Carte c : j.getMain().main){
+			if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)){
+				if(!(c.isValeurConnue() && c.isCouleurConnue())){
+					CarteAIndiquer = c;
+				}
+            }
+    		//Si toutes les cartes jouees ont la meme valeur(ou qu'il n'y a pas de cartes) et le joueur possede une carte de valeur +1
+    		if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()==(c.getValeur()-1))
+    			&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()==(c.getValeur()-1))
+    			&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()==(c.getValeur()-1))
+    			&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()==(c.getValeur()-1))
+    			&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1))
+            	&&(!this.p.isMulticolor() || this.p.cartesJouees.get(Couleur.CardColor.MULTI).size()==(c.getValeur()-1)))
+    		{
+    			if(!(c.isValeurConnue()))
+					CarteAIndiquer = c;
+    		}
+        }
+        return CarteAIndiquer;
+    }
+    
+    public ArrayList<Carte> cartesJouablesDirectement(){
+    	ArrayList<Carte> res = new ArrayList<Carte>();
+    	for(CardColor color : this.p.cartesJouees.keySet()){
+    		Carte c = new Carte(color,this.p.cartesJouees.get(color).size());
+    		res.add(c);
+    	}
+    	return res;
+    }
 }

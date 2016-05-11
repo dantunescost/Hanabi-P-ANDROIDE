@@ -337,7 +337,7 @@ public class FenetrePartie extends JFrame{
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
 		this.paintComponents(g);
 		//background
-		g.drawImage(new ImageIcon(R+"wood.jpg").getImage(), 0, 20, this.getWidth(), this.getHeight()-20, this);
+		g.drawImage(new ImageIcon(R+"wood.jpg").getImage(), 0, 22, this.getWidth(), this.getHeight()-20, this);
 		//draw table
 		this.table.paintTable(g, this);
 		//draw hands

@@ -128,6 +128,10 @@ public class ModelesCartesJoueur implements Serializable{
 		}
 	}
 	
+	public ArrayList<Collection<Carte>> getModeles() {
+		return modeles;
+	}
+
 	public String toString(){
 		String res = "{";
 		for(Collection<Carte> m : this.modeles){

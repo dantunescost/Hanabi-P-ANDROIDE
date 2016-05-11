@@ -54,37 +54,7 @@ public class SemiDummyJoueurIA extends JoueurIA {
         }
     } 
     
-    /**
-     * 
-     * @param j le joueur à qui l'on cherche à donner un indice
-     * @return la carte sur laquelle donner l'indice
-     */
-    public Carte chercheCarteJouableIndiquable(Joueur j){
-    	Carte CarteAIndiquer=null;
-    	for (Carte c : j.getMain().main){
-    		for (int i=0; i<this.p.cartesJouees.size(); i++) {
-    			if (this.p.cartesJouees.get(c.getCouleur()).size()==(c.getValeur()-1)){
-    				if(!(c.isValeurConnue())&&((j.getMain().valeurUnique(c.getValeur()))
-    					||c.isCouleurConnue()))
-    					CarteAIndiquer = c;
-    				else if(!(c.isCouleurConnue())&&((j.getMain().couleurUnique(c.getCouleur()))
-    					||c.isValeurConnue()))
-    					CarteAIndiquer = c;
-                }
-            }
-    		//Si toutes les cartes jouees ont la meme valeur(ou qu'il n'y a pas de cartes) et le joueur possede une carte de valeur +1
-    		if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()==(c.getValeur()-1))
-    			&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()==(c.getValeur()-1))
-    			&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()==(c.getValeur()-1))
-    			&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()==(c.getValeur()-1))
-    			&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()==(c.getValeur()-1)))
-    		{
-    			if(!(c.isValeurConnue()))
-					CarteAIndiquer = c;
-    		}
-        }
-        return CarteAIndiquer;
-    }
+    
     public boolean jouerCarte(){
         Carte c = this.coupTrivial();
         if (c != null) {
@@ -114,22 +84,38 @@ public class SemiDummyJoueurIA extends JoueurIA {
         Carte carteJouableIndiquable= this.chercheCarteJouableIndiquable(p.getJoueurs()[joueur]);
         if(carteJouableIndiquable!=null)
         {
-            if(!(carteJouableIndiquable.isValeurConnue())){
-            	try {
+        	if(!(carteJouableIndiquable.isValeurConnue()) && p.getJoueurs()[joueur].getMain().valeurUnique(carteJouableIndiquable.getValeur())){
+        		try {
                     p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
+                    return true;
                 } catch (IndiceSoitMemeException e) {
                     e.printStackTrace();
                 }
-                return true;
-            }
-            else{
-            	try {
+        	}
+        	else if(!(carteJouableIndiquable.isCouleurConnue()) && p.getJoueurs()[joueur].getMain().couleurUnique(carteJouableIndiquable.getCouleur())){
+        		try {
                     p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
+                    return true;
                 } catch (IndiceSoitMemeException e) {
                     e.printStackTrace();
                 }
-                return true;
-            }
+        	}
+        	else if(!(carteJouableIndiquable.isValeurConnue())){
+        		try {
+                    p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
+                    return true;
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+        	}
+        	else if(!(carteJouableIndiquable.isCouleurConnue())){
+        		try {
+                    p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
+                    return true;
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+        	}
         }
         return false;
     }
