@@ -13,6 +13,7 @@ import model.Partie;
 import view.FenetreAccueil;
 import view.FenetrePartie;
 import view.Parametres;
+import view.PartieGagne;
 
 public class AccueilListener extends MouseAdapter {
 	FenetreAccueil acc;
@@ -39,6 +40,7 @@ public class AccueilListener extends MouseAdapter {
 							if( (player.getId() == ((FenetrePartie)fen).getPartie().getDernierJoueur()) && (((FenetrePartie)fen).getPartie().getDernierTour()) ){
 								((FenetrePartie)fen).getPartie().finirPartie();
 								System.out.println("Partie finie 4, id_ia : " + player.getId());
+								new PartieGagne(p); // Does this need to be there ?
 							}
 							player.jouerCoup();
 							try {

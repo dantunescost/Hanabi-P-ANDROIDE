@@ -67,7 +67,7 @@ public class MouseListener extends MouseAdapter {
 						} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
 							e1.printStackTrace();
 						} catch(PartiePerdueException e2){
-							new PartiePerdue(this.partie.getPartie());
+							new PartiePerdue(this.partie.getPartie(), partie);
 						}
 						this.partie.setAnnuler(false);
 						this.firstClick = true;
