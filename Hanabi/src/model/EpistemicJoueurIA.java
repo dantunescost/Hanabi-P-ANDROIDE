@@ -3,19 +3,27 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import model.ModelesCartesAutres.Indice;
+
 public class EpistemicJoueurIA extends JoueurIA {
 	private static final long serialVersionUID = 7686865017053076471L;
 	private ModelesCartesJoueur mcj;
-	private float risque;
+	private ModelesCartesAutres mca;
+	private double risque;
 
-	public EpistemicJoueurIA(String nom, Partie p, int id, float risque) {
+	public EpistemicJoueurIA(String nom, Partie p, int id, double risque) {
 		super(nom, p, id);
 		this.mcj = new ModelesCartesJoueur(p, id);
+		this.mca = new ModelesCartesAutres(p, id);
 		this.risque = risque;
 	}
 
 	public ModelesCartesJoueur getMcj() {
 		return mcj;
+	}
+
+	public ModelesCartesAutres getMca() {
+		return mca;
 	}
 
 	public void jouerCoup(){
@@ -67,11 +75,25 @@ public class EpistemicJoueurIA extends JoueurIA {
 				aJoue = donnerIndiceIntelligentA(joueur);
 				joueur = (joueur+1)%this.p.nbJoueurs;
 			}
-			/*
-			 * 
-			 * SINON DONNER MEILLEUR INDICE
-			 * 
-			 */
+			if(!aJoue){
+				Indice bestIndice = this.mca.meilleurIndice();
+				if(bestIndice.bestValue == -1){
+					try {
+	                    p.indiceCouleur(p.getJoueurs()[bestIndice.bestPlayer], bestIndice.bestColor);
+	                    aJoue = true;
+	                } catch (IndiceSoitMemeException e) {
+	                    e.printStackTrace();
+	                }
+				}
+				else{
+					try {
+	                    p.indiceValeur(p.getJoueurs()[bestIndice.bestPlayer], bestIndice.bestValue);
+	                    aJoue = true;
+	                } catch (IndiceSoitMemeException e) {
+	                    e.printStackTrace();
+	                }
+				}
+			}
 		}
 		// ************************* DEFAUSSER CARTE SANS INDICE  *******************************
 		if(!aJoue){
@@ -95,10 +117,10 @@ public class EpistemicJoueurIA extends JoueurIA {
 					nbCartesJouables++;
 				}
 			}
-			if(((float)nbCartesJouables/(float)this.mcj.getModeles().get(i).size()) >= risque && this.p.jetonEclair<2){
+			if(((double)nbCartesJouables/(double)this.mcj.getModeles().get(i).size()) >= risque && this.p.jetonEclair<2){
 				c=i;
 			}
-			else if(((float)nbCartesJouables/(float)this.mcj.getModeles().get(i).size()) == 1.0){
+			else if(((double)nbCartesJouables/(double)this.mcj.getModeles().get(i).size()) == 1.0){
 				c=i;
 			}
 			i++;
@@ -205,5 +227,13 @@ public class EpistemicJoueurIA extends JoueurIA {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public void setRisque(double r){
+		this.risque = r;
+	}
+
+	public double getRisque() {
+		return risque;
 	}
 }

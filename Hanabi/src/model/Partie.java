@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -150,6 +151,7 @@ public class Partie implements Serializable{
 			for(Joueur joueur : this.joueurs){
 				if(!joueur.equals(j) && joueur instanceof EpistemicJoueurIA){
 					((EpistemicJoueurIA) joueur).getMcj().majPioche(carte);
+					((EpistemicJoueurIA) joueur).getMca().creerModele(j.getId());
 				}
 			}
 		}else if(!this.dernierTour){
@@ -180,10 +182,14 @@ public class Partie implements Serializable{
 		}
 		if(j instanceof EpistemicJoueurIA){
 			((EpistemicJoueurIA) j).getMcj().majDefausseOuJouer(carte, index);
+			((EpistemicJoueurIA) j).getMca().majDefausseOuJouerTous(carte, index);
 		}
 		for(int i=0; i<nbJoueurs; i++){
 			if(joueurs[i] instanceof EpistemicJoueurIA){
 				((EpistemicJoueurIA) joueurs[i]).getMcj().majCartesCritiques(carte);
+				if(joueurs[i].getId()!=j.getId()){
+					((EpistemicJoueurIA) joueurs[i]).getMca().majDefausseOuJouer(j.getId(), carte, index);
+				}
 			}
 		}
 		pioche(j);
@@ -207,11 +213,29 @@ public class Partie implements Serializable{
         // La carte est valide
 		if(this.cartesJouees.get(carte.getCouleur()).size()+1 == carte.getValeur()){
 			this.cartesJouees.get(carte.getCouleur()).add(carte);
+			if(j instanceof EpistemicJoueurIA){
+				((EpistemicJoueurIA) j).getMca().majDefausseOuJouerTous(carte, indice);
+			}
+			for(int i=0; i<nbJoueurs; i++){
+				if(joueurs[i] instanceof EpistemicJoueurIA){
+					if(joueurs[i].getId()!=j.getId()){
+						((EpistemicJoueurIA) joueurs[i]).getMca().majDefausseOuJouer(j.getId(), carte, indice);
+					}
+				}
+			}
 		}
 
         // La carte n'est pas valide
 		else{
 			this.defausse.add(carte);
+			for(int i=0; i<nbJoueurs; i++){
+				if(joueurs[i] instanceof EpistemicJoueurIA){
+					((EpistemicJoueurIA) joueurs[i]).getMcj().majCartesCritiques(carte);
+					if(joueurs[i].getId()!=j.getId()){
+						((EpistemicJoueurIA) joueurs[i]).getMca().majDefausseOuJouer(j.getId(), carte, indice);
+					}
+				}
+			}
 			this.jetonEclair++;
 			if(this.jetonEclair == 3){
 				setLost();
@@ -247,6 +271,13 @@ public class Partie implements Serializable{
 			if(j instanceof EpistemicJoueurIA){
 				((EpistemicJoueurIA) j).getMcj().indiceCouleurRecu(c);
 			}
+			for(int i=0; i<nbJoueurs; i++){
+				if(joueurs[i] instanceof EpistemicJoueurIA){
+					if(joueurs[i].getId()!=j.getId()){
+						((EpistemicJoueurIA) joueurs[i]).getMca().indiceCouleurRecu(j.getId(), c);
+					}
+				}
+			}
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
 		else{
@@ -274,6 +305,13 @@ public class Partie implements Serializable{
 			}
 			if(j instanceof EpistemicJoueurIA){
 				((EpistemicJoueurIA) j).getMcj().indiceValeurRecu(val);
+			}
+			for(int i=0; i<nbJoueurs; i++){
+				if(joueurs[i] instanceof EpistemicJoueurIA){
+					if(joueurs[i].getId()!=j.getId()){
+						((EpistemicJoueurIA) joueurs[i]).getMca().indiceValeurRecu(j.getId(), val);
+					}
+				}
 			}
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
@@ -346,8 +384,13 @@ public class Partie implements Serializable{
 		{
 			joue[i].main.clear();
 			if(joue[i] instanceof EpistemicJoueurIA){
-				((EpistemicJoueurIA) joue[i]).getMcj().getModeles().clear();
-				((EpistemicJoueurIA) joue[i]).getMcj().initCartesSorties();
+				EpistemicJoueurIA joueur = ((EpistemicJoueurIA) joue[i]);
+				joueur.getMcj().getModeles().clear();
+				for(ArrayList<Collection<Carte>> modele : joueur.getMca().getModelesJoueurs()){
+					modele.clear();
+				}
+				joueur.getMcj().initCartesSorties();
+				joueur.getMca().initCartesSorties();
 			}
 		}
 		initPartie(joue);
