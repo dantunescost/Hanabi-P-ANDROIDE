@@ -26,7 +26,8 @@ public class SimulationPartie extends Partie {
 	    String choixIA = "Veuillez entrer le type d'IA desire : \n" 
 	    			   	+ "0 -> DummyJoueurIA\n"
 	    			   	+ "1 -> SemiDummyJoueurIA\n"
-	    			   	+ "2 -> HeuristicJoueurIA";
+	    			   	+ "2 -> HeuristicJoueurIA\n"
+	    			   	+ "3 -> EpistemicJoueurIA";
 		
 		System.out.println("Veuillez entrer le nombre de simulations : ");
 		while(!in.hasNextInt());
@@ -69,6 +70,10 @@ public class SimulationPartie extends Partie {
 				joue[i-1] = new HeuristicJoueurIA(Integer.toString(i), game, i-1,param);
 				System.out.println("Vous avez selectionne HeuristicJoueurIA pour le joueur " + i);
 				break;
+			case 3:
+				joue[i-1] = new EpistemicJoueurIA(Integer.toString(i), game, i-1,(float)0.6);
+				System.out.println("Vous avez selectionne EpistemicJoueurIA pour le joueur " + i);
+				break;
 			default:
 				joue[i-1] = new SemiDummyJoueurIA(Integer.toString(i), game, i-1);
 				System.out.println("Valeur non definie, par defaut SemiDummyJoueurIA pour le joueur " + i);
@@ -102,6 +107,11 @@ public class SimulationPartie extends Partie {
 				else if(p[j].getClass().getName().equals(HeuristicJoueurIA.class.getName()))
 				{
 					HeuristicJoueurIA ia = (HeuristicJoueurIA) p[j];
+					ia.jouerCoup();
+				}
+				else if(p[j].getClass().getName().equals(EpistemicJoueurIA.class.getName()))
+				{
+					EpistemicJoueurIA ia = (EpistemicJoueurIA) p[j];
 					ia.jouerCoup();
 				}
  			}

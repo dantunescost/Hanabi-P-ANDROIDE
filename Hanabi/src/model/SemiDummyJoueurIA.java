@@ -76,49 +76,7 @@ public class SemiDummyJoueurIA extends JoueurIA {
         }
         return false;
     }
-    public boolean donnerIndiceIntelligentA(int joueur){
-        if (p.jetonIndice <= 0) 
-        {
-            return false;
-        }
-        Carte carteJouableIndiquable= this.chercheCarteJouableIndiquable(p.getJoueurs()[joueur]);
-        if(carteJouableIndiquable!=null)
-        {
-        	if(!(carteJouableIndiquable.isValeurConnue()) && p.getJoueurs()[joueur].getMain().valeurUnique(carteJouableIndiquable.getValeur())){
-        		try {
-                    p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
-                    return true;
-                } catch (IndiceSoitMemeException e) {
-                    e.printStackTrace();
-                }
-        	}
-        	else if(!(carteJouableIndiquable.isCouleurConnue()) && p.getJoueurs()[joueur].getMain().couleurUnique(carteJouableIndiquable.getCouleur())){
-        		try {
-                    p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
-                    return true;
-                } catch (IndiceSoitMemeException e) {
-                    e.printStackTrace();
-                }
-        	}
-        	else if(!(carteJouableIndiquable.isValeurConnue())){
-        		try {
-                    p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
-                    return true;
-                } catch (IndiceSoitMemeException e) {
-                    e.printStackTrace();
-                }
-        	}
-        	else if(!(carteJouableIndiquable.isCouleurConnue())){
-        		try {
-                    p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
-                    return true;
-                } catch (IndiceSoitMemeException e) {
-                    e.printStackTrace();
-                }
-        	}
-        }
-        return false;
-    }
+    
     public boolean donnerIndiceAleatoire(boolean multi){
     	int joueur;
     	do {

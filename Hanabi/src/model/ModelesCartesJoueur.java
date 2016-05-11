@@ -13,12 +13,14 @@ public class ModelesCartesJoueur implements Serializable{
 	private int id;
 	private ArrayList<Collection<Carte>> modeles;
 	private HashMap<Carte, Integer> cartesSorties;
+	private ArrayList<Carte> cartesCritiques = new ArrayList<Carte>(); 
 
 	public ModelesCartesJoueur(Partie p, int id){
 		this.partie = p;
 		this.id = id;
 		modeles = new ArrayList<Collection<Carte>>();
 		cartesSorties = new HashMap<Carte, Integer>();
+		initCartesSorties();
 	}
 	
 	public void majPioche(Carte c){
@@ -140,5 +142,32 @@ public class ModelesCartesJoueur implements Serializable{
 			}
 		}
 		return res + "}";
+	}
+
+	public void majCartesCritiques(Carte carte) {
+		if(cartesCritiques.contains(carte)){
+			cartesCritiques.remove(carte);
+		}
+		else if(!(this.partie.cartesJouees.get(carte.getCouleur()).size()>=carte.getValeur())){
+			if(carte.getValeur()>1){
+				cartesCritiques.add(carte);
+			}
+			else{
+				int cmp = 0;
+				for(int i=0; i<this.partie.defausse.size(); i++)
+				{
+					if(this.partie.defausse.get(i).equals(carte)){
+						cmp++;
+					}
+				}
+				if(cmp == 2){
+					cartesCritiques.add(carte);
+				}
+			}
+		}
+	}
+
+	public ArrayList<Carte> getCartesCritiques() {
+		return cartesCritiques;
 	}
 }

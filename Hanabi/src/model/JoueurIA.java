@@ -118,6 +118,7 @@ public class JoueurIA extends Joueur {
         }
         return null;
     }
+    
     public boolean isDefaussableTrivial(Carte c){
     	boolean res=false;
     	if (c.isCouleurConnue() && c.isValeurConnue()) {
@@ -133,12 +134,12 @@ public class JoueurIA extends Joueur {
     	}
         else if(c.isValeurConnue()){
             //Si toutes les cartes jouees ont la meme valeur et le joueur possede une carte de valeur -
-            if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()<=(c.getValeur()))
-            	&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()<=(c.getValeur()))
-            	&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()<=(c.getValeur()))
-            	&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()<=(c.getValeur()))
-            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()<=(c.getValeur()))
-            	&&(!this.p.isMulticolor() || this.p.cartesJouees.get(Couleur.CardColor.MULTI).size()<=(c.getValeur())))
+            if ((this.p.cartesJouees.get(Couleur.CardColor.BLANC).size()>=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.ROUGE).size()>=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.VERT).size()>=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.BLEU).size()>=(c.getValeur()))
+            	&&(this.p.cartesJouees.get(Couleur.CardColor.JAUNE).size()>=(c.getValeur()))
+            	&&(!this.p.isMulticolor() || this.p.cartesJouees.get(Couleur.CardColor.MULTI).size()>=(c.getValeur())))
             {
             	res=true;
             }
@@ -342,10 +343,54 @@ public class JoueurIA extends Joueur {
         return CarteAIndiquer;
     }
     
+    public boolean donnerIndiceIntelligentA(int joueur){
+        if (p.jetonIndice <= 0) 
+        {
+            return false;
+        }
+        Carte carteJouableIndiquable= this.chercheCarteJouableIndiquable(p.getJoueurs()[joueur]);
+        if(carteJouableIndiquable!=null)
+        {
+        	if(!(carteJouableIndiquable.isValeurConnue()) && p.getJoueurs()[joueur].getMain().valeurUnique(carteJouableIndiquable.getValeur())){
+        		try {
+                    p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
+                    return true;
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+        	}
+        	else if(!(carteJouableIndiquable.isCouleurConnue()) && p.getJoueurs()[joueur].getMain().couleurUnique(carteJouableIndiquable.getCouleur())){
+        		try {
+                    p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
+                    return true;
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+        	}
+        	else if(!(carteJouableIndiquable.isValeurConnue())){
+        		try {
+                    p.indiceValeur(p.getJoueurs()[joueur], carteJouableIndiquable.getValeur());
+                    return true;
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+        	}
+        	else if(!(carteJouableIndiquable.isCouleurConnue())){
+        		try {
+                    p.indiceCouleur(p.getJoueurs()[joueur], carteJouableIndiquable.getCouleur());
+                    return true;
+                } catch (IndiceSoitMemeException e) {
+                    e.printStackTrace();
+                }
+        	}
+        }
+        return false;
+    }
+    
     public ArrayList<Carte> cartesJouablesDirectement(){
     	ArrayList<Carte> res = new ArrayList<Carte>();
     	for(CardColor color : this.p.cartesJouees.keySet()){
-    		Carte c = new Carte(color,this.p.cartesJouees.get(color).size());
+    		Carte c = new Carte(color,this.p.cartesJouees.get(color).size()+1);
     		res.add(c);
     	}
     	return res;

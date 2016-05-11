@@ -248,4 +248,22 @@ public class Carte implements Serializable{
 		res += this.couleur.convertirEnChaine();
 		return res + "]";
 	}
+	
+	public int hashCode(){
+		int res;
+		if(this.couleur.equals(CardColor.BLANC)){
+			res = 0;
+		} else if(this.couleur.equals(CardColor.BLEU)){
+			res = 5;
+		} else if(this.couleur.equals(CardColor.ROUGE)){
+			res = 10;
+		} else if(this.couleur.equals(CardColor.JAUNE)){
+			res = 15;
+		} else if(this.couleur.equals(CardColor.VERT)){
+			res = 20;
+		} else{
+			res = 25;
+		}
+		return res+valeur;
+	}
 }

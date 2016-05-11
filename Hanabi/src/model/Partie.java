@@ -181,6 +181,11 @@ public class Partie implements Serializable{
 		if(j instanceof EpistemicJoueurIA){
 			((EpistemicJoueurIA) j).getMcj().majDefausseOuJouer(carte, index);
 		}
+		for(int i=0; i<nbJoueurs; i++){
+			if(joueurs[i] instanceof EpistemicJoueurIA){
+				((EpistemicJoueurIA) joueurs[i]).getMcj().majCartesCritiques(carte);
+			}
+		}
 		pioche(j);
 		this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 	}
@@ -340,6 +345,10 @@ public class Partie implements Serializable{
 		for(int i=0; i<joue.length; i++)
 		{
 			joue[i].main.clear();
+			if(joue[i] instanceof EpistemicJoueurIA){
+				((EpistemicJoueurIA) joue[i]).getMcj().getModeles().clear();
+				((EpistemicJoueurIA) joue[i]).getMcj().initCartesSorties();
+			}
 		}
 		initPartie(joue);
 	}
