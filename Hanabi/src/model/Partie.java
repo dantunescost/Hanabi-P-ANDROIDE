@@ -137,11 +137,20 @@ public class Partie implements Serializable{
 	 */
 	public void pioche(Joueur j) throws AdditionMainPleineException, PiocheVideException{
 		if(!this.pioche.isEmpty()){
-			j.getMain().ajouterCarte(this.pioche.remove(this.pioche.size()-1));
+			Carte carte = this.pioche.remove(this.pioche.size()-1);
+			j.getMain().ajouterCarte(carte);
 			if(this.pioche.isEmpty())
 			{
 				this.dernierTour = true;
 				this.dernierJoueur = this.aQuiLeTour;
+			}
+			if(j instanceof EpistemicJoueurIA){
+				((EpistemicJoueurIA) j).getMcj().creerModele();
+			}
+			for(Joueur joueur : this.joueurs){
+				if(!joueur.equals(j) && joueur instanceof EpistemicJoueurIA){
+					((EpistemicJoueurIA) joueur).getMcj().majPioche(carte);
+				}
 			}
 		}else if(!this.dernierTour){
 			throw new PiocheVideException();
@@ -161,12 +170,16 @@ public class Partie implements Serializable{
 	 * @throws PiocheVideException				Si la pioche ne contient plus de carte
 	 */
 	public void defausse(Joueur j, int index) throws EnleverCarteInexistanteException, AdditionMainPleineException, PiocheVideException{
+		assert(j.id == this.aQuiLeTour);
 		Carte carte = j.getMain().enleverCarte(index);
 		this.defausse.add(carte);
 
         // Rajoute un jeton indice s'il n'y a pas déjà tous les indices disponibles
 		if(this.jetonIndice != this.maxIndices){
 			this.jetonIndice ++;
+		}
+		if(j instanceof EpistemicJoueurIA){
+			((EpistemicJoueurIA) j).getMcj().majDefausseOuJouer(carte, index);
 		}
 		pioche(j);
 		this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
@@ -183,6 +196,7 @@ public class Partie implements Serializable{
 	 * @throws PiocheVideException				Si la pioche ne contient plus de carte
 	 */
 	public void joueCarte(Joueur j, int indice) throws EnleverCarteInexistanteException, PartiePerdueException, AdditionMainPleineException, PiocheVideException{
+		assert(j.id == this.aQuiLeTour);
 		// Enleve la carte de la main du joueur
         Carte carte = j.getMain().enleverCarte(indice);
         // La carte est valide
@@ -197,7 +211,11 @@ public class Partie implements Serializable{
 			if(this.jetonEclair == 3){
 				setLost();
 				finirPartie();
+				throw new PartiePerdueException();
 			}
+		}
+		if(j instanceof EpistemicJoueurIA){
+			((EpistemicJoueurIA) j).getMcj().majDefausseOuJouer(carte, indice);
 		}
 		pioche(j);
 		this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
@@ -220,6 +238,9 @@ public class Partie implements Serializable{
 				if(this.aQuiLeTour == this.dernierJoueur) {
 					this.finirPartie();
 				}
+			}
+			if(j instanceof EpistemicJoueurIA){
+				((EpistemicJoueurIA) j).getMcj().indiceCouleurRecu(c);
 			}
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
@@ -245,6 +266,9 @@ public class Partie implements Serializable{
 				if(this.aQuiLeTour == this.dernierJoueur) {
 					this.finirPartie();
 				}
+			}
+			if(j instanceof EpistemicJoueurIA){
+				((EpistemicJoueurIA) j).getMcj().indiceValeurRecu(val);
 			}
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
@@ -477,6 +501,7 @@ public class Partie implements Serializable{
 	public boolean getFinPartie() {
 		return partieFinie;
 	}
+
 	public void setLost(){
 		lost = true;
 	}

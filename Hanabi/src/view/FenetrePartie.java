@@ -31,6 +31,8 @@ public class FenetrePartie extends JFrame{
 	public boolean afficheDef;
 	public int playerSelected = 0;
 	public static String R = System.getProperty("user.dir");
+	private Menu menu = new Menu();
+
 
 	public FenetrePartie(Partie p){
 		super("Hanabi");
@@ -49,6 +51,9 @@ public class FenetrePartie extends JFrame{
 		this.table = new Table();
 
 		this.addMouseListener(new MouseListener(this));
+		
+		this.menu.addListeners(this);
+		this.setJMenuBar(menu);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -99,8 +104,8 @@ public class FenetrePartie extends JFrame{
 		g.setColor(Color.white);
 		g.fillOval(200, this.getHeight()-50, 30, 30);
 		if(this.partie.isMulticolor()){
-			g.setColor(Color.MAGENTA);
-			g.fillOval(245, this.getHeight()-75, 30, 30);
+			Image img = new ImageIcon(R+"multicolor.png").getImage();
+			g.drawImage(img,245, this.getHeight()-75, 30, 30, this);
 			g.setColor(Color.black);
 			g.drawArc(245, this.getHeight()-75, 30, 30,0,360);
 		}
@@ -317,7 +322,7 @@ public class FenetrePartie extends JFrame{
 				
 			}
 			catch(Exception e){
-				JOptionPane.showConfirmDialog(this, e.toString()+"\nEnregistrer avec erreur", 
+				JOptionPane.showConfirmDialog(this, e.toString()+"\nErreur d'enregistrement", 
 						"Jeu Hanabi", JOptionPane.DEFAULT_OPTION);			
 			}
 		}
@@ -330,8 +335,9 @@ public class FenetrePartie extends JFrame{
 	public void paint(Graphics g){
 		//super.paint(g);
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
+		this.paintComponents(g);
 		//background
-		g.drawImage(new ImageIcon(R+"wood.jpg").getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+		g.drawImage(new ImageIcon(R+"wood.jpg").getImage(), 0, 20, this.getWidth(), this.getHeight()-20, this);
 		//draw table
 		this.table.paintTable(g, this);
 		//draw hands
@@ -361,15 +367,14 @@ public class FenetrePartie extends JFrame{
 		if(this.playerSelected != 0){
 			afficherMainSelectionnee(g);
 		}
-
-		if (partie.getLost()==true){
-			new PartiePerdue(partie);
-		}
-
 	}
 	
 	public Partie getPartie() {
 		return partie;
+	}
+	
+	public void setPartie(Partie p) {
+		this.partie = p;
 	}
 
 	public int getTableWidth() {

@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -222,5 +223,29 @@ public class Carte implements Serializable{
     		}
 		}
 		return res;
+	}
+	
+	public boolean equals(Object other){
+		if(other instanceof Carte){
+			Carte otherCard = (Carte) other;
+    		return 
+    		((  this.getCouleur() == otherCard.getCouleur() ||
+    			( this.getCouleur() != null && otherCard.getCouleur() != null &&
+    			  this.getCouleur().equals(otherCard.getCouleur())))
+    			&&
+    		 (	this.valeur == otherCard.getValeur() ) );
+		}
+		return false;		
+	}
+	
+	public Carte clone(){
+		return new Carte(getCouleur(),valeur);
+	}
+	
+	public String toString(){
+		String res = "[";
+		res += Integer.toString(this.valeur) +",";
+		res += this.couleur.convertirEnChaine();
+		return res + "]";
 	}
 }

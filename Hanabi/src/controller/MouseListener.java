@@ -12,6 +12,8 @@ import model.JoueurIA;
 import model.PartiePerdueException;
 import model.PiocheVideException;
 import view.FenetrePartie;
+import view.PartieGagne;
+import view.PartiePerdue;
 
 
 public class MouseListener extends MouseAdapter {
@@ -24,6 +26,7 @@ public class MouseListener extends MouseAdapter {
 	private int nbCartes;
 	private int karteH;
 	private int karteW;
+	private boolean defausser = false;
 	
 	public MouseListener(FenetrePartie partie){
 		this.partie = partie;
@@ -31,7 +34,7 @@ public class MouseListener extends MouseAdapter {
         karteH = this.partie.tableHeight/4;
         karteW =(int)( (float)karteH*0.645);
 	}
-	
+
 	public void mouseClicked(MouseEvent e){
 		int x = e.getX();
 		int y = e.getY();
@@ -47,7 +50,6 @@ public class MouseListener extends MouseAdapter {
 				this.secondClick = true;
 				this.jouerCoup = true;
 				this.partie.update(this.partie.getGraphics());
-				this.partie.saveToFile();
 			}
 			else{
 				if(this.secondClick && isInButtonAnnuler(x,y)){
@@ -55,14 +57,17 @@ public class MouseListener extends MouseAdapter {
 					this.firstClick = true;
 					this.secondClick = false;
 					this.jouerCoup = false;
+					this.defausser  = false;
 					this.partie.update(this.partie.getGraphics());
 				}
 				else{
 					if(this.secondClick && isInPlayersCards(x,y)!=0 && this.jouerCoup){
 						try {
 							this.partie.getPartie().joueCarte(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
-						} catch (EnleverCarteInexistanteException | PartiePerdueException | AdditionMainPleineException | PiocheVideException e1) {
+						} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
 							e1.printStackTrace();
+						} catch(PartiePerdueException e2){
+							new PartiePerdue(this.partie.getPartie());
 						}
 						this.partie.setAnnuler(false);
 						this.firstClick = true;
@@ -72,6 +77,7 @@ public class MouseListener extends MouseAdapter {
 						if(this.partie.getPartie().getaQuiLeTour()!=0){
 							if(this.partie.getPartie().getFinPartie()){
 								System.out.println("Partie finie 1");
+								new PartieGagne(this.partie.getPartie());
 							}
 							else
 							{
@@ -87,7 +93,7 @@ public class MouseListener extends MouseAdapter {
 							}
 						}
 						else{
-							if(this.secondClick && isInPlayersCards(x,y) != 0){
+							if(this.secondClick && isInPlayersCards(x,y) != 0 && this.defausser){
 								try {
 									this.partie.getPartie().defausse(this.partie.getPartie().getJoueurs()[0], isInPlayersCards(x, y)-1);
 								} catch (EnleverCarteInexistanteException | AdditionMainPleineException | PiocheVideException e1) {
@@ -96,10 +102,12 @@ public class MouseListener extends MouseAdapter {
 								this.partie.setAnnuler(false);
 								this.firstClick = true;
 								this.secondClick = false;
+								this.defausser=false;
 								this.partie.update(this.partie.getGraphics());
 								if(this.partie.getPartie().getaQuiLeTour()!=0){
 									if(this.partie.getPartie().getFinPartie()){
 										System.out.println("Partie finie 2");
+										new PartieGagne(this.partie.getPartie());
 									}
 									else
 									{
@@ -112,6 +120,7 @@ public class MouseListener extends MouseAdapter {
 									this.partie.setAnnuler(true);
 									this.firstClick = false;
 									this.secondClick = true;
+									this.defausser = true;
 									this.partie.update(this.partie.getGraphics());
 								}
 								else{
@@ -158,6 +167,7 @@ public class MouseListener extends MouseAdapter {
 													if(this.partie.getPartie().getaQuiLeTour()!=0){
 														if(this.partie.getPartie().getFinPartie()){
 															System.out.println("Partie finie 3");
+															new PartieGagne(this.partie.getPartie());
 														}
 														else
 														{
@@ -175,6 +185,7 @@ public class MouseListener extends MouseAdapter {
 				}
 			}
 		}
+		this.partie.repaint();
 	}
 
 	private int isInIndices(int x, int y) {
@@ -475,13 +486,14 @@ public class MouseListener extends MouseAdapter {
 	}
 	
 	public void faireJouerIAs(){
-		for(int i=1;i<this.partie.getPartie().getNbJoueurs();i++){
+		for(int i=this.partie.getPartie().getaQuiLeTour();i<this.partie.getPartie().getNbJoueurs();i++){
 			if(!this.partie.getPartie().getFinPartie())
 			{
 				JoueurIA player = (JoueurIA) this.partie.getPartie().getJoueurs()[i];
 				if( (player.getId() == this.partie.getPartie().getDernierJoueur()) && (this.partie.getPartie().getDernierTour()) ){
 					this.partie.getPartie().finirPartie();
 					System.out.println("Partie finie 4, id_ia : " + player.getId());
+					new PartieGagne(this.partie.getPartie());
 				}
 				player.jouerCoup();
 				try {
