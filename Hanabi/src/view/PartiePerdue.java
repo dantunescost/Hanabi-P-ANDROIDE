@@ -1,5 +1,6 @@
 package view;
 
+import controller.PerduListener;
 import model.Partie;
 
 import javax.swing.*;
@@ -8,17 +9,22 @@ import java.awt.*;
 public class PartiePerdue extends JFrame{
 	private static final long serialVersionUID = 7734525171653464234L;
     public static String R = System.getProperty("user.dir");
+    protected FenetrePartie fp;
 
-    public PartiePerdue(Partie p) {
+    public PartiePerdue(Partie p, FenetrePartie fp) {
         super("Perdu!");
         this.setSize(529,501);
         this.setMinimumSize(new Dimension(529,501));
         this.setResizable(false);
+        this.fp = fp;
 
         if(System.getProperty("os.name").equals("Mac OS X")){
             R += "/Hanabi";
         }
         R += "/ressources/";
+
+        this.addMouseListener(new PerduListener(this, fp));
+
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
