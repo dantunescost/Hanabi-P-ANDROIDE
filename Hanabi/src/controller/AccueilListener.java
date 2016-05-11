@@ -40,7 +40,7 @@ public class AccueilListener extends MouseAdapter {
 							if( (player.getId() == ((FenetrePartie)fen).getPartie().getDernierJoueur()) && (((FenetrePartie)fen).getPartie().getDernierTour()) ){
 								((FenetrePartie)fen).getPartie().finirPartie();
 								System.out.println("Partie finie 4, id_ia : " + player.getId());
-								new PartieGagne(p); // Does this need to be there ?
+								new PartieGagne(p, fen); // Does this need to be there ?
 							}
 							player.jouerCoup();
 							try {

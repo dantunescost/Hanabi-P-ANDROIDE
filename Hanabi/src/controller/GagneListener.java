@@ -16,31 +16,37 @@ import java.io.ObjectInputStream;
 
 public class GagneListener extends MouseAdapter {
     PartieGagne pg;
+    FenetrePartie fp;
 
-    public GagneListener(PartieGagne p) {
+    public GagneListener(PartieGagne p, FenetrePartie fp) {
         this.pg = p;
+        this.fp = fp;
     }
 
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        /*if (x <= pg.getWidth() / 2 - 10 && x >= pg.getWidth() / 2 - 203 && y <= (pg.getHeight() / 4) * 3 + 40 && y > (pg.getHeight() / 4) * 3) {
-            new Parametres();
+        if (x>=10 && x<= 203 && y>=420 && y<=460) {
             pg.dispose();
+            fp.setVisible(false);
+            new Parametres(fp);
         }
-
-        if (x <= pg.getWidth() / 2 + 194 && x >= pg.getWidth() / 2 + 10 && y <= (pg.getHeight() / 4) * 3 + 40 && y > (pg.getHeight() / 4) * 3) {
+        else if (x>=407 && x<= 519 && y>=420 && y<=460){
+            pg.dispose();
+            fp.dispose();
+        }
+        else if (x>=213 && x<=397 && y>=420 && y<=460){
             Partie p = loadFromFile();
             if (p != null) {
-                FenetrePartie fen = new FenetrePartie(p);
+                fp.setPartie(p);
                 if (p.getaQuiLeTour() != 0) {
-                    for (int i = ((FenetrePartie) fen).getPartie().getaQuiLeTour(); i < ((FenetrePartie) fen).getPartie().getNbJoueurs(); i++) {
-                        if (!((FenetrePartie) fen).getPartie().getFinPartie()) {
-                            JoueurIA player = (JoueurIA) ((FenetrePartie) fen).getPartie().getJoueurs()[i];
-                            if ((player.getId() == ((FenetrePartie) fen).getPartie().getDernierJoueur()) && (((FenetrePartie) fen).getPartie().getDernierTour())) {
-                                ((FenetrePartie) fen).getPartie().finirPartie();
+                    for (int i = ((FenetrePartie) fp).getPartie().getaQuiLeTour(); i < ((FenetrePartie) fp).getPartie().getNbJoueurs(); i++) {
+                        if (!((FenetrePartie) fp).getPartie().getFinPartie()) {
+                            JoueurIA player = (JoueurIA) ((FenetrePartie) fp).getPartie().getJoueurs()[i];
+                            if ((player.getId() == ((FenetrePartie) fp).getPartie().getDernierJoueur()) && (((FenetrePartie) fp).getPartie().getDernierTour())) {
+                                ((FenetrePartie) fp).getPartie().finirPartie();
                                 System.out.println("Partie finie 4, id_ia : " + player.getId());
-                                new PartieGagne(p); // Does this need to be there ?
+                                new PartieGagne(p, fp); // Does this need to be there ?
                             }
                             player.jouerCoup();
                             try {
@@ -48,13 +54,14 @@ public class GagneListener extends MouseAdapter {
                             } catch (InterruptedException e1) {
                                 e1.printStackTrace();
                             }
-                            ((FenetrePartie) fen).update(((FenetrePartie) fen).getGraphics());
+                            ((FenetrePartie) fp).update(((FenetrePartie) fp).getGraphics());
                         }
                     }
                 }
+                fp.repaint();
                 pg.dispose();
             }
-        }*/
+        }
     }
 
     public Partie loadFromFile() {

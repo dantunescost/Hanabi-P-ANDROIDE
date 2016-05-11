@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd61464d-c34a-4b8c-9f44-d94fd7dad3a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hanabi/src/controller/GagneListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/controller/AccueilListener.java" afterPath="$PROJECT_DIR$/Hanabi/src/controller/AccueilListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/controller/GagneListener.java" afterPath="$PROJECT_DIR$/Hanabi/src/controller/GagneListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java" afterPath="$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java" afterPath="$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java" afterPath="$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java" afterPath="$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java" />
     </list>
     <ignored path="Hanabi-P-ANDROIDE.iws" />
@@ -28,18 +29,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PartiePerdue.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FenetrePartie.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,21 +41,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MouseListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java">
+      <file leaf-file-name="FenetreAccueil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hanabi/src/view/FenetreAccueil.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
+              <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PerduListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java">
+      <file leaf-file-name="AccueilListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/AccueilListener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+              <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+              <folding>
+                <element signature="e#502#503#0" expanded="true" />
+                <element signature="e#523#524#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PerduListener.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.39770555">
+              <caret line="51" column="45" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,11 +76,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GagneListener.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PartieGagne.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GagneListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/GagneListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2045889">
-              <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="60" column="23" selection-start-line="60" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -136,12 +150,13 @@
         <option value="$PROJECT_DIR$/Hanabi/src/view/PartieGagné.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/FenetrePartie.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/model/Partie.java" />
-        <option value="$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java" />
-        <option value="$PROJECT_DIR$/Hanabi/src/controller/AccueilListener.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java" />
-        <option value="$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/view/FenetreAccueil.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/controller/AccueilListener.java" />
         <option value="$PROJECT_DIR$/Hanabi/src/controller/GagneListener.java" />
+        <option value="$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java" />
       </list>
     </option>
   </component>
@@ -365,12 +380,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/controller/EcouteBouton.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/controller/MenuListener.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/Carte.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/Partie.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/view/Parametres.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/ApprentissagePartie.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/SimulationPartie.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -378,9 +389,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/almostfinished</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/EpistemicJoueurIA.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Hanabi/src/model/ModelesCartesJoueur.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1006,7 +1014,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462451762898</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="PartiePerdue boutons marchent">
+      <created>1462955606216</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1462955606216</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1073,7 +1087,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Rajouté changement Joueur" />
     <MESSAGE value="Ajouté classe DummyJoueurIA - Commencé methode quoiFaire" />
     <MESSAGE value="Added p" />
     <MESSAGE value="Fini DummyJoueurIA (A tester) et modifié Main et Joueur" />
@@ -1098,7 +1111,8 @@
     <MESSAGE value="Donner indice que s'il y a plus de 0 jetons indices. Affiche pas le bouton donner indice sinon" />
     <MESSAGE value="PartiePerdu popup (les boutons ne marchent pas encore)" />
     <MESSAGE value="PartieGagne" />
-    <option name="LAST_COMMIT_MESSAGE" value="PartieGagne" />
+    <MESSAGE value="PartiePerdue boutons marchent" />
+    <option name="LAST_COMMIT_MESSAGE" value="PartiePerdue boutons marchent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1423,34 +1437,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33701658">
-          <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartieGraphique.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08604206">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/FenetreAccueil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29254302">
-          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/AccueilListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37284896">
-          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1465,39 +1455,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartiePerdue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java">
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/MouseListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <caret line="499" column="38" selection-start-line="499" selection-start-column="38" selection-end-line="499" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/FenetreAccueil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/view/PartieGagne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/AccueilListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+          <folding>
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/GagneListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2045889">
-          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="23" selection-start-line="60" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hanabi/src/controller/PerduListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39770555">
+          <caret line="51" column="45" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

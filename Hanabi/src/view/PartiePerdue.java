@@ -25,7 +25,6 @@ public class PartiePerdue extends JFrame{
 
         this.addMouseListener(new PerduListener(this, fp));
 
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

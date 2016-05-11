@@ -1,5 +1,6 @@
 package view;
 
+import controller.GagneListener;
 import model.Partie;
 
 import javax.swing.*;
@@ -10,19 +11,23 @@ public class PartieGagne extends JFrame {
 	public static String R = System.getProperty("user.dir");
     protected Partie p;
     protected int score;
+    protected FenetrePartie fp;
 
-    public PartieGagne(Partie p) {
+    public PartieGagne(Partie p, FenetrePartie fp) {
         super("Gagné!");
         this.setSize(529,501);
         this.setMinimumSize(new Dimension(529,501));
         this.setResizable(false);
         this.p = p;
+        this.fp = fp;
         this.score = p.calculerPoints();
 
         if(System.getProperty("os.name").equals("Mac OS X")){
             R += "/Hanabi";
         }
         R += "/ressources/";
+
+        this.addMouseListener(new GagneListener(this, fp));
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -53,11 +58,11 @@ public class PartieGagne extends JFrame {
         }
 
         g.setColor(Color.white);
-        g.drawString(p.getJoueurs()[0].getNom() + ", votre score est "+Integer.toString(score), 529/2-50, 432);
+        g.drawString(p.getJoueurs()[0].getNom() + ", votre score est "+Integer.toString(score), 529/2-90, 367);
 
-        g.drawImage(new ImageIcon(R+"nouvellePartie.png").getImage(), 10, 501-60, 193, 40, this);
-        g.drawImage(new ImageIcon(R+"chargerPartie.png").getImage(), 10+193+10, 501-60, 184, 40, this);
-        g.drawImage(new ImageIcon(R+"quitter.png").getImage(), 10+193+10+184+10, 501-60, 112, 40, this);
+        g.drawImage(new ImageIcon(R+"nouvellePartie.png").getImage(), 10, 420, 193, 40, this);
+        g.drawImage(new ImageIcon(R+"chargerPartie.png").getImage(), 10+193+10, 420, 184, 40, this);
+        g.drawImage(new ImageIcon(R+"quitter.png").getImage(), 10+193+10+184+10, 420, 112, 40, this);
 
     }
 }

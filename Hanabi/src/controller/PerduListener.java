@@ -38,16 +38,16 @@ public class PerduListener extends MouseAdapter {
         }
         else if (x>=213 && x<=397 && y>=427 && y<=461){
             Partie p = loadFromFile();
+            fp.setPartie(p);
             if (p != null) {
-                FenetrePartie fen = new FenetrePartie(p);
                 if (p.getaQuiLeTour() != 0) {
-                    for (int i = ((FenetrePartie) fen).getPartie().getaQuiLeTour(); i < ((FenetrePartie) fen).getPartie().getNbJoueurs(); i++) {
-                        if (!((FenetrePartie) fen).getPartie().getFinPartie()) {
-                            JoueurIA player = (JoueurIA) ((FenetrePartie) fen).getPartie().getJoueurs()[i];
-                            if ((player.getId() == ((FenetrePartie) fen).getPartie().getDernierJoueur()) && (((FenetrePartie) fen).getPartie().getDernierTour())) {
-                                ((FenetrePartie) fen).getPartie().finirPartie();
+                    for (int i = ((FenetrePartie) fp).getPartie().getaQuiLeTour(); i < ((FenetrePartie) fp).getPartie().getNbJoueurs(); i++) {
+                        if (!((FenetrePartie) fp).getPartie().getFinPartie()) {
+                            JoueurIA player = (JoueurIA) ((FenetrePartie) fp).getPartie().getJoueurs()[i];
+                            if ((player.getId() == ((FenetrePartie) fp).getPartie().getDernierJoueur()) && (((FenetrePartie) fp).getPartie().getDernierTour())) {
+                                ((FenetrePartie) fp).getPartie().finirPartie();
                                 System.out.println("Partie finie 4, id_ia : " + player.getId());
-                                new PartieGagne(p); // Does this need to be there ?
+                                new PartieGagne(p, fp); // Does this need to be there ?
                             }
                             player.jouerCoup();
                             try {
@@ -55,10 +55,11 @@ public class PerduListener extends MouseAdapter {
                             } catch (InterruptedException e1) {
                                 e1.printStackTrace();
                             }
-                            ((FenetrePartie) fen).update(((FenetrePartie) fen).getGraphics());
+                            ((FenetrePartie) fp).update(((FenetrePartie) fp).getGraphics());
                         }
                     }
                 }
+                fp.repaint();
                 pp.dispose();
             }
         }

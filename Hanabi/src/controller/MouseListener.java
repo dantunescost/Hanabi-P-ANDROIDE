@@ -77,7 +77,7 @@ public class MouseListener extends MouseAdapter {
 						if(this.partie.getPartie().getaQuiLeTour()!=0){
 							if(this.partie.getPartie().getFinPartie()){
 								System.out.println("Partie finie 1");
-								new PartieGagne(this.partie.getPartie());
+								new PartieGagne(this.partie.getPartie(), partie);
 							}
 							else
 							{
@@ -107,7 +107,7 @@ public class MouseListener extends MouseAdapter {
 								if(this.partie.getPartie().getaQuiLeTour()!=0){
 									if(this.partie.getPartie().getFinPartie()){
 										System.out.println("Partie finie 2");
-										new PartieGagne(this.partie.getPartie());
+										new PartieGagne(this.partie.getPartie(), partie);
 									}
 									else
 									{
@@ -167,7 +167,7 @@ public class MouseListener extends MouseAdapter {
 													if(this.partie.getPartie().getaQuiLeTour()!=0){
 														if(this.partie.getPartie().getFinPartie()){
 															System.out.println("Partie finie 3");
-															new PartieGagne(this.partie.getPartie());
+															new PartieGagne(this.partie.getPartie(), partie);
 														}
 														else
 														{
@@ -493,7 +493,7 @@ public class MouseListener extends MouseAdapter {
 				if( (player.getId() == this.partie.getPartie().getDernierJoueur()) && (this.partie.getPartie().getDernierTour()) ){
 					this.partie.getPartie().finirPartie();
 					System.out.println("Partie finie 4, id_ia : " + player.getId());
-					new PartieGagne(this.partie.getPartie());
+					new PartieGagne(this.partie.getPartie(), partie);
 				}
 				player.jouerCoup();
 				try {
