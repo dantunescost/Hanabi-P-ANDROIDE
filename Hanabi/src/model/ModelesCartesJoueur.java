@@ -96,6 +96,12 @@ public class ModelesCartesJoueur implements Serializable{
 	}
 	
 	public void initCartesSorties(){
+		this.cartesCritiques.clear();
+		for(CardColor c : CardColor.values()){
+			if(!c.equals(CardColor.MULTI) || this.partie.isMulticolor()){
+				this.cartesCritiques.add(new Carte(c, 5));
+			}
+		}
 		for(int i=1; i<6; i++){
 			if(i==1){
 				this.cartesSorties.put(new Carte(CardColor.BLANC,i),3);

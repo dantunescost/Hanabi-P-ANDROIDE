@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import model.ModelesCartesAutres.Indice;
+//import model.ModelesCartesAutres.Indice;
 
 public class EpistemicJoueurIA extends JoueurIA {
 	private static final long serialVersionUID = 7686865017053076471L;
@@ -28,6 +28,9 @@ public class EpistemicJoueurIA extends JoueurIA {
 
 	public void jouerCoup(){
 		boolean aJoue = false;
+		if(this.p.dernierTour){
+			this.risque = 0.58;
+		}
         // ************************* JOUER UNE CARTE AVEC RISQUE *******************************
 		int indice=jouerCarte();
 		if(indice!=-1){
@@ -75,7 +78,7 @@ public class EpistemicJoueurIA extends JoueurIA {
 				aJoue = donnerIndiceIntelligentA(joueur);
 				joueur = (joueur+1)%this.p.nbJoueurs;
 			}
-			if(!aJoue){
+			/*if(!aJoue){
 				Indice bestIndice = this.mca.meilleurIndice();
 				if(bestIndice.bestValue == -1){
 					try {
@@ -93,7 +96,7 @@ public class EpistemicJoueurIA extends JoueurIA {
 	                    e.printStackTrace();
 	                }
 				}
-			}
+			}*/
 		}
 		// ************************* DEFAUSSER CARTE SANS INDICE  *******************************
 		if(!aJoue){
