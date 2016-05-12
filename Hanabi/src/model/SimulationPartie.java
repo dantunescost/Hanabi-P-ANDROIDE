@@ -19,6 +19,7 @@ public class SimulationPartie extends Partie {
 		boolean multi = false;
 		float scoreTotal = 0;
 		float scoreMoyen = 0;
+		float erreursTotal = 0;
 		int max = -1;
 		int min = 42;
 	    Scanner in = new Scanner(System.in);
@@ -71,7 +72,7 @@ public class SimulationPartie extends Partie {
 				System.out.println("Vous avez selectionne HeuristicJoueurIA pour le joueur " + i);
 				break;
 			case 3:
-				joue[i-1] = new EpistemicJoueurIA(Integer.toString(i), game, i-1,(float)0.6);
+				joue[i-1] = new EpistemicJoueurIA(Integer.toString(i), game, i-1,(float)0.62);
 				System.out.println("Vous avez selectionne EpistemicJoueurIA pour le joueur " + i);
 				break;
 			default:
@@ -115,16 +116,17 @@ public class SimulationPartie extends Partie {
 					ia.jouerCoup();
 				}
  			}
-			
+			int erreurs = game.getJetonEclair();
 			int score = game.calculerPoints();
 			scoreTotal += score;
+			erreursTotal += erreurs;
 			min = (score < min)? score:min;
 			max = (score > max)? score:max;
 			
 			System.out.println("Partie " + (i+1) + " terminee. Score : " + score);
 		}
 		scoreMoyen = scoreTotal / nbSimulations;
-		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen);
+		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + erreursTotal/nbSimulations);
 		
 		in.close();
 	}
