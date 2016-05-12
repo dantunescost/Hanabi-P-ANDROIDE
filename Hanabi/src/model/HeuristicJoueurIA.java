@@ -21,13 +21,16 @@ public class HeuristicJoueurIA extends JoueurIA{
 		double h_max=0;
 		double h_jouer[]=new double[this.getMain().main.size()];
 		double h_defausser[]=new double[this.getMain().main.size()];
-		double h_indice_couleur[]=new double[(this.p.nbJoueurs)*5];
-		double h_indice_valeur[]=new double[(this.p.nbJoueurs)*5];
-		/*if(this.p.multicolor)
-			h_indice_couleur=new double[(this.p.nbJoueurs)*5];
-		else if(!this.p.multicolor)
+		double h_indice_couleur[]=null;
+		if(this.p.isMulticolor())
+		{
 			h_indice_couleur=new double[(this.p.nbJoueurs)*6];
-		*/
+		}
+		else
+		{
+			h_indice_couleur=new double[(this.p.nbJoueurs)*5];
+		}
+		double h_indice_valeur[]=new double[(this.p.nbJoueurs)*5];
 		/*********Tests jouer************/
 		i=0;
 		for(Carte c : this.getMain().main)
@@ -57,14 +60,40 @@ public class HeuristicJoueurIA extends JoueurIA{
 	    			h_indice_valeur[j.getId()*5+2]=testIndice(j, null, 3);
 	    			h_indice_valeur[j.getId()*5+3]=testIndice(j, null, 4);
 	    			h_indice_valeur[j.getId()*5+4]=testIndice(j, null, 5);
-	    			h_indice_couleur[j.getId()*5]=testIndice(j, Couleur.CardColor.BLANC, 0);
-	    			h_indice_couleur[j.getId()*5+1]=testIndice(j, Couleur.CardColor.BLEU, 0);
-	    			h_indice_couleur[j.getId()*5+2]=testIndice(j, Couleur.CardColor.VERT, 0);
-	    			h_indice_couleur[j.getId()*5+3]=testIndice(j, Couleur.CardColor.JAUNE, 0);
-	    			h_indice_couleur[j.getId()*5+4]=testIndice(j, Couleur.CardColor.ROUGE, 0);
+	    			
+	    			if(this.p.isMulticolor())
+	    			{
+	    				h_indice_couleur[j.getId()*6]=testIndice(j, Couleur.CardColor.BLANC, 0);
+		    			h_indice_couleur[j.getId()*6+1]=testIndice(j, Couleur.CardColor.BLEU, 0);
+		    			h_indice_couleur[j.getId()*6+2]=testIndice(j, Couleur.CardColor.VERT, 0);
+		    			h_indice_couleur[j.getId()*6+3]=testIndice(j, Couleur.CardColor.JAUNE, 0);
+		    			h_indice_couleur[j.getId()*6+4]=testIndice(j, Couleur.CardColor.ROUGE, 0);
+	    				h_indice_couleur[j.getId()*6+5]=testIndice(j, Couleur.CardColor.MULTI, 0);
+	    			}
+	    			else
+	    			{
+	    				h_indice_couleur[j.getId()*5]=testIndice(j, Couleur.CardColor.BLANC, 0);
+		    			h_indice_couleur[j.getId()*5+1]=testIndice(j, Couleur.CardColor.BLEU, 0);
+		    			h_indice_couleur[j.getId()*5+2]=testIndice(j, Couleur.CardColor.VERT, 0);
+		    			h_indice_couleur[j.getId()*5+3]=testIndice(j, Couleur.CardColor.JAUNE, 0);
+		    			h_indice_couleur[j.getId()*5+4]=testIndice(j, Couleur.CardColor.ROUGE, 0);
+	    			}
 	    		}
 	    	}	
     	}
+		/*
+		System.out.println("Fin tests h du joueur "+this.id);
+		for(i=0;i<5;i++)
+			System.out.println("h_jouer "+i+" = "+h_defausser[i]);
+		for(i=0;i<5;i++)
+			System.out.println("h_jouer "+i+" = "+h_jouer[i]);
+		for(i=0;i<15;i++)
+			System.out.println("h_indive valeur "+i+" = "+h_indice_valeur[i]);
+		for(i=0;i<18;i++)
+			System.out.println("h_indive couleur "+i+" = "+h_indice_couleur[i]);
+		System.out.println("Fin tests h du joueur "+this.id);
+		 */
+		
 		/*********Recherche h max**********/
 		
 		for(i=0; i<this.getMain().main.size();i++)
@@ -80,8 +109,22 @@ public class HeuristicJoueurIA extends JoueurIA{
 			{
 				if(h_indice_valeur[j.getId()*5+i]>h_max)
 					h_max=h_indice_valeur[j.getId()*5+i];
-				if(h_indice_couleur[j.getId()*5+i]>h_max)
-					h_max=h_indice_couleur[j.getId()*5+i];
+			}
+			if(this.p.isMulticolor())
+			{
+				for(i=0; i<6;i++)
+				{
+					if(h_indice_couleur[j.getId()*6+i]>h_max)
+						h_max=h_indice_couleur[j.getId()*6+i];
+				}
+			}
+			else
+			{
+				for(i=0; i<5;i++)
+				{
+					if(h_indice_couleur[j.getId()*5+i]>h_max)
+						h_max=h_indice_couleur[j.getId()*5+i];
+				}
 			}
     	}
 		//selection coup
@@ -92,43 +135,94 @@ public class HeuristicJoueurIA extends JoueurIA{
 	    	{
 				if (j.getId()!=this.id)
 	    		{
-					for(i=0; i<5;i++)
+					if(!(this.p.isMulticolor()))
 					{
-						if(a_joue==false)
+						for(i=0; i<5;i++)
 						{
-							if(h_indice_valeur[j.getId()*5+i]==h_max)
+							if(a_joue==false)
 							{
-								try {
-									p.indiceValeur(j, i+1);
-								} catch (IndiceSoitMemeException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+								if(h_indice_valeur[j.getId()*5+i]==h_max)
+								{
+									try {
+										p.indiceValeur(j, i+1);
+									} catch (IndiceSoitMemeException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									a_joue=true;
 								}
-								a_joue=true;
+							}
+							if(a_joue==false)
+							{
+								if(h_indice_couleur[j.getId()*5+i]==h_max)
+								{
+									Couleur.CardColor coul=null;
+									if(i==0)
+										coul=Couleur.CardColor.BLANC;
+									else if(i==1)
+										coul=Couleur.CardColor.BLEU;
+									else if(i==2)
+										coul=Couleur.CardColor.VERT;
+									else if(i==3)
+										coul=Couleur.CardColor.JAUNE;
+									else if(i==4)
+										coul=Couleur.CardColor.ROUGE;
+									try {
+										p.indiceCouleur(j, coul);
+									} catch (IndiceSoitMemeException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									a_joue=true;
+								}
 							}
 						}
-						if(a_joue==false)
+					}
+					else
+					{
+						for(i=0; i<5;i++)
 						{
-							if(h_indice_couleur[j.getId()*5+i]==h_max)
+							if(a_joue==false)
 							{
-								Couleur.CardColor coul=null;
-								if(i==0)
-									coul=Couleur.CardColor.BLANC;
-								else if(i==1)
-									coul=Couleur.CardColor.BLEU;
-								else if(i==2)
-									coul=Couleur.CardColor.VERT;
-								else if(i==3)
-									coul=Couleur.CardColor.JAUNE;
-								else if(i==4)
-									coul=Couleur.CardColor.ROUGE;
-								try {
-									p.indiceCouleur(j, coul);
-								} catch (IndiceSoitMemeException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+								if(h_indice_valeur[j.getId()*5+i]==h_max)
+								{
+									try {
+										p.indiceValeur(j, i+1);
+									} catch (IndiceSoitMemeException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									a_joue=true;
 								}
-								a_joue=true;
+							}
+						}
+						for(i=0; i<6;i++)
+						{
+							if(a_joue==false)
+							{
+								if(h_indice_couleur[j.getId()*6+i]==h_max)
+								{
+									Couleur.CardColor coul=null;
+									if(i==0)
+										coul=Couleur.CardColor.BLANC;
+									else if(i==1)
+										coul=Couleur.CardColor.BLEU;
+									else if(i==2)
+										coul=Couleur.CardColor.VERT;
+									else if(i==3)
+										coul=Couleur.CardColor.JAUNE;
+									else if(i==4)
+										coul=Couleur.CardColor.ROUGE;
+									else if(i==5)
+										coul=Couleur.CardColor.MULTI;
+									try {
+										p.indiceCouleur(j, coul);
+									} catch (IndiceSoitMemeException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									a_joue=true;
+								}
 							}
 						}
 					}
