@@ -104,6 +104,8 @@ public class EpistemicJoueurIA extends JoueurIA {
 				}
 			}*/
 		}
+		
+		// ************************* DONNER INDICE SUR UNE CARTE CRITIQUE *******************************
 
 		if(!aJoue && this.p.getJetonIndice()>1){
 			int joueur = (this.p.aQuiLeTour+1)%this.p.nbJoueurs;
@@ -125,25 +127,32 @@ public class EpistemicJoueurIA extends JoueurIA {
 
 	// Carte jouable avec risque, renvoye -1 si aucune carte n'est jouable directement
 	public int jouerCarte(){
-		int c = -1;
 		int i = 0;
+		double max = 0;
+		int bestCard = -1;
 		ArrayList<Carte> cartesJouables = cartesJouablesDirectement();
-		while(c == -1 && i<this.main.main.size()){
+		while(i<this.main.main.size()){
 			int nbCartesJouables = 0;
 			for(Carte monde : this.mcj.getModeles().get(i)){
 				if(cartesJouables.contains(monde)){
 					nbCartesJouables++;
 				}
 			}
-			if(((double)nbCartesJouables/(double)this.mcj.getModeles().get(i).size()) >= risque && this.p.jetonEclair<2){
-				c=i;
-			}
-			else if(((double)nbCartesJouables/(double)this.mcj.getModeles().get(i).size()) == 1.0){
-				c=i;
+			if(max<((double)nbCartesJouables/(double)this.mcj.getModeles().get(i).size())){
+				max = ((double)nbCartesJouables/(double)this.mcj.getModeles().get(i).size());
+				bestCard = i;
 			}
 			i++;
 		}
-		return c;
+		if(max >= risque && this.p.jetonEclair<2){
+			return bestCard;
+		}
+		else if(max == 1.0){
+			return bestCard;
+		}
+		else{
+			return -1;
+		}
 	}
 	
 	public int defausseEpistemic(){
