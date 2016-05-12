@@ -59,24 +59,24 @@ public class SimulationPartie extends Partie {
 			switch (c)
 			{
 			case 0:
-				joue[i-1] = new DummyJoueurIA(Integer.toString(i), game, i-1);
+				joue[i-1] = new DummyJoueurIA(game, i-1);
 				System.out.println("Vous avez selectionne DummyJoueurIA pour le joueur " + i);
 				break;
 			case 1:
-				joue[i-1] = new SemiDummyJoueurIA(Integer.toString(i), game, i-1);
+				joue[i-1] = new SemiDummyJoueurIA(game, i-1);
 				System.out.println("Vous avez selectionne SemiDummyJoueurIA pour le joueur " + i);
 				break;
 			case 2:
 				ParamHeuristic param=new ParamHeuristic();
-				joue[i-1] = new HeuristicJoueurIA(Integer.toString(i), game, i-1,param);
+				joue[i-1] = new HeuristicJoueurIA(game, i-1,param);
 				System.out.println("Vous avez selectionne HeuristicJoueurIA pour le joueur " + i);
 				break;
 			case 3:
-				joue[i-1] = new EpistemicJoueurIA(Integer.toString(i), game, i-1,(float)0.62);
+				joue[i-1] = new EpistemicJoueurIA(game, i-1,(float)0.62);
 				System.out.println("Vous avez selectionne EpistemicJoueurIA pour le joueur " + i);
 				break;
 			default:
-				joue[i-1] = new SemiDummyJoueurIA(Integer.toString(i), game, i-1);
+				joue[i-1] = new SemiDummyJoueurIA(game, i-1);
 				System.out.println("Valeur non definie, par defaut SemiDummyJoueurIA pour le joueur " + i);
 			}
 		}

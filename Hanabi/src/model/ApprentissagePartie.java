@@ -37,7 +37,7 @@ public class ApprentissagePartie extends Partie {
 			ParamHeuristic param=new ParamHeuristic(h[0],h[1],h[2],h[3],h[4],h[5],h[6],h[7]);
 			for(int l=0; l<nbJoueurs; l++)
 			{
-				joue[l] = new HeuristicJoueurIA(Integer.toString(l), game, l,param);
+				joue[l] = new HeuristicJoueurIA(game, l,param);
 			}
 			
 			

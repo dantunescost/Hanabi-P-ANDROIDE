@@ -20,6 +20,7 @@ package model;
  */
 public class DummyJoueurIA extends JoueurIA {
 	private static final long serialVersionUID = -6758471606475814137L;
+	public static final String nom = "Homer";
 
 	/**
 	 * Constructeur pour joueur Dummy IA
@@ -28,7 +29,7 @@ public class DummyJoueurIA extends JoueurIA {
 	 * @param p			La partie a laquelle participe cette IA
 	 * @param id		Le numero du joueur dans la partie
 	 */
-    public DummyJoueurIA(String nom, Partie p, int id) {
+    public DummyJoueurIA(Partie p, int id) {
         super(nom, p, id);
     }
     

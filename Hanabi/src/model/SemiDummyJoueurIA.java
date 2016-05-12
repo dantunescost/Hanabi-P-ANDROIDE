@@ -17,6 +17,7 @@ package model;
  */
 public class SemiDummyJoueurIA extends JoueurIA {
 	private static final long serialVersionUID = 2308625908918058364L;
+	public static final String nom = "Bart";
 	/**
 	 * Constructeur pour joueur SemiDummy IA
 	 * @param nom		Le nom associe au joueur
@@ -24,7 +25,7 @@ public class SemiDummyJoueurIA extends JoueurIA {
 	 * @param p			La partie a laquelle participe cette IA
 	 * @param id		Le numero du joueur dans la partie
 	 */
-    public SemiDummyJoueurIA(String nom, Partie p, int id) {
+    public SemiDummyJoueurIA(Partie p, int id) {
         super(nom, p, id);
     }
     

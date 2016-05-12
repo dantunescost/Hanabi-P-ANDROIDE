@@ -10,8 +10,9 @@ public class EpistemicJoueurIA extends JoueurIA {
 	private ModelesCartesJoueur mcj;
 	private ModelesCartesAutres mca;
 	private double risque;
+	public static final String nom = "Lisa";
 
-	public EpistemicJoueurIA(String nom, Partie p, int id, double risque) {
+	public EpistemicJoueurIA(Partie p, int id, double risque) {
 		super(nom, p, id);
 		this.mcj = new ModelesCartesJoueur(p, id);
 		this.mca = new ModelesCartesAutres(p, id);

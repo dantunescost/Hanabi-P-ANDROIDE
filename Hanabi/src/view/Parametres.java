@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 import controller.EcouteBouton;
@@ -31,6 +32,10 @@ public class Parametres extends JFrame {
 	public JComboBox<String> joueurIA2 = new JComboBox<String>();
 	public JComboBox<String> joueurIA3 = new JComboBox<String>();
 	public JComboBox<String> joueurIA4 = new JComboBox<String>();
+	public JSlider slider1 = new JSlider();
+	public JSlider slider2 = new JSlider();
+	public JSlider slider3 = new JSlider();
+	public JSlider slider4 = new JSlider();
 	public JComboBox<Integer> nbJoueurs= new JComboBox<Integer>();
 	public JTextField pseudo = new JTextField();
 	public JCheckBox multiColor = new JCheckBox("Jouer avec les cartes multicolor");
@@ -46,7 +51,7 @@ public class Parametres extends JFrame {
 	
 	public void initParametres(){
 		this.setTitle("Paramètres de jeu");
-		this.setSize(575,390);
+		this.setSize(700,500);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -87,40 +92,82 @@ public class Parametres extends JFrame {
 		for(int i=0;i<4;i++){
 			labelJoueurIA[i] = new JLabel("Choisissez l'IA numéro " + Integer.toString(i+1) + " ");
 		}
-		joueurIA1.addItem(DummyJoueurIA.class.getName());
-		joueurIA1.addItem(SemiDummyJoueurIA.class.getName());
-		joueurIA1.addItem(HeuristicJoueurIA.class.getName());
-		joueurIA1.addItem(EpistemicJoueurIA.class.getName());
+		joueurIA1.addItem(DummyJoueurIA.nom+" (faible)");
+		joueurIA1.addItem(SemiDummyJoueurIA.nom+" (moyen)");
+		joueurIA1.addItem(HeuristicJoueurIA.nom+" (bon)");
+		joueurIA1.addItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA1.setSelectedItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA1.addItemListener(new EcouteItem(this));
 
-		joueurIA2.addItem(DummyJoueurIA.class.getName());
-		joueurIA2.addItem(SemiDummyJoueurIA.class.getName());
-		joueurIA2.addItem(HeuristicJoueurIA.class.getName());
-		joueurIA2.addItem(EpistemicJoueurIA.class.getName());
+		joueurIA2.addItem(DummyJoueurIA.nom+" (faible)");
+		joueurIA2.addItem(SemiDummyJoueurIA.nom+" (moyen)");
+		joueurIA2.addItem(HeuristicJoueurIA.nom+" (bon)");
+		joueurIA2.addItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA2.setSelectedItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA2.addItemListener(new EcouteItem(this));
 
-		joueurIA3.addItem(DummyJoueurIA.class.getName());
-		joueurIA3.addItem(SemiDummyJoueurIA.class.getName());
-		joueurIA3.addItem(HeuristicJoueurIA.class.getName());
-		joueurIA3.addItem(EpistemicJoueurIA.class.getName());
+		joueurIA3.addItem(DummyJoueurIA.nom+" (faible)");
+		joueurIA3.addItem(SemiDummyJoueurIA.nom+" (moyen)");
+		joueurIA3.addItem(HeuristicJoueurIA.nom+" (bon)");
+		joueurIA3.addItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA3.setSelectedItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA3.addItemListener(new EcouteItem(this));
 
-		joueurIA4.addItem(DummyJoueurIA.class.getName());
-		joueurIA4.addItem(SemiDummyJoueurIA.class.getName());
-		joueurIA4.addItem(HeuristicJoueurIA.class.getName());
-		joueurIA4.addItem(EpistemicJoueurIA.class.getName());
+		joueurIA4.addItem(DummyJoueurIA.nom+" (faible)");
+		joueurIA4.addItem(SemiDummyJoueurIA.nom+" (moyen)");
+		joueurIA4.addItem(HeuristicJoueurIA.nom+" (bon)");
+		joueurIA4.addItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA4.setSelectedItem(EpistemicJoueurIA.nom+" (très bon)");
+		joueurIA4.addItemListener(new EcouteItem(this));
 
-		
+		slider1.setMinimum(0);
+		slider1.setMaximum(100);
+		slider1.setValue(38);
+		slider2.setMinimum(0);
+		slider2.setMaximum(100);
+		slider2.setValue(38);
+		slider3.setMinimum(0);
+		slider3.setMaximum(100);
+		slider3.setValue(38);
+		slider4.setMinimum(0);
+		slider4.setMaximum(100);
+		slider4.setValue(38);
+		slider1.setMinorTickSpacing(5);
+		slider2.setMinorTickSpacing(5);
+		slider3.setMinorTickSpacing(5);
+		slider4.setMinorTickSpacing(5);
+		slider1.setMajorTickSpacing(20);
+		slider2.setMajorTickSpacing(20);
+		slider3.setMajorTickSpacing(20);
+		slider4.setMajorTickSpacing(20);
+		slider1.setPaintTicks(true);
+		slider2.setPaintTicks(true);
+		slider3.setPaintTicks(true);
+		slider4.setPaintTicks(true);
+		slider1.setPaintLabels(true);
+		slider2.setPaintLabels(true);
+		slider3.setPaintLabels(true);
+		slider4.setPaintLabels(true);
+
 		joueurIA3.setEnabled(false);
 		joueurIA4.setEnabled(false);
+		slider3.setEnabled(false);
+		slider4.setEnabled(false);
 		p21[0].setLayout(new FlowLayout());
 		p21[0].add(pseudonyme);
 		p21[0].add(pseudo);
 		p21[1].add(labelJoueurIA[0]);
 		p21[1].add(joueurIA1);
+		p21[1].add(slider1);
 		p21[2].add(labelJoueurIA[1]);
 		p21[2].add(joueurIA2);
+		p21[2].add(slider2);
 		p21[3].add(labelJoueurIA[2]);
 		p21[3].add(joueurIA3);
+		p21[3].add(slider3);
 		p21[4].add(labelJoueurIA[3]);
 		p21[4].add(joueurIA4);
+		p21[4].add(slider4);
 		for(int i=0;i<5;i++){
 			p2.add(p21[i]);
 		}
