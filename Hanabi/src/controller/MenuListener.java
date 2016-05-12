@@ -16,6 +16,7 @@ import model.JoueurHumain;
 import model.JoueurIA;
 import model.Partie;
 import view.FenetrePartie;
+import view.Help;
 import view.Parametres;
 
 public class MenuListener implements ActionListener {
@@ -100,6 +101,16 @@ public class MenuListener implements ActionListener {
 				new Parametres();
 				this.fen.dispose();
 			}
+		} else if(command.equals("A propos")){
+			JOptionPane.showMessageDialog(fen,
+				    "Ce logiciel a été crée dans le cadre\n"
+					+ "du projet P-ANDROIDE 2015-2016 à l'UPMC.\n\n"
+				    + "Auteurs : Antunes Daniel, Assmann Catalina, \n"
+				    + "                 Hubert Cédric et Wolfrom Matthieu",
+				    "A propos",
+				    JOptionPane.WARNING_MESSAGE);
+		} else if(command.equals("Aide")){
+			new Help();
 		}
 		if(fen != null){
 			fen.repaint();

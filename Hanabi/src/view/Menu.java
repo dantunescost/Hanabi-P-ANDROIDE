@@ -15,7 +15,7 @@ import controller.MenuListener;
 public class Menu extends JMenuBar {
 	private static final long serialVersionUID = 2401343171737574518L;
 	JMenu fichier = new JMenu("Fichier");
-	JMenu help = new JMenu("Help");
+	JMenu help = new JMenu("?");
 	public JMenuItem quitter = new JMenuItem("Quitter");
 	public JMenuItem nouvPartie = new JMenuItem("Nouvelle Partie");
 	public JMenuItem chargPartie = new JMenuItem("Charger Partie");
