@@ -11,6 +11,8 @@ import java.io.ObjectInputStream;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import model.EpistemicJoueurIA;
+import model.JoueurHumain;
 import model.JoueurIA;
 import model.Partie;
 import view.FenetrePartie;
@@ -39,6 +41,10 @@ public class MenuListener implements ActionListener {
 			Partie p = loadFromFile();
 			if(p!=null){
 				if(fen.getClass().equals(FenetrePartie.class)){
+					if(p.getJoueurs()[0] instanceof EpistemicJoueurIA) {
+						JoueurHumain chal = new JoueurHumain("Challenger", p, 0);
+						p.getJoueurs()[0] = chal;
+					}
 					((FenetrePartie)fen).setPartie(p);
 					if(p.getaQuiLeTour()!=0){
 						for(int i=((FenetrePartie)fen).getPartie().getaQuiLeTour();i<((FenetrePartie)fen).getPartie().getNbJoueurs();i++){

@@ -1,6 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 
 public class SimulationPartie extends Partie {
 	private static final long serialVersionUID = 595418792495031308L;
@@ -10,8 +18,11 @@ public class SimulationPartie extends Partie {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CloneNotSupportedException {
 		SimulationPartie game;
+		Serializable partie = null;
+		ArrayList<String> produced = new ArrayList<String>();
+		Random rng = new Random();
 		final int nbIndices = 8;
 		Joueur[] joue;
 		int nbSimulations;
@@ -86,6 +97,7 @@ public class SimulationPartie extends Partie {
 		{			
 			try {
 				game.reinitPartie(joue);
+				partie = (Serializable) game.clone();
 			} catch (AdditionMainPleineException | PiocheVideException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -124,9 +136,33 @@ public class SimulationPartie extends Partie {
 			max = (score > max)? score:max;
 			
 			System.out.println("Partie " + (i+1) + " terminee. Score : " + score);
+			if(score == ((multi)?30:25) && partie != null)
+			{
+				String fname = "./Games_25/g_" + nbJoueurs + "p_" + rng.nextInt();
+				produced.add(fname);
+				File file = new File(fname);
+				FileOutputStream fileStream;
+				try {
+					fileStream = new FileOutputStream(file);
+					ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+
+					objectStream.writeObject(partie);
+					
+					objectStream.close();
+					fileStream.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		scoreMoyen = scoreTotal / nbSimulations;
 		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + erreursTotal/nbSimulations);
+		
+		for(int i=0; i<produced.size(); i++)
+		{
+			System.out.println("Partie conservee : " + produced.get(i));
+		}
 		
 		in.close();
 	}

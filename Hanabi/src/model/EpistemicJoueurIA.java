@@ -11,12 +11,14 @@ public class EpistemicJoueurIA extends JoueurIA {
 	private ModelesCartesAutres mca;
 	private double risque;
 	public static final String nom = "Lisa";
+	private double risqueInit;
 
 	public EpistemicJoueurIA(Partie p, int id, double risque) {
 		super(nom, p, id);
 		this.mcj = new ModelesCartesJoueur(p, id);
 		this.mca = new ModelesCartesAutres(p, id);
 		this.risque = risque;
+		this.risqueInit = risque;
 	}
 
 	public ModelesCartesJoueur getMcj() {
@@ -30,7 +32,10 @@ public class EpistemicJoueurIA extends JoueurIA {
 	public void jouerCoup(){
 		boolean aJoue = false;
 		if(this.p.dernierTour){
-			this.risque = 0.58;
+			this.risque = 0.2;
+		}
+		else {
+			this.risque = this.risqueInit;
 		}
         // ************************* JOUER UNE CARTE AVEC RISQUE *******************************
 		int indice=jouerCarte();
@@ -289,5 +294,11 @@ public class EpistemicJoueurIA extends JoueurIA {
 
 	public double getRisque() {
 		return risque;
+	}
+	
+	public EpistemicJoueurIA clone() {
+		EpistemicJoueurIA j = new EpistemicJoueurIA(this.p, this.id, this.risque);
+		j.main = this.main.clone();
+		return j;
 	}
 }
