@@ -3,10 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import java.io.File;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 
 public class SimulationPartie extends Partie {
@@ -19,7 +20,7 @@ public class SimulationPartie extends Partie {
 
 	public static void main(String[] args) throws CloneNotSupportedException {
 		SimulationPartie game;
-		Serializable partie = null;
+		byte[] partie = null;
 		ArrayList<String> produced = new ArrayList<String>();
 		Random rng = new Random();
 		final int nbIndices = 8;
@@ -96,7 +97,16 @@ public class SimulationPartie extends Partie {
 		{			
 			try {
 				game.reinitPartie(joue);
-				partie = (Serializable) game.clone();
+				try {
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			        ObjectOutputStream oos = new ObjectOutputStream( baos );
+			        oos.writeObject( game );
+			        oos.close();
+			        partie = baos.toByteArray();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (AdditionMainPleineException | PiocheVideException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -139,20 +149,19 @@ public class SimulationPartie extends Partie {
 			{
 				String fname = "./Games_25/g_" + nbJoueurs + "p_" + rng.nextInt();
 				produced.add(fname);
-				File file = new File(fname);
-				FileOutputStream fileStream;
+				FileOutputStream fos;
 				try {
-					fileStream = new FileOutputStream(file);
-					ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
-
-					objectStream.writeObject(partie);
-					
-					objectStream.close();
-					fileStream.close();
-				} catch (Exception e) {
+					fos = new FileOutputStream(fname);
+					fos.write(partie);
+					fos.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			}
 		}
 		scoreMoyen = scoreTotal / nbSimulations;

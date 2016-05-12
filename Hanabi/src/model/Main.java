@@ -207,7 +207,9 @@ public class Main implements Serializable{
 	
 	public Main clone() {
 		Main m = new Main(this.nbCartes, this.id);
-		m.main = new ArrayList<Carte>(this.main);
+		for(Carte c:this.main) {
+			m.main.add(c.clone());
+		}
 		return m;
 	}
 }

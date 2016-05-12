@@ -176,4 +176,27 @@ public class ModelesCartesJoueur implements Serializable{
 	public ArrayList<Carte> getCartesCritiques() {
 		return cartesCritiques;
 	}
+	
+	public HashMap<Carte, Integer> getCartesSorties() {
+		return cartesSorties;
+	}
+	
+	public ModelesCartesJoueur clone() {
+		ModelesCartesJoueur mcj = new ModelesCartesJoueur(this.partie, this.id);
+		for(Carte c:mcj.cartesSorties.keySet())
+		{
+			mcj.cartesSorties.put(c, this.cartesSorties.get(c));
+		}
+		
+		for(int i=0; i<modeles.size(); i++)
+		{
+			mcj.creerModele();
+			Collection<Carte> cc = this.modeles.get(i);
+			for(Carte c:cc){
+				mcj.modeles.get(i).add(c.clone());
+			}
+		}
+		
+		return mcj;
+	}
 }

@@ -308,6 +308,7 @@ public class EpistemicJoueurIA extends JoueurIA {
 	public EpistemicJoueurIA clone() {
 		EpistemicJoueurIA j = new EpistemicJoueurIA(this.p, this.id, this.risque);
 		j.main = this.main.clone();
+		j.mcj = this.mcj.clone();
 		return j;
 	}
 }
