@@ -122,6 +122,13 @@ public class MenuListener implements ActionListener {
 				e.printStackTrace();
 			}
 		}
+		if(p != null) {
+			if(p.getJoueurs()[0] instanceof EpistemicJoueurIA) {
+				JoueurHumain chal = new JoueurHumain("Challenger", p, 0);
+				chal.setMain(p.getJoueurs()[0].getMain().clone());
+				p.getJoueurs()[0] = chal;
+			}
+		}
 		return p;
 	}
 
