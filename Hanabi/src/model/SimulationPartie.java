@@ -136,7 +136,7 @@ public class SimulationPartie extends Partie {
 			max = (score > max)? score:max;
 			
 			System.out.println("Partie " + (i+1) + " terminee. Score : " + score);
-			if(score == 25 && partie != null)
+			if(score == ((multi)?30:25) && partie != null)
 			{
 				String fname = "./Games_25/g_" + nbJoueurs + "p_" + rng.nextInt();
 				produced.add(fname);
