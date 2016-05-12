@@ -38,7 +38,6 @@ public class FenetreAccueil extends JFrame {
 	public void paint(Graphics g){
 		g.clearRect(0,0,this.getWidth(),this.getHeight());
 		this.paintComponents(g);
-		System.out.println(R+"fireworks.png");
 		g.drawImage(new ImageIcon(R+"fireworks.png").getImage(), 0, 20, this.getWidth(), this.getHeight()-20, this);
 		g.drawImage(new ImageIcon(R+"upmc.png").getImage(), this.getWidth()-150, this.getHeight()-50, 150, 50, this);
 		g.drawImage(new ImageIcon(R+"nouvellePartie.png").getImage(), this.getWidth()/2-203, (this.getHeight()/4)*3, 193, 40, this);
