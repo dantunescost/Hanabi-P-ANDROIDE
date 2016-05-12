@@ -196,5 +196,19 @@ public class Main implements Serializable{
 	{
 		this.main.clear();
 	}
+	
+	public String toString() {
+		String res = "";
+		for(Carte c:main) {
+			res += c.toString();
+		}
+		return res;
+	}
+	
+	public Main clone() {
+		Main m = new Main(this.nbCartes, this.id);
+		m.main = new ArrayList<Carte>(this.main);
+		return m;
+	}
 }
 

@@ -395,4 +395,12 @@ public class JoueurIA extends Joueur {
     	}
     	return res;
     }
+    
+    
+    public JoueurIA clone() {
+		JoueurIA j = new JoueurIA(this.nom, this.p, this.id);
+		j.main = this.main;
+		j.r = new Random();
+		return j;
+	}
 }

@@ -561,4 +561,25 @@ public class Partie implements Serializable{
 	public boolean getLost() {
 		return lost;
 	}
+	
+	
+	public Partie clone() {
+		Partie p = new Partie(this.nbJoueurs, this.maxIndices, this.multicolor);
+		p.aQuiLeTour = this.aQuiLeTour;
+		p.dernierJoueur = this.dernierJoueur;
+		p.dernierTour = this.dernierTour;
+		p.jetonEclair = this.jetonEclair;
+		p.jetonIndice = this.jetonIndice;
+		p.joueurs = new Joueur[nbJoueurs];
+		for(int i=0; i<this.joueurs.length; i++) {
+			if(this.joueurs[i] instanceof EpistemicJoueurIA) {
+				p.joueurs[i] = ((EpistemicJoueurIA)this.joueurs[i]).clone();
+			}
+		}
+		p.lost = this.lost;
+		p.nbCartes = this.nbCartes;
+		p.partieFinie = this.partieFinie;
+		p.pioche = new ArrayList<Carte>(this.pioche);
+		return p;
+	}
 }
