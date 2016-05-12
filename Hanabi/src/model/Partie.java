@@ -258,7 +258,7 @@ public class Partie implements Serializable{
 	 * @throws IndiceSoitMemeException	Si le joueur tente de se donner un indice
 	 */
 	public void indiceCouleur(Joueur j, CardColor c) throws IndiceSoitMemeException{
-		if(j != this.joueurs[this.aQuiLeTour] && this.jetonIndice>0){
+		if(j.getId() != this.aQuiLeTour && this.jetonIndice>0){
 			j.getMain().indiceCouleur(c);
 
 			this.jetonIndice--;
@@ -281,7 +281,7 @@ public class Partie implements Serializable{
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
 		else{
-			throw new IndiceSoitMemeException();
+			throw new IndiceSoitMemeException(j.getId(),aQuiLeTour,jetonIndice);
 		}
 	}
 	
@@ -293,7 +293,7 @@ public class Partie implements Serializable{
 	 * @throws IndiceSoitMemeException	Si le joueur tente de se donner un indice
 	 */
 	public void indiceValeur(Joueur j, int val) throws IndiceSoitMemeException{
-		if(j != this.joueurs[this.aQuiLeTour] && this.jetonIndice>0){
+		if(j.getId() != this.aQuiLeTour && this.jetonIndice>0){
 			j.getMain().indiceValeur(val);
 			
 			this.jetonIndice--;
@@ -316,7 +316,7 @@ public class Partie implements Serializable{
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
 		else{
-			throw new IndiceSoitMemeException();
+			throw new IndiceSoitMemeException(j.getId(),aQuiLeTour,jetonIndice);
 		}
 	}
 	

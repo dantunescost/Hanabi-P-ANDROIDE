@@ -98,6 +98,15 @@ public class EpistemicJoueurIA extends JoueurIA {
 				}
 			}*/
 		}
+
+		if(!aJoue && this.p.getJetonIndice()>1){
+			int joueur = (this.p.aQuiLeTour+1)%this.p.nbJoueurs;
+			while(!aJoue && joueur != this.id){
+				//System.out.println(joueur + " recoit de " + this.id + " jetons: "+this.p.jetonIndice+" a qui le tour "+this.p.aQuiLeTour);
+				aJoue = donnerIndiceCarteCritique(joueur);
+				joueur = (joueur+1)%this.p.nbJoueurs;
+			}
+		}
 		// ************************* DEFAUSSER CARTE SANS INDICE  *******************************
 		if(!aJoue){
 			aJoue = defausserCarteSansIndice();
@@ -230,6 +239,47 @@ public class EpistemicJoueurIA extends JoueurIA {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public boolean donnerIndiceCarteCritique(int joueur){
+		boolean indiceDonne = false;
+		for(Carte c : this.p.joueurs[joueur].main.main){
+			if(!indiceDonne && this.mcj.getCartesCritiques().contains(c) && (!c.isCouleurConnue() || !c.isValeurConnue())){
+				if(!(c.isValeurConnue()) && p.getJoueurs()[joueur].getMain().valeurUnique(c.getValeur())){
+	        		try {
+	                    p.indiceValeur(p.getJoueurs()[joueur], c.getValeur());
+	                    indiceDonne = true;
+	                } catch (IndiceSoitMemeException e) {
+	                    e.printStackTrace();
+	                }
+	        	}
+	        	else if(!(c.isCouleurConnue()) && p.getJoueurs()[joueur].getMain().couleurUnique(c.getCouleur())){
+	        		try {
+	                    p.indiceCouleur(p.getJoueurs()[joueur], c.getCouleur());
+	                    indiceDonne = true;
+	                } catch (IndiceSoitMemeException e) {
+	                    e.printStackTrace();
+	                }
+	        	}
+	        	else if(!(c.isValeurConnue())){
+	        		try {
+	                    p.indiceValeur(p.getJoueurs()[joueur], c.getValeur());
+	                    indiceDonne = true;
+	                } catch (IndiceSoitMemeException e) {
+	                    e.printStackTrace();
+	                }
+	        	}
+	        	else if(!(c.isCouleurConnue())){
+	        		try {
+	                    p.indiceCouleur(p.getJoueurs()[joueur], c.getCouleur());
+	                    indiceDonne = true;
+	                } catch (IndiceSoitMemeException e) {
+	                    e.printStackTrace();
+	                }
+	        	}
+			}
+		}
+		return indiceDonne;
 	}
 	
 	public void setRisque(double r){
