@@ -182,14 +182,14 @@ public class Partie implements Serializable{
 		}
 		if(j instanceof EpistemicJoueurIA){
 			((EpistemicJoueurIA) j).getMcj().majDefausseOuJouer(carte, index);
-			((EpistemicJoueurIA) j).getMca().majDefausseOuJouerTous(carte, index);
+			//((EpistemicJoueurIA) j).getMca().majDefausseOuJouerTous(carte, index);
 		}
 		for(int i=0; i<nbJoueurs; i++){
 			if(joueurs[i] instanceof EpistemicJoueurIA){
 				((EpistemicJoueurIA) joueurs[i]).getMcj().majCartesCritiques(carte);
-				if(joueurs[i].getId()!=j.getId()){
+				/*if(joueurs[i].getId()!=j.getId()){
 					((EpistemicJoueurIA) joueurs[i]).getMca().majDefausseOuJouer(j.getId(), carte, index);
-				}
+				}*/
 			}
 		}
 		pioche(j);
@@ -231,9 +231,9 @@ public class Partie implements Serializable{
 			for(int i=0; i<nbJoueurs; i++){
 				if(joueurs[i] instanceof EpistemicJoueurIA){
 					((EpistemicJoueurIA) joueurs[i]).getMcj().majCartesCritiques(carte);
-					if(joueurs[i].getId()!=j.getId()){
+					/*if(joueurs[i].getId()!=j.getId()){
 						((EpistemicJoueurIA) joueurs[i]).getMca().majDefausseOuJouer(j.getId(), carte, indice);
-					}
+					}*/
 				}
 			}
 			this.jetonEclair++;
@@ -271,13 +271,13 @@ public class Partie implements Serializable{
 			if(j instanceof EpistemicJoueurIA){
 				((EpistemicJoueurIA) j).getMcj().indiceCouleurRecu(c);
 			}
-			for(int i=0; i<nbJoueurs; i++){
+			/*for(int i=0; i<nbJoueurs; i++){
 				if(joueurs[i] instanceof EpistemicJoueurIA){
 					if(joueurs[i].getId()!=j.getId()){
 						((EpistemicJoueurIA) joueurs[i]).getMca().indiceCouleurRecu(j.getId(), c);
 					}
 				}
-			}
+			}*/
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
 		else{
@@ -306,13 +306,13 @@ public class Partie implements Serializable{
 			if(j instanceof EpistemicJoueurIA){
 				((EpistemicJoueurIA) j).getMcj().indiceValeurRecu(val);
 			}
-			for(int i=0; i<nbJoueurs; i++){
+			/*for(int i=0; i<nbJoueurs; i++){
 				if(joueurs[i] instanceof EpistemicJoueurIA){
 					if(joueurs[i].getId()!=j.getId()){
 						((EpistemicJoueurIA) joueurs[i]).getMca().indiceValeurRecu(j.getId(), val);
 					}
 				}
-			}
+			}*/
 			this.aQuiLeTour = (this.aQuiLeTour+1)%this.nbJoueurs;
 		}
 		else{
@@ -562,7 +562,7 @@ public class Partie implements Serializable{
 		return lost;
 	}
 	
-	
+	// Ne fonctionne pas correctement
 	public Partie clone() {
 		Partie p = new Partie(this.nbJoueurs, this.maxIndices, this.multicolor);
 		p.aQuiLeTour = this.aQuiLeTour;
@@ -574,6 +574,7 @@ public class Partie implements Serializable{
 		for(int i=0; i<this.joueurs.length; i++) {
 			if(this.joueurs[i] instanceof EpistemicJoueurIA) {
 				p.joueurs[i] = ((EpistemicJoueurIA)this.joueurs[i]).clone();
+				p.joueurs[i].p = p;
 			}
 		}
 		p.lost = this.lost;

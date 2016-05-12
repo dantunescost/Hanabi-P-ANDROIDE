@@ -42,10 +42,6 @@ public class MenuListener implements ActionListener {
 			Partie p = loadFromFile();
 			if(p!=null){
 				if(fen.getClass().equals(FenetrePartie.class)){
-					if(p.getJoueurs()[0] instanceof EpistemicJoueurIA) {
-						JoueurHumain chal = new JoueurHumain("Challenger", p, 0);
-						p.getJoueurs()[0] = chal;
-					}
 					((FenetrePartie)fen).setPartie(p);
 					if(p.getaQuiLeTour()!=0){
 						for(int i=((FenetrePartie)fen).getPartie().getaQuiLeTour();i<((FenetrePartie)fen).getPartie().getNbJoueurs();i++){
@@ -135,6 +131,13 @@ public class MenuListener implements ActionListener {
 				objectStream.close();
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
+			}
+		}
+		if(p != null) {
+			if(p.getJoueurs()[0] instanceof EpistemicJoueurIA) {
+				JoueurHumain chal = new JoueurHumain("Challenger", p, 0);
+				chal.setMain(p.getJoueurs()[0].getMain().clone());
+				p.getJoueurs()[0] = chal;
 			}
 		}
 		return p;

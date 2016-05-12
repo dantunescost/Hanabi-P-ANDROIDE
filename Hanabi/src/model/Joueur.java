@@ -48,6 +48,10 @@ public abstract class Joueur implements Serializable{
 	public Main getMain(){
 		return this.main;
 	}
+	
+	public void setMain(Main m){
+		this.main = m;
+	}
 
 	/**
 	 * @return	Le nom de ce joueur
@@ -62,4 +66,5 @@ public abstract class Joueur implements Serializable{
 	public int getId(){
 		return this.id;
 	}
+	
 }

@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import model.EpistemicJoueurIA;
+import model.JoueurHumain;
 import model.JoueurIA;
 import model.Partie;
 import view.FenetreAccueil;
@@ -74,6 +76,13 @@ public class AccueilListener extends MouseAdapter {
 				objectStream.close();
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
+			}
+		}
+		if(p != null) {
+			if(p.getJoueurs()[0] instanceof EpistemicJoueurIA) {
+				JoueurHumain chal = new JoueurHumain("Challenger", p, 0);
+				chal.setMain(p.getJoueurs()[0].getMain().clone());
+				p.getJoueurs()[0] = chal;
 			}
 		}
 		return p;
