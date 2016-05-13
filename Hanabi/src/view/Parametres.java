@@ -51,7 +51,7 @@ public class Parametres extends JFrame {
 	
 	public void initParametres(){
 		this.setTitle("Paramètres de jeu");
-		this.setSize(700,500);
+		this.setSize(700,520);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);

@@ -149,6 +149,7 @@ public class JoueurIA extends Joueur {
         }
     return res;
     }
+
     public boolean carteInutile(Carte c)
     {
     	boolean res = false;
