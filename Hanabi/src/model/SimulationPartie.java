@@ -163,6 +163,22 @@ public class SimulationPartie extends Partie {
 				}
 				
 			}
+			else if(score < 10 && partie != null){
+				String fname = "./Games_<10/g_" + nbJoueurs + "p_" + i;
+				produced.add(fname);
+				FileOutputStream fos;
+				try {
+					fos = new FileOutputStream(fname);
+					fos.write(partie);
+					fos.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		scoreMoyen = scoreTotal / nbSimulations;
 		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + erreursTotal/nbSimulations);

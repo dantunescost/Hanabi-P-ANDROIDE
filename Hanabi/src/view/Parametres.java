@@ -77,7 +77,7 @@ public class Parametres extends JFrame {
 		//les joueurs
 		JPanel p2 = new JPanel();
 		p2.setBorder(BorderFactory.createTitledBorder("Les joueurs : "));
-		p2.setLayout(new GridLayout(5,1));
+		p2.setLayout(new GridLayout(6,1));
 		JLabel pseudonyme = new JLabel("Votre pseudonyme ");
 		pseudo.setPreferredSize(new Dimension(150,25));
 		pseudo.setForeground(Color.GRAY);
@@ -168,7 +168,12 @@ public class Parametres extends JFrame {
 		p21[4].add(labelJoueurIA[3]);
 		p21[4].add(joueurIA4);
 		p21[4].add(slider4);
+		JLabel l = new JLabel("                                                                                                       risque (0 = IA sans risque)");
+		l.setAlignmentX(RIGHT_ALIGNMENT);
 		for(int i=0;i<5;i++){
+			if(i==1){
+				p2.add(l);			
+			}
 			p2.add(p21[i]);
 		}
 		
