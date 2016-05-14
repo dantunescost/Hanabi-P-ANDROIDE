@@ -21,7 +21,7 @@ public class ApprentissagePartie extends Partie {
 		final int nbIndices = 8;
 		Joueur[] joue;
 		int nbSimulations=10000;
-		int nbJoueurs=2;
+		int nbJoueurs=3;
 		boolean multi = false;
 		
 		
@@ -84,6 +84,8 @@ public class ApprentissagePartie extends Partie {
 		int min = 25,max = 0,scoreTotal = 0,erreursTotal = 0;
 		
 		while(risque <= 0.7){
+			min = 25;
+			max = 0;
 			scoreTotal = 0;
 			erreursTotal = 0;
 			for(int j = 0;j<nbJoueurs;j++){
@@ -102,7 +104,7 @@ public class ApprentissagePartie extends Partie {
 				{
 					int j = game.getaQuiLeTour();
 					Joueur[] p = game.getJoueurs();
-					if(p[j].getClass().getName().equals(DummyJoueurIA.class.getName()))
+					/*if(p[j].getClass().getName().equals(DummyJoueurIA.class.getName()))
 					{
 						DummyJoueurIA ia = (DummyJoueurIA) p[j];
 						ia.jouerCoup();
@@ -117,7 +119,8 @@ public class ApprentissagePartie extends Partie {
 						HeuristicJoueurIA ia = (HeuristicJoueurIA) p[j];
 						ia.jouerCoup();
 					}
-					else if(p[j].getClass().getName().equals(EpistemicJoueurIA.class.getName()))
+					else */
+					if(p[j].getClass().getName().equals(EpistemicJoueurIA.class.getName()))
 					{
 						EpistemicJoueurIA ia = (EpistemicJoueurIA) p[j];
 						ia.jouerCoup();
@@ -133,8 +136,9 @@ public class ApprentissagePartie extends Partie {
 			scoreMoyen = ((double)scoreTotal) / nbSimulations;
 			bestRisque = (scoreMoyen>scoreMax)? risque:bestRisque;
 			scoreMax = (scoreMoyen>scoreMax)? scoreMoyen:scoreMax;
-			System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + ((double)erreursTotal)/nbSimulations);
-			System.out.println("Meilleur risque: "+bestRisque+" score pour ce risque: "+scoreMax);
+			System.out.println("Score max : " + max + "... Score min : " + min +"... risque = " + risque + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + ((double)erreursTotal)/nbSimulations);
+			System.out.println("Meilleur risque: "+bestRisque+"... score pour ce risque: "+scoreMax);
+			System.out.println("____________________________________________________________________");
 			risque += 0.005;
 		}
 	}	
