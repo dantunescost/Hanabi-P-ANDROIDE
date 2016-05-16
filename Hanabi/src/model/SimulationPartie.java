@@ -29,7 +29,10 @@ public class SimulationPartie extends Partie {
 		int nbJoueurs;
 		boolean multi = false;
 		float scoreTotal = 0;
+		float scoreCarreTotal = 0;
 		float scoreMoyen = 0;
+		float scoreMoyenCarre = 0;
+		float ecartType = 0;
 		float erreursTotal = 0;
 		int max = -1;
 		int min = 42;
@@ -97,7 +100,7 @@ public class SimulationPartie extends Partie {
 		{			
 			try {
 				game.reinitPartie(joue);
-				try {
+				/*try {
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			        ObjectOutputStream oos = new ObjectOutputStream( baos );
 			        oos.writeObject( game );
@@ -106,7 +109,7 @@ public class SimulationPartie extends Partie {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 			} catch (AdditionMainPleineException | PiocheVideException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -140,6 +143,7 @@ public class SimulationPartie extends Partie {
 			int erreurs = game.getJetonEclair();
 			int score = game.calculerPoints();
 			scoreTotal += score;
+			scoreCarreTotal += (score * score);
 			erreursTotal += erreurs;
 			min = (score < min)? score:min;
 			max = (score > max)? score:max;
@@ -163,7 +167,7 @@ public class SimulationPartie extends Partie {
 				}
 				
 			}
-			else if(score < 10 && partie != null){
+			/*else if(score < 10 && partie != null){
 				String fname = "./Games_<10/g_" + nbJoueurs + "p_" + i;
 				produced.add(fname);
 				FileOutputStream fos;
@@ -178,10 +182,12 @@ public class SimulationPartie extends Partie {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
+			}*/
 		}
 		scoreMoyen = scoreTotal / nbSimulations;
-		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + erreursTotal/nbSimulations);
+		scoreMoyenCarre = scoreCarreTotal / nbSimulations;
+		ecartType = scoreMoyenCarre - (scoreMoyen * scoreMoyen);
+		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen+"\nEcart-type : "+ecartType +"\nNombre d'erreurs en moyenne : " + erreursTotal/nbSimulations);
 		
 		for(int i=0; i<produced.size(); i++)
 		{
