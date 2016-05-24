@@ -1,0 +1,205 @@
+Score max : 22... Score min : 11... risque = 0.5
+Score moyen : 16.574
+Nombre d'erreurs en moyenne : 1.82
+Meilleur risque: 0.5... score pour ce risque: 16.574
+____________________________________________________________________
+Score max : 21... Score min : 11... risque = 0.505
+Score moyen : 16.580666666666666
+Nombre d'erreurs en moyenne : 1.5043333333333333
+Meilleur risque: 0.505... score pour ce risque: 16.580666666666666
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.51
+Score moyen : 16.543
+Nombre d'erreurs en moyenne : 1.5456666666666667
+Meilleur risque: 0.505... score pour ce risque: 16.580666666666666
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.515
+Score moyen : 16.564666666666668
+Nombre d'erreurs en moyenne : 1.5443333333333333
+Meilleur risque: 0.505... score pour ce risque: 16.580666666666666
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.52
+Score moyen : 16.608
+Nombre d'erreurs en moyenne : 1.5183333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.525
+Score moyen : 16.598
+Nombre d'erreurs en moyenne : 1.5523333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.53
+Score moyen : 16.564
+Nombre d'erreurs en moyenne : 1.5346666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 10... risque = 0.535
+Score moyen : 16.574
+Nombre d'erreurs en moyenne : 1.525
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 11... risque = 0.54
+Score moyen : 16.602333333333334
+Nombre d'erreurs en moyenne : 1.5106666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.545
+Score moyen : 16.550666666666668
+Nombre d'erreurs en moyenne : 1.5193333333333334
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.55
+Score moyen : 16.592
+Nombre d'erreurs en moyenne : 1.5203333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 10... risque = 0.555
+Score moyen : 16.579333333333334
+Nombre d'erreurs en moyenne : 1.5226666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 11... risque = 0.56
+Score moyen : 16.534666666666666
+Nombre d'erreurs en moyenne : 1.52
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.5650000000000001
+Score moyen : 16.555666666666667
+Nombre d'erreurs en moyenne : 1.513
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 11... risque = 0.5700000000000001
+Score moyen : 16.543
+Nombre d'erreurs en moyenne : 1.497
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.5750000000000001
+Score moyen : 16.521
+Nombre d'erreurs en moyenne : 1.48
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.5800000000000001
+Score moyen : 16.578666666666667
+Nombre d'erreurs en moyenne : 1.4846666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.5850000000000001
+Score moyen : 16.537333333333333
+Nombre d'erreurs en moyenne : 1.481
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 11... risque = 0.5900000000000001
+Score moyen : 16.542666666666666
+Nombre d'erreurs en moyenne : 1.482
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.5950000000000001
+Score moyen : 16.579333333333334
+Nombre d'erreurs en moyenne : 1.4693333333333334
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.6000000000000001
+Score moyen : 16.513
+Nombre d'erreurs en moyenne : 1.4103333333333334
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 11... risque = 0.6050000000000001
+Score moyen : 16.435333333333332
+Nombre d'erreurs en moyenne : 1.4273333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 11... risque = 0.6100000000000001
+Score moyen : 16.488
+Nombre d'erreurs en moyenne : 1.4316666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.6150000000000001
+Score moyen : 16.493333333333332
+Nombre d'erreurs en moyenne : 1.4153333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.6200000000000001
+Score moyen : 16.527333333333335
+Nombre d'erreurs en moyenne : 1.4193333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 10... risque = 0.6250000000000001
+Score moyen : 16.418666666666667
+Nombre d'erreurs en moyenne : 1.423
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 11... risque = 0.6300000000000001
+Score moyen : 16.470666666666666
+Nombre d'erreurs en moyenne : 1.4333333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.6350000000000001
+Score moyen : 16.485666666666667
+Nombre d'erreurs en moyenne : 1.4193333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 13... risque = 0.6400000000000001
+Score moyen : 16.528333333333332
+Nombre d'erreurs en moyenne : 1.386
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.6450000000000001
+Score moyen : 16.481
+Nombre d'erreurs en moyenne : 1.4043333333333334
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.6500000000000001
+Score moyen : 16.505666666666666
+Nombre d'erreurs en moyenne : 1.3756666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.6550000000000001
+Score moyen : 16.54
+Nombre d'erreurs en moyenne : 1.388
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.6600000000000001
+Score moyen : 16.455
+Nombre d'erreurs en moyenne : 1.3973333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 22... Score min : 12... risque = 0.6650000000000001
+Score moyen : 16.496333333333332
+Nombre d'erreurs en moyenne : 1.3923333333333334
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 11... risque = 0.6700000000000002
+Score moyen : 16.332333333333334
+Nombre d'erreurs en moyenne : 1.2206666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.6750000000000002
+Score moyen : 16.305333333333333
+Nombre d'erreurs en moyenne : 1.24
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 20... Score min : 11... risque = 0.6800000000000002
+Score moyen : 16.333666666666666
+Nombre d'erreurs en moyenne : 1.2316666666666667
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 20... Score min : 12... risque = 0.6850000000000002
+Score moyen : 16.331
+Nombre d'erreurs en moyenne : 1.2243333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.6900000000000002
+Score moyen : 16.306333333333335
+Nombre d'erreurs en moyenne : 1.2426666666666666
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 11... risque = 0.6950000000000002
+Score moyen : 16.337333333333333
+Nombre d'erreurs en moyenne : 1.222
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________
+Score max : 21... Score min : 12... risque = 0.7000000000000002
+Score moyen : 16.292
+Nombre d'erreurs en moyenne : 1.2283333333333333
+Meilleur risque: 0.52... score pour ce risque: 16.608
+____________________________________________________________________

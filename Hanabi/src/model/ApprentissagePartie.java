@@ -1,5 +1,9 @@
 package model;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 /*import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,8 +24,8 @@ public class ApprentissagePartie extends Partie {
 		//Random r = new Random();
 		final int nbIndices = 8;
 		Joueur[] joue;
-		int nbSimulations=10000;
-		int nbJoueurs=3;
+		int nbSimulations=3000;
+		int nbJoueurs=5;
 		boolean multi = false;
 		
 		
@@ -82,8 +86,15 @@ public class ApprentissagePartie extends Partie {
 		joue = new Joueur[nbJoueurs];	
 		double risque = 0.5,bestRisque = 0, scoreMoyen,scoreMax = 0.0;
 		int min = 25,max = 0,scoreTotal = 0,erreursTotal = 0;
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter("apprentissage-risque5.txt", "UTF-8");
+		} catch (FileNotFoundException | UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		while(risque <= 0.7){
+		while(risque <= 0.70001){
 			min = 25;
 			max = 0;
 			scoreTotal = 0;
@@ -136,10 +147,12 @@ public class ApprentissagePartie extends Partie {
 			scoreMoyen = ((double)scoreTotal) / nbSimulations;
 			bestRisque = (scoreMoyen>scoreMax)? risque:bestRisque;
 			scoreMax = (scoreMoyen>scoreMax)? scoreMoyen:scoreMax;
-			System.out.println("Score max : " + max + "... Score min : " + min +"... risque = " + risque + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + ((double)erreursTotal)/nbSimulations);
-			System.out.println("Meilleur risque: "+bestRisque+"... score pour ce risque: "+scoreMax);
-			System.out.println("____________________________________________________________________");
+			writer.println("Score max : " + max + "... Score min : " + min +"... risque = " + risque + "\nScore moyen : " + scoreMoyen+ "\nNombre d'erreurs en moyenne : " + ((double)erreursTotal)/nbSimulations);
+			writer.println("Meilleur risque: "+bestRisque+"... score pour ce risque: "+scoreMax);
+			System.out.println(scoreMoyen+"____________"+risque);
+			writer.println("____________________________________________________________________");
 			risque += 0.005;
 		}
+		writer.close();
 	}	
 }
