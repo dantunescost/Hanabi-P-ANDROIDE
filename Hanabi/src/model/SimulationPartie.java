@@ -187,6 +187,7 @@ public class SimulationPartie extends Partie {
 		scoreMoyen = scoreTotal / nbSimulations;
 		scoreMoyenCarre = scoreCarreTotal / nbSimulations;
 		ecartType = scoreMoyenCarre - (scoreMoyen * scoreMoyen);
+		ecartType = (float) Math.sqrt(ecartType);
 		System.out.println("Score max : " + max + "\nScore min : " + min + "\nScore moyen : " + scoreMoyen+"\nEcart-type : "+ecartType +"\nNombre d'erreurs en moyenne : " + erreursTotal/nbSimulations);
 		
 		for(int i=0; i<produced.size(); i++)
